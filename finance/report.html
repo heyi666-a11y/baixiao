@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>财务报表</title>
+  <link rel="stylesheet" href="../../css/common.css">
+  <link rel="stylesheet" href="report.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 时间范围选择 -->
+    <div class="time-selector card">
+      <div class="time-item active" id="timeMonth" onclick="selectTimeRange('month')">
+        <span>本月</span>
+      </div>
+      <div class="time-item" id="timeQuarter" onclick="selectTimeRange('quarter')">
+        <span>本季度</span>
+      </div>
+      <div class="time-item" id="timeYear" onclick="selectTimeRange('year')">
+        <span>本年度</span>
+      </div>
+    </div>
+
+    <!-- 收支汇总卡片 -->
+    <div class="summary-section card">
+      <div class="summary-header">
+        <span class="summary-title">收支汇总</span>
+        <span class="summary-period" id="periodText"></span>
+      </div>
+      <div class="summary-content">
+        <div class="summary-item">
+          <span class="summary-label">总收入</span>
+          <span class="summary-value income" id="summaryIncome">¥0.00</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">总支出</span>
+          <span class="summary-value expense" id="summaryExpense">¥0.00</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">结余</span>
+          <span class="summary-value balance" id="summaryBalance">¥0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 支出分类饼图 -->
+    <div class="category-section card">
+      <div class="section-header">
+        <span class="section-title">支出分类占比</span>
+      </div>
+      <div class="pie-chart-container">
+        <!-- 使用颜色块表示饼图 -->
+        <div class="pie-visual" id="pieVisual">
+          <!-- 动态生成 -->
+        </div>
+        <div class="pie-legend" id="pieLegend">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 收支明细列表 -->
+    <div class="detail-section card">
+      <div class="section-header">
+        <span class="section-title">收支明细</span>
+        <span class="record-count" id="recordCount">共0条</span>
+      </div>
+      <div class="record-list" id="recordList">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 导出报表按钮 -->
+    <div class="export-section">
+      <button class="btn-export" onclick="exportReport()">
+        <span class="btn-icon">📥</span>
+        <span>导出报表</span>
+      </button>
+    </div>
+  </div>
+
+  <script src="../../js/supabase.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="report.js"></script>
+</body>
+</html>

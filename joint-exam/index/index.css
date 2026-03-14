@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f3f0ff 0%, #f5f5f5 100%);
+  padding-bottom: 20px;
+}
+
+/* 筛选栏 */
+.filter-bar {
+  display: flex;
+  background: #fff;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(139, 92, 246, 0.1);
+}
+
+.filter-item {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #666;
+  border-radius: 4px;
+  margin: 0 4px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.filter-item.active {
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* 联考列表 */
+.exam-list {
+  padding: 0 10px;
+}
+
+.exam-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.08);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.exam-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #8B5CF6 0%, #7C3AED 100%);
+}
+
+.exam-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.exam-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-ongoing {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.status-ended {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.status-upcoming {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.exam-info {
+  margin-bottom: 10px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.info-icon {
+  font-size: 14px;
+  margin-right: 6px;
+  width: 20px;
+  text-align: center;
+}
+
+.info-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.exam-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.update-time {
+  font-size: 12px;
+  color: #999;
+}
+
+.arrow {
+  font-size: 16px;
+  color: #8B5CF6;
+  font-weight: bold;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.empty-subtext {
+  font-size: 14px;
+  color: #999;
+}
+
+/* 加载状态 */
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #8B5CF6;
+  font-size: 14px;
+}
+
+/* 发起联考按钮 */
+.fab-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+  z-index: 100;
+  cursor: pointer;
+}
+
+.fab-icon {
+  font-size: 18px;
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+.fab-text {
+  font-size: 14px;
+  font-weight: 500;
+}

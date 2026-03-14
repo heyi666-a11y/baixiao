@@ -1,0 +1,441 @@
+.container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 页面标题 */
+.page-header {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  padding: 15px;
+  text-align: center;
+}
+
+.page-title {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.page-subtitle {
+  display: block;
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+  margin-top: 4px;
+}
+
+/* 筛选区域 */
+.filter-section {
+  background: #fff;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.date-picker {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.date-picker .label {
+  font-size: 14px;
+  color: #333;
+  margin-right: 10px;
+}
+
+.picker-value {
+  flex: 1;
+  padding: 8px 10px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  border: none;
+}
+
+.meal-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.meal-tab {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+}
+
+.meal-tab.active {
+  background: #ff6b35;
+  color: #fff;
+}
+
+/* 操作栏 */
+.action-bar {
+  display: flex;
+  gap: 10px;
+  padding: 10px 15px;
+  background: #fff;
+}
+
+.action-bar .btn {
+  flex: 1;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 14px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-icon {
+  margin-right: 4px;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background: #ff6b35;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #f5f5f5;
+  color: #666;
+}
+
+/* 菜单列表 */
+.menu-scroll {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.menu-list {
+  padding-bottom: 20px;
+}
+
+.menu-item {
+  display: flex;
+  background: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.item-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  margin-right: 10px;
+  background: #f5f5f5;
+  object-fit: cover;
+}
+
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.item-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin-right: 6px;
+}
+
+.item-category {
+  padding: 2px 6px;
+  background: #fff3e0;
+  color: #ff6b35;
+  font-size: 10px;
+  border-radius: 2px;
+}
+
+.item-desc {
+  font-size: 12px;
+  color: #999;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-price {
+  font-size: 16px;
+  color: #ff6b35;
+  font-weight: bold;
+}
+
+.item-stock {
+  font-size: 12px;
+  color: #999;
+}
+
+.item-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  margin-left: 10px;
+}
+
+.action-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 2px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.action-btn.edit {
+  background: #e3f2fd;
+  color: #2196f3;
+}
+
+.action-btn.delete {
+  background: #ffebee;
+  color: #f44336;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.empty-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.empty-text {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.empty-tip {
+  display: block;
+  font-size: 13px;
+  color: #999;
+}
+
+/* 弹窗 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 12px 12px 0 0;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.modal.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.modal-close {
+  font-size: 24px;
+  color: #999;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-body {
+  flex: 1;
+  padding: 15px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  padding: 10px 15px 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+}
+
+.modal-footer .btn {
+  flex: 1;
+  margin: 0;
+  padding: 12px 0;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+/* 表单 */
+.form-item {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.form-picker {
+  width: 100%;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  border: none;
+}
+
+.picker-arrow {
+  color: #999;
+}
+
+.price-input {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.price-symbol {
+  font-size: 14px;
+  color: #ff6b35;
+  margin-right: 4px;
+}
+
+.price-input .form-input {
+  flex: 1;
+  background: transparent;
+  padding-left: 0;
+}
+
+.form-textarea {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  border: none;
+  resize: none;
+  font-family: inherit;
+}
+
+/* 图片上传 */
+.image-upload {
+  width: 100px;
+  height: 100px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.image-upload img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-icon {
+  font-size: 24px;
+  color: #ccc;
+  margin-bottom: 4px;
+}
+
+.upload-text {
+  font-size: 12px;
+  color: #999;
+}

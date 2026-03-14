@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联考详情</title>
+  <link rel="stylesheet" href="detail.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 考试基本信息 -->
+    <div class="info-card">
+      <div class="exam-title-section">
+        <span class="exam-title" id="examName">--</span>
+        <div class="status-badge" id="statusBadge">--</div>
+      </div>
+      
+      <div class="info-section">
+        <div class="info-row">
+          <span class="info-label">📅 考试日期</span>
+          <span class="info-value" id="examDate">--</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">🏫 参与学校</span>
+          <span class="info-value" id="schoolCount">--</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">👥 参考人数</span>
+          <span class="info-value" id="studentCount">--</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">📝 考试科目</span>
+          <span class="info-value" id="subjectCount">--</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 考试科目列表 -->
+    <div class="section-card">
+      <div class="section-title">
+        <span class="title-icon">📚</span>
+        <span>考试科目</span>
+      </div>
+      <div class="subject-list" id="subjectList">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 参与学校 -->
+    <div class="section-card">
+      <div class="section-title">
+        <span class="title-icon">🏫</span>
+        <span>参与学校</span>
+        <span class="subtitle" id="schoolSubtitle">(0所)</span>
+      </div>
+      <div class="school-list" id="schoolList">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 考试公告 -->
+    <div class="section-card" id="noticeCard" style="display: none;">
+      <div class="section-title">
+        <span class="title-icon">📢</span>
+        <span>考试公告</span>
+      </div>
+      <div class="notice-list" id="noticeList">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 操作按钮区 -->
+    <div class="action-section">
+      <div class="action-card" onclick="goToScoreEntry()">
+        <div class="action-icon entry-icon">✏️</div>
+        <span class="action-title">成绩录入</span>
+        <span class="action-desc">录入或修改学生成绩</span>
+      </div>
+      
+      <div class="action-card" onclick="goToRankings()">
+        <div class="action-icon rank-icon">🏆</div>
+        <span class="action-title">查看排名</span>
+        <span class="action-desc">查看总分及单科排名</span>
+      </div>
+    </div>
+
+    <!-- 考试说明 -->
+    <div class="section-card" id="descriptionCard" style="display: none;">
+      <div class="section-title">
+        <span class="title-icon">📝</span>
+        <span>考试说明</span>
+      </div>
+      <span class="description-text" id="descriptionText">--</span>
+    </div>
+  </div>
+
+  <script src="detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+/* 记账页面样式 - 绿色主题 */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f9f4 0%, #e8f5e9 100%);
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+/* 卡片通用样式 */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* 页面标题 */
+.page-header {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 类型选择器 */
+.type-selector {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+.type-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.type-item.active {
+  background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+.type-icon {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.type-text {
+  font-size: 15px;
+  color: #666;
+  font-weight: bold;
+}
+
+.type-item.active .type-text {
+  color: #fff;
+}
+
+/* 金额输入 */
+.amount-section {
+  text-align: center;
+  padding: 20px;
+}
+
+.section-label {
+  font-size: 14px;
+  color: #666;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.amount-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.currency {
+  font-size: 30px;
+  color: #333;
+  font-weight: bold;
+}
+
+.amount-input {
+  font-size: 40px;
+  color: #333;
+  font-weight: bold;
+  width: 200px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+/* 分类选择 */
+.category-section {
+  padding: 15px;
+}
+
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.category-item.active {
+  background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+.category-icon {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.category-text {
+  font-size: 13px;
+  color: #666;
+}
+
+.category-item.active .category-text {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 表单项 */
+.form-item {
+  padding: 15px;
+}
+
+.form-label {
+  font-size: 14px;
+  color: #666;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.picker-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+
+.date-picker {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+}
+
+.arrow {
+  color: #999;
+  font-size: 14px;
+}
+
+/* 备注输入 */
+.remark-input {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+.remark-count {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+
+/* 提交按钮 */
+.submit-section {
+  padding: 20px 10px;
+}
+
+.btn-submit {
+  width: 100%;
+  background: #ccc;
+  color: #fff;
+  border-radius: 25px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-submit.active {
+  background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+.btn-submit:active {
+  opacity: 0.9;
+  transform: translateY(1px);
+}
+
+.btn-cancel {
+  width: 100%;
+  background: transparent;
+  color: #999;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-cancel:active {
+  background: #f5f5f5;
+}

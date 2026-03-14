@@ -1,0 +1,400 @@
+<!-- 订单确认 -->
+<div class="canteen-confirm-page">
+  <div class="page-header">
+    <a href="#/canteen" class="back-link" data-router>← 返回点餐</a>
+    <h1>订单确认</h1>
+    <p>确认订单信息并完成支付</p>
+  </div>
+
+  <div class="confirm-container">
+    <div class="confirm-main">
+      <div class="confirm-section">
+        <h3>📍 取餐信息</h3>
+        <div class="pickup-info">
+          <div class="form-group">
+            <label>取餐人姓名</label>
+            <input type="text" class="form-input" id="pickupName" placeholder="请输入取餐人姓名">
+          </div>
+          <div class="form-group">
+            <label>联系电话</label>
+            <input type="tel" class="form-input" id="pickupPhone" placeholder="请输入联系电话">
+          </div>
+          <div class="form-group">
+            <label>取餐时间</label>
+            <select class="form-select" id="pickupTime">
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="17:30">17:30</option>
+              <option value="18:00">18:00</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirm-section">
+        <h3>📝 订单备注</h3>
+        <textarea class="form-textarea" id="orderRemark" rows="3" placeholder="如有特殊要求，请在此备注..."></textarea>
+      </div>
+
+      <div class="confirm-section">
+        <h3>🛒 订单详情</h3>
+        <div class="order-items" id="orderItems">
+          <!-- 动态加载 -->
+        </div>
+      </div>
+    </div>
+
+    <div class="confirm-sidebar">
+      <div class="summary-card">
+        <h3>订单 summary</h3>
+        <div class="summary-row">
+          <span>商品总额</span>
+          <span id="subtotal">¥0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>优惠金额</span>
+          <span class="discount">-¥0.00</span>
+        </div>
+        <div class="summary-row total">
+          <span>实付金额</span>
+          <span class="total-price" id="totalPrice">¥0.00</span>
+        </div>
+      </div>
+
+      <div class="payment-card">
+        <h3>支付方式</h3>
+        <div class="payment-options">
+          <label class="payment-option active">
+            <input type="radio" name="payment" value="wechat" checked>
+            <span class="payment-icon">💚</span>
+            <span>微信支付</span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="alipay">
+            <span class="payment-icon">💙</span>
+            <span>支付宝</span>
+          </label>
+          <label class="payment-option">
+            <input type="radio" name="payment" value="card">
+            <span class="payment-icon">💳</span>
+            <span>校园卡</span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-lg btn-block" onclick="submitOrder()">确认支付</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.canteen-confirm-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.confirm-container {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 24px;
+}
+
+.confirm-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.confirm-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.confirm-section h3 {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.pickup-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.order-item-image {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.order-item-info {
+  flex: 1;
+}
+
+.order-item-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.order-item-price {
+  color: var(--error-color);
+  font-weight: 600;
+}
+
+.order-item-quantity {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.confirm-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.summary-card,
+.payment-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.summary-card h3,
+.payment-card h3 {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.summary-row.total {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.total-price {
+  font-size: 24px;
+  color: var(--error-color);
+}
+
+.discount {
+  color: var(--success-color);
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.payment-option:hover,
+.payment-option.active {
+  border-color: var(--primary-color);
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.payment-option input {
+  display: none;
+}
+
+.payment-icon {
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  .confirm-container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+// 确保canteenAPI已加载
+if (!window.canteenAPI) {
+  console.error('canteenAPI not loaded');
+}
+
+let cart = []
+
+function loadCart() {
+  const savedCart = localStorage.getItem('canteen_cart')
+  if (savedCart) {
+    try {
+      cart = JSON.parse(savedCart)
+      renderOrderItems()
+      calculateTotal()
+    } catch (error) {
+      console.error('加载购物车失败:', error)
+      utils.message.error('购物车数据错误，请重新点餐')
+      router.navigate('#/canteen')
+    }
+  } else {
+    utils.message.error('购物车是空的，请先点餐')
+    router.navigate('#/canteen')
+  }
+}
+
+function renderOrderItems() {
+  const container = document.getElementById('orderItems')
+
+  if (cart.length > 0) {
+    container.innerHTML = cart.map(item => `
+      <div class="order-item">
+        <div class="order-item-image">🍽️</div>
+        <div class="order-item-info">
+          <div class="order-item-name">${item.name}</div>
+          <div class="order-item-price">¥${item.price.toFixed(2)}</div>
+        </div>
+        <div class="order-item-quantity">x${item.quantity}</div>
+      </div>
+    `).join('')
+  } else {
+    container.innerHTML = '<div class="empty-state">购物车是空的</div>'
+  }
+}
+
+function calculateTotal() {
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const discount = 0
+  const total = subtotal - discount
+
+  document.getElementById('subtotal').textContent = '¥' + subtotal.toFixed(2)
+  document.querySelector('.discount').textContent = '-¥' + discount.toFixed(2)
+  document.getElementById('totalPrice').textContent = '¥' + total.toFixed(2)
+}
+
+async function submitOrder() {
+  const name = document.getElementById('pickupName').value
+  const phone = document.getElementById('pickupPhone').value
+  const time = document.getElementById('pickupTime').value
+  const remark = document.getElementById('orderRemark').value
+  const payment = document.querySelector('input[name="payment"]:checked').value
+
+  if (!name || !phone) {
+    utils.message.error('请填写取餐人信息')
+    return
+  }
+
+  if (cart.length === 0) {
+    utils.message.error('购物车是空的')
+    return
+  }
+
+  const orderData = {
+    items: cart,
+    pickupInfo: { name, phone, time },
+    remark,
+    payment,
+    total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  }
+
+  try {
+    utils.loading.show('提交订单中...')
+    const result = await canteenAPI.createOrder(orderData)
+    utils.loading.hide()
+
+    if (result.success) {
+      utils.message.success('订单提交成功！')
+      localStorage.removeItem('canteen_cart')
+      router.navigate('#/canteen/orders')
+    } else {
+      utils.message.error(result.error || '提交失败')
+    }
+  } catch (error) {
+    utils.loading.hide()
+    utils.message.error('提交失败，请重试')
+  }
+}
+
+// 支付方式选择
+document.querySelectorAll('.payment-option').forEach(option => {
+  option.addEventListener('click', function() {
+    document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('active'))
+    this.classList.add('active')
+    this.querySelector('input').checked = true
+  })
+})
+
+// 页面加载完成后初始化
+window.addEventListener('DOMContentLoaded', function() {
+  loadCart()
+})
+</script>

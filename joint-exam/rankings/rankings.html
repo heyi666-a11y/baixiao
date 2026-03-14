@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>排名查看</title>
+  <link rel="stylesheet" href="rankings.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 维度切换 -->
+    <div class="dimension-bar">
+      <div class="dimension-item active" data-dimension="total" onclick="onDimensionChange(this)">
+        总分排名
+      </div>
+      <div class="dimension-item" data-dimension="subject" onclick="onDimensionChange(this)">
+        单科排名
+      </div>
+    </div>
+
+    <!-- 科目选择（单科排名时显示） -->
+    <div class="subject-selector" id="subjectSelector" style="display: none;">
+      <div class="subject-scroll" id="subjectScroll">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 学校筛选 -->
+    <div class="filter-section">
+      <select class="filter-box" id="schoolFilter" onchange="onSchoolFilterChange()">
+        <option value="0">全部学校</option>
+        <!-- 动态生成 -->
+      </select>
+    </div>
+
+    <!-- 前三名展示 -->
+    <div class="top-three-section" id="topThreeSection" style="display: none;">
+      <div class="top-title">🏆 光荣榜</div>
+      <div class="top-three" id="topThree">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 排名表格 -->
+    <div class="ranking-section">
+      <div class="section-header">
+        <span class="section-title">完整排名</span>
+        <div class="export-btn" onclick="exportRankings()">
+          <span class="export-icon">📥</span>
+          <span>导出</span>
+        </div>
+      </div>
+
+      <div class="ranking-table">
+        <!-- 表头 -->
+        <div class="table-header" id="tableHeader">
+          <span class="th th-rank">排名</span>
+          <span class="th th-school">学校</span>
+          <span class="th th-student">学生</span>
+          <span class="th th-score">成绩</span>
+        </div>
+
+        <!-- 表格内容 -->
+        <div class="table-body" id="tableBody">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 统计概览 -->
+    <div class="overview-section">
+      <div class="overview-title">📊 统计概览</div>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="overview-value" id="overviewTotal">0</span>
+          <span class="overview-label">参考人数</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-value" id="overviewAverage">0</span>
+          <span class="overview-label">平均分</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-value" id="overviewHighest">0</span>
+          <span class="overview-label">最高分</span>
+        </div>
+        <div class="overview-item">
+          <span class="overview-value" id="overviewPassRate">0%</span>
+          <span class="overview-label">及格率</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="rankings.js"></script>
+</body>
+</html>

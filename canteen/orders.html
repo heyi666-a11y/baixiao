@@ -1,0 +1,363 @@
+<!-- 订单列表 -->
+<div class="canteen-orders-page">
+  <div class="page-header">
+    <a href="#/canteen" class="back-link" data-router>← 返回点餐</a>
+    <h1>我的订单</h1>
+    <p>查看历史订单和订单状态</p>
+  </div>
+
+  <div class="orders-tabs">
+    <div class="tab active" onclick="switchTab('all')">全部</div>
+    <div class="tab" onclick="switchTab('pending')">待取餐</div>
+    <div class="tab" onclick="switchTab('completed')">已完成</div>
+    <div class="tab" onclick="switchTab('cancelled')">已取消</div>
+  </div>
+
+  <div class="orders-list" id="ordersList">
+    <!-- 动态加载 -->
+  </div>
+</div>
+
+<style>
+.canteen-orders-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.orders-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab {
+  padding: 12px 24px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.tab.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.order-id {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.order-status {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.order-status.pending {
+  background: rgba(24, 144, 255, 0.1);
+  color: #1890ff;
+}
+
+.order-status.completed {
+  background: rgba(82, 196, 26, 0.1);
+  color: var(--success-color);
+}
+
+.order-status.cancelled {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-secondary);
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.order-item-image {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.order-item-info {
+  flex: 1;
+}
+
+.order-item-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.order-item-price {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.order-item-quantity {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.order-time {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.order-total {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.order-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--error-color);
+}
+
+.order-actions {
+  display: flex;
+  gap: 8px;
+}
+</style>
+
+<script>
+// 确保canteenAPI已加载
+if (!window.canteenAPI) {
+  console.error('canteenAPI not loaded');
+}
+
+let currentTab = 'all'
+
+async function loadOrders() {
+  try {
+    const result = await canteenAPI.getOrders({ status: currentTab })
+    const list = document.getElementById('ordersList')
+
+    if (result.success && result.data && result.data.length > 0) {
+      list.innerHTML = result.data.map(order => `
+        <div class="order-card">
+          <div class="order-header">
+            <span class="order-id">订单号: ${order.id}</span>
+            <span class="order-status ${order.status}">${getStatusText(order.status)}</span>
+          </div>
+          <div class="order-items">
+            ${order.items.map(item => `
+              <div class="order-item">
+                <div class="order-item-image">🍽️</div>
+                <div class="order-item-info">
+                  <div class="order-item-name">${item.name}</div>
+                  <div class="order-item-price">¥${item.price.toFixed(2)}</div>
+                </div>
+                <div class="order-item-quantity">x${item.quantity}</div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="order-footer">
+            <span class="order-time">${formatOrderTime(order.createTime)}</span>
+            <div class="order-total">
+              <span class="order-price">¥${order.total.toFixed(2)}</span>
+              <div class="order-actions">
+                ${getOrderActions(order)}
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('')
+    } else {
+      list.innerHTML = '<div class="empty-state">暂无订单</div>'
+    }
+  } catch (error) {
+    console.error('加载订单失败:', error)
+    // 默认数据
+    document.getElementById('ordersList').innerHTML = `
+      <div class="order-card">
+        <div class="order-header">
+          <span class="order-id">订单号: 202403100001</span>
+          <span class="order-status pending">待取餐</span>
+        </div>
+        <div class="order-items">
+          <div class="order-item">
+            <div class="order-item-image">🍚</div>
+            <div class="order-item-info">
+              <div class="order-item-name">红烧肉</div>
+              <div class="order-item-price">¥15.00</div>
+            </div>
+            <div class="order-item-quantity">x1</div>
+          </div>
+          <div class="order-item">
+            <div class="order-item-image">🥬</div>
+            <div class="order-item-info">
+              <div class="order-item-name">清炒时蔬</div>
+              <div class="order-item-price">¥8.00</div>
+            </div>
+            <div class="order-item-quantity">x1</div>
+          </div>
+        </div>
+        <div class="order-footer">
+          <span class="order-time">2024-03-10 11:30</span>
+          <div class="order-total">
+            <span class="order-price">¥23.00</span>
+            <div class="order-actions">
+              <button class="btn btn-sm" onclick="cancelOrder('202403100001')">取消</button>
+              <button class="btn btn-sm btn-primary" onclick="confirmPickup('202403100001')">确认取餐</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+  }
+}
+
+function formatOrderTime(time) {
+  if (!time) return ''
+  try {
+    const date = new Date(time)
+    return date.toLocaleString('zh-CN', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  } catch (error) {
+    return time
+  }
+}
+
+function switchTab(tab) {
+  currentTab = tab
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
+  event.target.classList.add('active')
+  loadOrders()
+}
+
+function getStatusText(status) {
+  const statusMap = {
+    'pending': '待取餐',
+    'completed': '已完成',
+    'cancelled': '已取消'
+  }
+  return statusMap[status] || status
+}
+
+function getOrderActions(order) {
+  if (order.status === 'pending') {
+    return `
+      <button class="btn btn-sm" onclick="cancelOrder('${order.id}')">取消</button>
+      <button class="btn btn-sm btn-primary" onclick="confirmPickup('${order.id}')">确认取餐</button>
+    `
+  } else if (order.status === 'completed') {
+    return `<button class="btn btn-sm" onclick="reorder('${order.id}')">再来一单</button>`
+  }
+  return ''
+}
+
+async function cancelOrder(orderId) {
+  if (!confirm('确定要取消这个订单吗？')) return
+
+  try {
+    utils.loading.show('处理中...')
+    const result = await canteenAPI.cancelOrder(orderId)
+    utils.loading.hide()
+    if (result.success) {
+      utils.message.success('订单已取消')
+      loadOrders()
+    } else {
+      utils.message.error(result.error || '取消失败')
+    }
+  } catch (error) {
+    utils.loading.hide()
+    utils.message.error('取消失败，请重试')
+  }
+}
+
+async function confirmPickup(orderId) {
+  try {
+    utils.loading.show('处理中...')
+    const result = await canteenAPI.confirmPickup(orderId)
+    utils.loading.hide()
+    if (result.success) {
+      utils.message.success('取餐成功！')
+      loadOrders()
+    } else {
+      utils.message.error(result.error || '操作失败')
+    }
+  } catch (error) {
+    utils.loading.hide()
+    utils.message.error('操作失败，请重试')
+  }
+}
+
+function reorder(orderId) {
+  utils.message.info('重新下单功能开发中...')
+}
+
+// 页面加载完成后初始化
+window.addEventListener('DOMContentLoaded', function() {
+  loadOrders()
+})
+</script>

@@ -1,0 +1,454 @@
+/* 饭堂预点餐系统样式 */
+
+.container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding-bottom: 60px;
+}
+
+/* 头部日期选择 */
+.header {
+  padding: 15px;
+  border-radius: 0 0 15px 15px;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 10px;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.back-icon {
+  font-size: 24px;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.date-selector {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.action-icon {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.action-text {
+  font-size: 11px;
+  color: #ffffff;
+}
+
+.date-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.date-item.active {
+  background: #ffffff;
+}
+
+.date-day {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 4px;
+}
+
+.date-item.active .date-day {
+  color: #667eea;
+}
+
+.date-week {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.date-item.active .date-week {
+  color: #999;
+}
+
+/* 餐别选择 */
+.meal-tabs {
+  display: flex;
+  background: #ffffff;
+  margin: 10px 15px;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.meal-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  border-radius: 6px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.meal-tab.active {
+  background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
+}
+
+.meal-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.meal-tab.active .meal-name {
+  color: #ffffff;
+}
+
+.meal-time {
+  font-size: 11px;
+  color: #999;
+}
+
+.meal-tab.active .meal-time {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 菜单列表 */
+.menu-list {
+  padding: 0 15px;
+}
+
+.menu-category {
+  margin-bottom: 15px;
+}
+
+.category-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.category-icon {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.category-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.dishes-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.dish-card {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.dish-image {
+  width: 100%;
+  height: 100px;
+  background: #f0f0f0;
+  object-fit: cover;
+}
+
+.dish-image-placeholder {
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.dish-info {
+  padding: 10px;
+}
+
+.dish-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.dish-desc {
+  font-size: 12px;
+  color: #999;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.dish-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dish-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #FF5722;
+}
+
+.dish-actions {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+}
+
+.btn-minus,
+.btn-plus {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-minus {
+  background: #f0f0f0;
+  color: #666;
+}
+
+.btn-plus {
+  background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
+  color: #ffffff;
+}
+
+.quantity {
+  font-size: 14px;
+  color: #333;
+  margin: 0 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* 购物车栏 */
+.cart-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 10px 15px;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.cart-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cart-icon {
+  position: relative;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 16px;
+  height: 16px;
+  background: #FF5722;
+  color: #ffffff;
+  font-size: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.cart-price {
+  display: flex;
+  align-items: baseline;
+}
+
+.total-label {
+  font-size: 13px;
+  color: #666;
+  margin-right: 4px;
+}
+
+.total-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FF5722;
+}
+
+.submit-btn {
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  margin: 0;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* 购物车弹窗 */
+.cart-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.cart-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-modal-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 15px 15px 0 0;
+  max-height: 60vh;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.cart-modal.show .cart-modal-content {
+  transform: translateY(0);
+}
+
+.cart-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.clear-cart {
+  font-size: 13px;
+  color: #999;
+  cursor: pointer;
+}
+
+.cart-list {
+  max-height: 50vh;
+  padding: 10px 15px;
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.cart-item-name {
+  font-size: 14px;
+  color: #333;
+  flex: 1;
+}
+
+.cart-item-right {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item-price {
+  font-size: 14px;
+  color: #FF5722;
+  font-weight: 500;
+  margin-right: 15px;
+}
+
+/* 渐变背景 */
+.gradient-bg {
+  background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
+}

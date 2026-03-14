@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AI智慧财报</title>
+  <link rel="stylesheet" href="../../css/common.css">
+  <link rel="stylesheet" href="ai-report.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 财务数据概览卡片 -->
+    <div class="overview-section">
+      <div class="section-title">财务概览</div>
+      <div class="stats-grid">
+        <div class="stats-card income">
+          <span class="stats-icon">📈</span>
+          <span class="stats-label">本月收入</span>
+          <span class="stats-value" id="monthIncome">¥0.00</span>
+        </div>
+        <div class="stats-card expense">
+          <span class="stats-icon">📉</span>
+          <span class="stats-label">本月支出</span>
+          <span class="stats-value" id="monthExpense">¥0.00</span>
+        </div>
+        <div class="stats-card balance">
+          <span class="stats-icon">💰</span>
+          <span class="stats-label">本月结余</span>
+          <span class="stats-value" id="monthBalance">¥0.00</span>
+        </div>
+        <div class="stats-card budget">
+          <span class="stats-icon">📊</span>
+          <span class="stats-label">年度剩余预算</span>
+          <span class="stats-value" id="yearRemaining">¥0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 财务趋势图表 -->
+    <div class="chart-section card">
+      <div class="section-header">
+        <span class="section-title">📈 近6个月财务趋势</span>
+      </div>
+      <div class="chart-container">
+        <div class="chart-legend">
+          <div class="legend-item">
+            <div class="legend-color income-color"></div>
+            <span class="legend-text">收入</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color expense-color"></div>
+            <span class="legend-text">支出</span>
+          </div>
+        </div>
+        <div class="bar-chart" id="trendChart">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- AI分析按钮 -->
+    <div class="ai-action-section" id="aiActionSection">
+      <div class="ai-intro">
+        <span class="ai-icon">🤖</span>
+        <span class="ai-title">AI智慧财务分析</span>
+        <span class="ai-desc">基于您的财务数据，AI将提供专业的分析报告和优化建议</span>
+      </div>
+      <button class="btn-ai-analyze" onclick="startAIAnalysis()">
+        <span class="btn-icon">✨</span>
+        <span>生成AI分析报告</span>
+      </button>
+    </div>
+
+    <!-- AI分析中状态 -->
+    <div class="ai-analyzing-section" id="aiAnalyzingSection" style="display: none;">
+      <div class="analyzing-content">
+        <div class="loading-animation">
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+        </div>
+        <span class="analyzing-text">AI正在分析您的财务数据...</span>
+        <span class="analyzing-subtext">请稍候，正在生成专业报告</span>
+      </div>
+    </div>
+
+    <!-- AI分析结果 -->
+    <div class="ai-result-section card" id="aiResultSection" style="display: none;">
+      <div class="ai-result-header">
+        <span class="ai-result-icon">🤖</span>
+        <div class="ai-result-title">
+          <span class="title-main">AI财务分析报告</span>
+          <span class="title-time" id="analysisTime"></span>
+        </div>
+      </div>
+      
+      <div class="ai-result-content" id="aiResultContent">
+        <!-- 动态生成 -->
+      </div>
+
+      <!-- 重新分析按钮 -->
+      <div class="ai-result-footer">
+        <button class="btn-reanalyze" onclick="startAIAnalysis()">
+          <span class="btn-icon">🔄</span>
+          <span>重新分析</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 底部安全区域 -->
+    <div class="safe-area-bottom"></div>
+  </div>
+
+  <script src="../../js/supabase.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="ai-report.js"></script>
+</body>
+</html>

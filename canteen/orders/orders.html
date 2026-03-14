@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>我的订单</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="orders.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <div class="header-left">
+        <div class="back-btn" onclick="goBack()">
+          <span class="back-icon">‹</span>
+        </div>
+        <span class="page-title">我的订单</span>
+      </div>
+    </div>
+
+    <!-- 标签切换 -->
+    <div class="tab-bar">
+      <div class="tab-item active" data-tab="all" onclick="switchTab('all')">
+        <span class="tab-text">全部</span>
+      </div>
+      <div class="tab-item" data-tab="pending" onclick="switchTab('pending')">
+        <span class="tab-text">待取餐</span>
+      </div>
+      <div class="tab-item" data-tab="completed" onclick="switchTab('completed')">
+        <span class="tab-text">已完成</span>
+      </div>
+      <div class="tab-item" data-tab="cancelled" onclick="switchTab('cancelled')">
+        <span class="tab-text">已取消</span>
+      </div>
+    </div>
+
+    <!-- 订单列表 -->
+    <div class="orders-scroll" id="orders-scroll">
+      <div class="orders-list" id="orders-list"></div>
+
+      <!-- 空状态 -->
+      <div class="empty-state" id="empty-state" style="display: none;">
+        <div class="empty-icon">📋</div>
+        <span class="empty-text" id="empty-text">暂无订单</span>
+        <button class="btn btn-primary" onclick="goToMenu()">去点餐</button>
+      </div>
+    </div>
+
+    <!-- 订单详情弹窗 -->
+    <div class="modal" id="detail-modal">
+      <div class="modal-mask" onclick="closeDetailModal()"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-title">订单详情</span>
+          <span class="modal-close" onclick="closeDetailModal()">×</span>
+        </div>
+        
+        <div class="modal-body" id="modal-body"></div>
+
+        <!-- 底部操作 -->
+        <div class="modal-footer" id="modal-footer"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/canteenAPI.js"></script>
+  <script src="orders.js"></script>
+</body>
+</html>

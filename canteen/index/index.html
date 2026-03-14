@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>饭堂点餐</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 头部日期选择 -->
+    <div class="header gradient-bg">
+      <div class="header-top">
+        <div class="back-btn" onclick="goBack()">
+          <span class="back-icon">‹</span>
+        </div>
+        <div class="date-selector">
+          <div class="date-item" id="date-today" onclick="selectDate('today')">
+            <span class="date-day">今天</span>
+            <span class="date-week" id="today-week"></span>
+          </div>
+          <div class="date-item" id="date-tomorrow" onclick="selectDate('tomorrow')">
+            <span class="date-day">明天</span>
+            <span class="date-week" id="tomorrow-week"></span>
+          </div>
+          <div class="date-item" id="date-afterTomorrow" onclick="selectDate('afterTomorrow')">
+            <span class="date-day">后天</span>
+            <span class="date-week" id="afterTomorrow-week"></span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="action-btn" onclick="goToOrders()">
+            <span class="action-icon">📋</span>
+            <span class="action-text">订单</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 餐别选择 -->
+    <div class="meal-tabs">
+      <div class="meal-tab" id="meal-breakfast" onclick="selectMeal('breakfast')">
+        <span class="meal-name">早餐</span>
+        <span class="meal-time">07:00-08:30</span>
+      </div>
+      <div class="meal-tab" id="meal-lunch" onclick="selectMeal('lunch')">
+        <span class="meal-name">午餐</span>
+        <span class="meal-time">11:30-13:00</span>
+      </div>
+      <div class="meal-tab" id="meal-dinner" onclick="selectMeal('dinner')">
+        <span class="meal-name">晚餐</span>
+        <span class="meal-time">17:30-19:00</span>
+      </div>
+    </div>
+
+    <!-- 菜单列表 -->
+    <div class="menu-list" id="menu-list"></div>
+
+    <!-- 购物车栏 -->
+    <div class="cart-bar" id="cart-bar" style="display: none;">
+      <div class="cart-info" onclick="showCartDetail()">
+        <div class="cart-icon">
+          <span>🛒</span>
+          <div class="cart-badge" id="cart-badge">0</div>
+        </div>
+        <div class="cart-price">
+          <span class="total-label">合计：</span>
+          <span class="total-price" id="total-price">¥0</span>
+        </div>
+      </div>
+      <button class="submit-btn" onclick="goToConfirm()">去结算</button>
+    </div>
+
+    <!-- 购物车详情弹窗 -->
+    <div class="cart-modal" id="cart-modal" onclick="hideCartDetail()">
+      <div class="cart-modal-content" onclick="event.stopPropagation()">
+        <div class="cart-modal-header">
+          <span class="cart-modal-title">购物车</span>
+          <span class="clear-cart" onclick="clearCart()">清空</span>
+        </div>
+        <div class="cart-list" id="cart-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

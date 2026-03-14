@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>菜单管理</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <span class="page-title">菜单管理</span>
+      <span class="page-subtitle">管理每日菜品</span>
+    </div>
+
+    <!-- 日期和餐别选择 -->
+    <div class="filter-section">
+      <div class="date-picker">
+        <span class="label">日期</span>
+        <input type="date" class="picker-value" id="current-date" onchange="onDateChange(this.value)">
+      </div>
+      
+      <div class="meal-tabs">
+        <div class="meal-tab active" data-meal="breakfast" onclick="switchMeal('breakfast')">
+          <span>早餐</span>
+        </div>
+        <div class="meal-tab" data-meal="lunch" onclick="switchMeal('lunch')">
+          <span>午餐</span>
+        </div>
+        <div class="meal-tab" data-meal="dinner" onclick="switchMeal('dinner')">
+          <span>晚餐</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 操作按钮 -->
+    <div class="action-bar">
+      <button class="btn btn-primary" onclick="showAddModal()">
+        <span class="btn-icon">+</span>
+        <span>添加菜品</span>
+      </button>
+      <button class="btn btn-secondary" onclick="copyToTomorrow()">
+        <span>复制到明天</span>
+      </button>
+    </div>
+
+    <!-- 菜单列表 -->
+    <div class="menu-scroll" id="menu-scroll">
+      <div class="menu-list" id="menu-list"></div>
+
+      <!-- 空状态 -->
+      <div class="empty-state" id="empty-state" style="display: none;">
+        <div class="empty-icon">🍽️</div>
+        <span class="empty-text">暂无菜品</span>
+        <span class="empty-tip">点击上方按钮添加菜品</span>
+      </div>
+    </div>
+
+    <!-- 添加/编辑弹窗 -->
+    <div class="modal" id="add-modal">
+      <div class="modal-mask" onclick="hideAddModal()"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-title" id="modal-title">添加菜品</span>
+          <span class="modal-close" onclick="hideAddModal()">×</span>
+        </div>
+        
+        <div class="modal-body">
+          <div class="form">
+            <!-- 菜品图片 -->
+            <div class="form-item">
+              <span class="form-label">菜品图片</span>
+              <div class="image-upload" onclick="chooseImage()">
+                <img id="preview-image" style="display: none;" alt="菜品图片"/>
+                <div class="upload-placeholder" id="upload-placeholder">
+                  <span class="upload-icon">+</span>
+                  <span class="upload-text">点击上传</span>
+                </div>
+              </div>
+              <input type="file" id="image-input" accept="image/*" style="display: none;" onchange="onImageSelected(this)">
+            </div>
+
+            <!-- 菜品名称 -->
+            <div class="form-item">
+              <span class="form-label">菜品名称 *</span>
+              <input 
+                type="text"
+                class="form-input" 
+                placeholder="请输入菜品名称"
+                id="form-name"
+              />
+            </div>
+
+            <!-- 菜品分类 -->
+            <div class="form-item">
+              <span class="form-label">菜品分类</span>
+              <select class="form-picker" id="form-category">
+                <option value="staple">主食</option>
+                <option value="dish">菜品</option>
+                <option value="soup">汤品</option>
+                <option value="snack">小吃</option>
+                <option value="drink">饮品</option>
+              </select>
+            </div>
+
+            <!-- 价格 -->
+            <div class="form-item">
+              <span class="form-label">价格 *</span>
+              <div class="price-input">
+                <span class="price-symbol">¥</span>
+                <input 
+                  type="number"
+                  class="form-input" 
+                  placeholder="0.00"
+                  id="form-price"
+                  step="0.01"
+                />
+              </div>
+            </div>
+
+            <!-- 库存 -->
+            <div class="form-item">
+              <span class="form-label">库存</span>
+              <input 
+                type="number"
+                class="form-input" 
+                placeholder="99"
+                id="form-stock"
+              />
+            </div>
+
+            <!-- 描述 -->
+            <div class="form-item">
+              <span class="form-label">描述</span>
+              <textarea 
+                class="form-textarea" 
+                placeholder="请输入菜品描述（选填）"
+                id="form-description"
+                maxlength="100"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="hideAddModal()">取消</button>
+          <button class="btn btn-primary" onclick="saveItem()">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/canteenAPI.js"></script>
+  <script src="menu.js"></script>
+</body>
+</html>

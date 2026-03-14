@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联考首页</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 状态筛选 -->
+    <div class="filter-bar">
+      <div class="filter-item active" data-filter="all" onclick="onFilterChange(this)">
+        全部
+      </div>
+      <div class="filter-item" data-filter="ongoing" onclick="onFilterChange(this)">
+        进行中
+      </div>
+      <div class="filter-item" data-filter="ended" onclick="onFilterChange(this)">
+        已结束
+      </div>
+      <div class="filter-item" data-filter="upcoming" onclick="onFilterChange(this)">
+        未开始
+      </div>
+    </div>
+
+    <!-- 联考列表 -->
+    <div class="exam-list" id="examList">
+      <!-- 动态生成 -->
+    </div>
+
+    <!-- 空状态 -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <div class="empty-icon">📋</div>
+      <span class="empty-text">暂无联考信息</span>
+      <span class="empty-subtext" id="emptySubtext">还没有发起任何联考</span>
+    </div>
+
+    <!-- 加载状态 -->
+    <div class="loading" id="loading" style="display: none;">
+      <span>加载中...</span>
+    </div>
+
+    <!-- 发起联考按钮（管理员） -->
+    <div class="fab-btn" id="fabBtn" onclick="goToCreate()">
+      <span class="fab-icon">+</span>
+      <span class="fab-text">发起联考</span>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

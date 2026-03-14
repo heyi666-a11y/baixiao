@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>财务首页</title>
+  <link rel="stylesheet" href="../../css/common.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 顶部统计卡片 -->
+    <div class="stats-header">
+      <div class="stats-card income">
+        <span class="stats-label">本月收入</span>
+        <span class="stats-value" id="monthIncome">¥0.00</span>
+      </div>
+      <div class="stats-card expense">
+        <span class="stats-label">本月支出</span>
+        <span class="stats-value" id="monthExpense">¥0.00</span>
+      </div>
+      <div class="stats-card balance">
+        <span class="stats-label">本月结余</span>
+        <span class="stats-value" id="monthBalance">¥0.00</span>
+      </div>
+      <div class="stats-card budget">
+        <span class="stats-label">年度预算剩余</span>
+        <span class="stats-value" id="yearRemaining">¥0.00</span>
+      </div>
+    </div>
+
+    <!-- AI智慧财报入口 -->
+    <div class="ai-report-section card" onclick="goToAIReport()">
+      <div class="ai-report-content">
+        <div class="ai-icon-wrapper">
+          <span class="ai-icon">🤖</span>
+        </div>
+        <div class="ai-report-info">
+          <span class="ai-report-title">AI智慧财报</span>
+          <span class="ai-report-desc">智能分析财务数据，生成专业报告</span>
+        </div>
+        <div class="ai-report-arrow">
+          <span class="arrow-icon">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 收支趋势图表 -->
+    <div class="chart-section card">
+      <div class="section-header">
+        <span class="section-title">收支趋势（近6个月）</span>
+      </div>
+      <div class="chart-container">
+        <div class="chart-legend">
+          <div class="legend-item">
+            <div class="legend-color income-color"></div>
+            <span class="legend-text">收入</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color expense-color"></div>
+            <span class="legend-text">支出</span>
+          </div>
+        </div>
+        <div class="bar-chart" id="trendChart">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 最近收支记录 -->
+    <div class="recent-section card">
+      <div class="section-header">
+        <span class="section-title">最近收支</span>
+        <span class="more-link" onclick="goToReport()">查看更多</span>
+      </div>
+      <div class="record-list" id="recentRecords">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 快速记账按钮 -->
+    <div class="quick-action">
+      <button class="btn-primary" onclick="goToRecord()">
+        <span class="btn-icon">+</span>
+        <span>快速记账</span>
+      </button>
+    </div>
+
+    <!-- 底部导航 -->
+    <div class="tab-bar">
+      <div class="tab-item active">
+        <span class="tab-icon">📊</span>
+        <span class="tab-text">首页</span>
+      </div>
+      <div class="tab-item" onclick="goToRecord()">
+        <span class="tab-icon">📝</span>
+        <span class="tab-text">记账</span>
+      </div>
+      <div class="tab-item" onclick="goToReport()">
+        <span class="tab-icon">📈</span>
+        <span class="tab-text">报表</span>
+      </div>
+      <div class="tab-item" onclick="goToBudget()">
+        <span class="tab-icon">💰</span>
+        <span class="tab-text">预算</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/supabase.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>确认订单</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="confirm.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 头部 -->
+    <div class="header gradient-bg">
+      <div class="header-left">
+        <div class="back-btn" onclick="goBack()">
+          <span class="back-icon">‹</span>
+        </div>
+        <span class="header-title">确认订单</span>
+      </div>
+    </div>
+
+    <!-- 取餐信息 -->
+    <div class="section-card">
+      <div class="section-title">
+        <span class="title-icon">📍</span>
+        <span class="title-text">取餐信息</span>
+      </div>
+      <div class="info-list">
+        <div class="info-item">
+          <span class="info-label">取餐日期</span>
+          <span class="info-value" id="order-date"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">餐别</span>
+          <span class="info-value" id="order-meal"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">取餐时间</span>
+          <select class="picker-value" id="pickup-time" onchange="onPickupTimeChange(this.value)">
+            <option value="">请选择取餐时间</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 订单商品 -->
+    <div class="section-card">
+      <div class="section-title">
+        <span class="title-icon">🛒</span>
+        <span class="title-text">订单商品</span>
+        <span class="title-count" id="item-count">共 0 件</span>
+      </div>
+      <div class="item-list" id="item-list"></div>
+    </div>
+
+    <!-- 备注 -->
+    <div class="section-card">
+      <div class="section-title">
+        <span class="title-icon">📝</span>
+        <span class="title-text">订单备注</span>
+      </div>
+      <textarea 
+        class="remark-input" 
+        placeholder="请输入备注信息（选填）"
+        id="remark"
+        maxlength="100"
+      ></textarea>
+    </div>
+
+    <!-- 金额汇总 -->
+    <div class="section-card amount-card">
+      <div class="amount-row">
+        <span class="amount-label">商品总额</span>
+        <span class="amount-value" id="subtotal">¥0</span>
+      </div>
+      <div class="amount-row">
+        <span class="amount-label">优惠</span>
+        <span class="amount-value discount">-¥0.00</span>
+      </div>
+      <div class="amount-row total-row">
+        <span class="amount-label">实付金额</span>
+        <span class="amount-value total" id="total-price">¥0</span>
+      </div>
+    </div>
+
+    <!-- 底部提交栏 -->
+    <div class="bottom-bar safe-area-bottom">
+      <div class="price-info">
+        <span class="price-label">实付：</span>
+        <span class="price-value" id="bottom-price">¥0</span>
+      </div>
+      <button class="submit-btn" id="submit-btn" onclick="submitOrder()">
+        <span id="btn-text">提交订单</span>
+      </button>
+    </div>
+  </div>
+
+  <script src="../../../js/canteenAPI.js"></script>
+  <script src="confirm.js"></script>
+</body>
+</html>

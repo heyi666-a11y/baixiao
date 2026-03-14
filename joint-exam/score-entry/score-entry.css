@@ -1,0 +1,436 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f3f0ff 0%, #f5f5f5 100%);
+  padding-bottom: 70px;
+}
+
+/* 选择器区域 */
+.selector-section {
+  background: #fff;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(139, 92, 246, 0.08);
+}
+
+.selector-item {
+  margin-bottom: 12px;
+}
+
+.selector-item:last-child {
+  margin-bottom: 0;
+}
+
+.selector-label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.picker-box {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #f9fafb;
+  font-size: 14px;
+  color: #333;
+}
+
+.picker-box:focus {
+  border-color: #8B5CF6;
+  background: #fff;
+  outline: none;
+}
+
+/* 批量导入 */
+.batch-section {
+  margin: 0 10px 10px;
+}
+
+.batch-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-radius: 6px;
+  color: #1e40af;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.batch-icon {
+  font-size: 16px;
+  margin-right: 6px;
+}
+
+/* 成绩录入区域 */
+.score-section {
+  background: #fff;
+  margin: 0 10px 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(139, 92, 246, 0.08);
+  overflow: hidden;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.student-count {
+  font-size: 13px;
+  color: #8B5CF6;
+}
+
+/* 成绩表格 */
+.score-table {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.table-header {
+  display: flex;
+  background: #f9fafb;
+  padding: 12px 15px;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+}
+
+.th {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  text-align: center;
+}
+
+.th-index {
+  width: 40px;
+  text-align: center;
+}
+
+.th-name {
+  flex: 1;
+  padding-left: 10px;
+  text-align: left;
+}
+
+.th-score {
+  width: 70px;
+  text-align: center;
+}
+
+.th-action {
+  width: 50px;
+  text-align: center;
+}
+
+.table-body {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.table-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 0.2s;
+}
+
+.table-row.has-score {
+  background: #f0fdf4;
+}
+
+.td {
+  font-size: 14px;
+  color: #333;
+}
+
+.td-index {
+  width: 40px;
+  text-align: center;
+  color: #8B5CF6;
+  font-weight: 500;
+}
+
+.td-name {
+  flex: 1;
+  padding-left: 10px;
+}
+
+.td-score {
+  width: 70px;
+  text-align: center;
+}
+
+.score-input {
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+}
+
+.score-input.high {
+  color: #16a34a;
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.score-input.low {
+  color: #dc2626;
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.td-action {
+  width: 50px;
+  text-align: center;
+  color: #ef4444;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* 统计区域 */
+.stats-section {
+  background: #fff;
+  margin: 0 10px 10px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(139, 92, 246, 0.08);
+}
+
+.stats-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10px;
+  background: #f9fafb;
+  border-radius: 6px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: #8B5CF6;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.empty-subtext {
+  font-size: 14px;
+  color: #999;
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  padding: 10px 15px;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.save-btn {
+  flex: 1;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  background: #f3f4f6;
+  color: #666;
+  font-size: 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.submit-btn {
+  flex: 2;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  color: #fff;
+  font-size: 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submit-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 弹窗 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 85%;
+  max-width: 325px;
+}
+
+.modal-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.modal-desc {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.modal-example {
+  display: block;
+  font-size: 13px;
+  color: #8B5CF6;
+  background: #f3f0ff;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-family: monospace;
+}
+
+.import-textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #f9fafb;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.import-textarea:focus {
+  border-color: #8B5CF6;
+  background: #fff;
+  outline: none;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.modal-btn {
+  flex: 1;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-btn.cancel {
+  background: #f3f4f6;
+  color: #666;
+}
+
+.modal-btn.confirm {
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  color: #fff;
+}

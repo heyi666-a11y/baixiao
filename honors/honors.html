@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>荣誉公示</title>
+  <link rel="stylesheet" href="honors.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <span class="page-title">荣誉公示</span>
+      <span class="page-subtitle">记录每一份荣耀，见证每一次成长</span>
+    </div>
+
+    <!-- 分类标签 -->
+    <div class="category-tabs">
+      <div 
+        class="tab-item" 
+        v-for="item in categories" 
+        :key="item.id"
+        :class="{ active: currentCategory === item.id }"
+        @click="onCategoryTap(item.id)"
+      >
+        <span class="tab-icon">{{item.icon}}</span>
+        <span class="tab-name">{{item.name}}</span>
+      </div>
+    </div>
+
+    <!-- 荣誉列表 -->
+    <div class="honors-content">
+      <!-- 学校荣誉 -->
+      <div class="honor-section" v-if="currentCategory === 'school'">
+        <div class="honor-card school-honor" v-for="item in schoolHonors" :key="item.id">
+          <div class="honor-medal">🏆</div>
+          <div class="honor-info">
+            <span class="honor-title">{{item.title}}</span>
+            <span class="honor-year">{{item.year}}年</span>
+          </div>
+          <div class="honor-badge">{{item.level}}</div>
+        </div>
+      </div>
+
+      <!-- 教师荣誉 -->
+      <div class="honor-section" v-if="currentCategory === 'teacher'">
+        <div class="honor-card teacher-honor" v-for="item in teacherHonors" :key="item.id">
+          <div class="teacher-avatar">{{item.avatar}}</div>
+          <div class="honor-detail">
+            <div class="teacher-info">
+              <span class="teacher-name">{{item.name}}</span>
+              <span class="teacher-title">{{item.title}}</span>
+            </div>
+            <span class="honor-award">{{item.award}}</span>
+            <span class="honor-year">{{item.year}}年</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 学生荣誉 -->
+      <div class="honor-section" v-if="currentCategory === 'student'">
+        <div class="honor-card student-honor" v-for="item in studentHonors" :key="item.id">
+          <div class="student-avatar">{{item.avatar}}</div>
+          <div class="honor-detail">
+            <div class="student-info">
+              <span class="student-name">{{item.name}}</span>
+              <div class="honor-tag">{{item.tag}}</div>
+            </div>
+            <span class="honor-award">{{item.award}}</span>
+            <span class="honor-year">{{item.year}}年</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 荣誉统计 -->
+    <div class="stats-section">
+      <div class="stats-title">荣誉统计</div>
+      <div class="stats-grid">
+        <div class="stats-item">
+          <span class="stats-number">{{stats.school}}</span>
+          <span class="stats-label">学校荣誉</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-number">{{stats.teacher}}</span>
+          <span class="stats-label">教师荣誉</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-number">{{stats.student}}</span>
+          <span class="stats-label">学生荣誉</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="honors.js"></script>
+</body>
+</html>

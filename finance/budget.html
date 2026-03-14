@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>预算管理</title>
+  <link rel="stylesheet" href="../../css/common.css">
+  <link rel="stylesheet" href="budget.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 年度预算概览 -->
+    <div class="year-budget card">
+      <div class="card-header">
+        <span class="card-title">年度预算</span>
+        <div class="edit-btn" id="editYearBtn" onclick="editYearBudget()">
+          <span>编辑</span>
+        </div>
+      </div>
+      
+      <div class="budget-display" id="yearBudgetDisplay">
+        <div class="budget-total">
+          <span class="total-label">总预算</span>
+          <span class="total-value" id="yearTotal">¥0.00</span>
+        </div>
+        <div class="budget-progress">
+          <div class="progress-info">
+            <span class="progress-text" id="yearPercentage">已使用 0%</span>
+            <span class="remaining-text" id="yearRemaining">剩余 ¥0.00</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="yearProgressFill" style="width: 0%;"></div>
+          </div>
+          <div class="progress-amount">
+            <span id="yearUsed">已用 ¥0.00</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 编辑年度预算 -->
+      <div class="budget-edit" id="yearBudgetEdit" style="display: none;">
+        <div class="edit-input-wrapper">
+          <span class="edit-label">年度总预算</span>
+          <input class="edit-input" type="number" step="0.01" id="editYearTotalInput" />
+        </div>
+        <div class="edit-actions">
+          <button class="btn-save" onclick="saveYearBudget()">保存</button>
+          <button class="btn-cancel" onclick="cancelEditYear()">取消</button>
+        </div>
+      </div>
+      
+      <!-- 超预算警告 -->
+      <div class="warning-banner" id="yearWarning" style="display: none;">
+        <span class="warning-icon">⚠️</span>
+        <span class="warning-text" id="yearWarningText">年度预算已超支 ¥0.00</span>
+      </div>
+    </div>
+
+    <!-- 分类预算 -->
+    <div class="category-budget card">
+      <div class="card-header">
+        <span class="card-title">分类预算</span>
+        <div class="edit-btn" id="editCategoryBtn" onclick="editCategoryBudget()">
+          <span>编辑</span>
+        </div>
+      </div>
+      
+      <div class="category-list" id="categoryList">
+        <!-- 动态生成 -->
+      </div>
+      
+      <!-- 编辑分类预算 -->
+      <div class="category-edit" id="categoryEdit" style="display: none;">
+        <div id="categoryEditList">
+          <!-- 动态生成 -->
+        </div>
+        <div class="edit-actions">
+          <button class="btn-save" onclick="saveCategoryBudget()">保存</button>
+          <button class="btn-cancel" onclick="cancelEditCategory()">取消</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 预算说明 -->
+    <div class="budget-tips card">
+      <div class="tips-header">
+        <span class="tips-icon">💡</span>
+        <span class="tips-title">预算提示</span>
+      </div>
+      <div class="tips-content">
+        <span class="tip-item">• 合理设置预算有助于控制支出</span>
+        <span class="tip-item">• 超预算时会显示红色警告</span>
+        <span class="tip-item">• 建议定期查看预算执行情况</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/supabase.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="budget.js"></script>
+</body>
+</html>

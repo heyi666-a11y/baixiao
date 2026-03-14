@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百校一体化系统</title>
+  <link rel="stylesheet" href="../../css/common.css">
+  <link rel="stylesheet" href="../../css/tabbar.css">
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div class="container page-container">
+    <!-- 顶部标题区 -->
+    <div class="header">
+      <div class="header-content">
+        <div class="logo-wrapper">
+          <span class="logo-icon">🏫</span>
+        </div>
+        <div class="title-wrapper">
+          <span class="main-title">百校一体化系统</span>
+          <span class="sub-title">Hundred Schools Alliance Integrated System</span>
+        </div>
+      </div>
+      <div class="header-wave">
+        <div class="wave"></div>
+      </div>
+    </div>
+
+    <!-- 学校系统区域 -->
+    <div class="section-card schools-section">
+      <div class="section-header">
+        <div class="section-title-wrapper">
+          <span class="section-icon">🏛️</span>
+          <span class="section-title">学校系统</span>
+        </div>
+        <span class="section-more" onclick="viewAllSchools()">查看全部 ></span>
+      </div>
+      <div class="schools-list" id="schoolsList">
+        <!-- 学校列表将通过JS动态渲染 -->
+      </div>
+    </div>
+
+    <!-- 创作者提示框 -->
+    <div class="section-card creator-notice">
+      <div class="notice-content">
+        <span class="notice-icon">💡</span>
+        <span class="notice-text">创作者提示：本网站为防止后端被恶意调用，已关闭部分功能的实际使用能力，但是作体验演示仍可使用</span>
+      </div>
+    </div>
+
+    <!-- 联考管理入口 -->
+    <div class="section-card exam-section">
+      <div class="exam-banner" onclick="enterExamManage()">
+        <div class="exam-banner-bg"></div>
+        <div class="exam-content">
+          <div class="exam-icon-wrapper">
+            <span class="exam-icon">📝</span>
+          </div>
+          <div class="exam-info">
+            <span class="exam-title">联考管理</span>
+            <span class="exam-desc">统一命题 · 联合考试 · 成绩分析</span>
+          </div>
+          <div class="exam-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 资源共享区域 -->
+    <div class="section-card resources-section">
+      <div class="section-header">
+        <div class="section-title-wrapper">
+          <span class="section-icon">📚</span>
+          <span class="section-title">资源共享</span>
+        </div>
+        <span class="section-more" onclick="viewAllResources()">更多 ></span>
+      </div>
+      <!-- 加载中 -->
+      <div class="loading-state" id="resourcesLoading">
+        <span class="loading-text">加载中...</span>
+      </div>
+      <!-- 资源列表 -->
+      <div class="resources-list" id="resourcesList" style="display: none;">
+        <!-- 资源列表将通过JS动态渲染 -->
+      </div>
+      <!-- 空状态 -->
+      <div class="empty-state" id="resourcesEmpty" style="display: none;">
+        <span class="empty-icon">📚</span>
+        <span class="empty-text">暂无资源</span>
+      </div>
+    </div>
+
+    <!-- 最新动态区域 -->
+    <div class="section-card news-section">
+      <div class="section-header">
+        <div class="section-title-wrapper">
+          <span class="section-icon">📰</span>
+          <span class="section-title">最新动态</span>
+        </div>
+        <span class="section-more" onclick="viewAllNews()">更多 ></span>
+      </div>
+      <!-- 加载中 -->
+      <div class="loading-state" id="newsLoading">
+        <span class="loading-text">加载中...</span>
+      </div>
+      <!-- 新闻列表 -->
+      <div class="news-list" id="newsList" style="display: none;">
+        <!-- 新闻列表将通过JS动态渲染 -->
+      </div>
+      <!-- 空状态 -->
+      <div class="empty-state" id="newsEmpty" style="display: none;">
+        <span class="empty-icon">📰</span>
+        <span class="empty-text">暂无新闻</span>
+      </div>
+    </div>
+
+    <!-- 统计数据 -->
+    <div class="stats-section">
+      <div class="stats-card">
+        <div class="stat-item">
+          <span class="stat-number" id="statSchoolCount">1</span>
+          <span class="stat-label">联盟学校</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" id="statResourceCount">0</span>
+          <span class="stat-label">共享资源</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" id="statExamCount">6</span>
+          <span class="stat-label">联考次数</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" id="statUserCount">2.5k</span>
+          <span class="stat-label">使用用户</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+      <span class="footer-text">© 2026 百校一体化系统 版权所有</span>
+    </div>
+
+    <!-- AI助手 -->
+    <ai-assistant></ai-assistant>
+  </div>
+
+  <script src="../../js/supabase.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/components/ai-assistant.js"></script>
+  <script src="../../js/components/tabbar.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>

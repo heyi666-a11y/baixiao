@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建联考</title>
+  <link rel="stylesheet" href="create.css">
+</head>
+<body>
+  <div class="container">
+    <form id="examForm" onsubmit="onSubmit(event)">
+      <!-- 基本信息 -->
+      <div class="form-section">
+        <div class="section-title">基本信息</div>
+        
+        <div class="form-item">
+          <span class="form-label required">考试名称</span>
+          <input 
+            class="form-input" 
+            name="name" 
+            placeholder="请输入考试名称，如：2024年春季期中联考"
+            id="nameInput"
+            oninput="onNameInput(this.value)"
+          />
+        </div>
+
+        <div class="form-item">
+          <span class="form-label required">考试日期</span>
+          <select class="form-select" id="yearSelect" onchange="onDateChange()">
+            <option value="">选择年份</option>
+            <option value="2024年">2024年</option>
+            <option value="2025年">2025年</option>
+            <option value="2026年">2026年</option>
+          </select>
+          <select class="form-select" id="monthSelect" onchange="onDateChange()">
+            <option value="">选择月份</option>
+            <option value="1月">1月</option>
+            <option value="2月">2月</option>
+            <option value="3月">3月</option>
+            <option value="4月">4月</option>
+            <option value="5月">5月</option>
+            <option value="6月">6月</option>
+            <option value="7月">7月</option>
+            <option value="8月">8月</option>
+            <option value="9月">9月</option>
+            <option value="10月">10月</option>
+            <option value="11月">11月</option>
+            <option value="12月">12月</option>
+          </select>
+          <select class="form-select" id="daySelect" onchange="onDateChange()">
+            <option value="">选择日期</option>
+          </select>
+          <div class="picker-value" id="dateDisplay">请选择考试日期</div>
+        </div>
+
+        <div class="form-item">
+          <span class="form-label required">考试时长</span>
+          <input 
+            class="form-input" 
+            name="duration" 
+            type="number"
+            placeholder="请输入每科考试时长（分钟）"
+            id="durationInput"
+            oninput="onDurationInput(this.value)"
+          />
+        </div>
+      </div>
+
+      <!-- 参与学校 -->
+      <div class="form-section">
+        <div class="section-title">
+          参与学校
+          <span class="selected-count" id="selectedCount">(已选 0 所)</span>
+        </div>
+        
+        <div class="school-selector" id="schoolSelector">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 考试科目 -->
+      <div class="form-section">
+        <div class="section-title">
+          考试科目
+          <span class="add-btn" onclick="showAddSubject()">+ 添加科目</span>
+        </div>
+        
+        <div class="subject-list" id="subjectList">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 考试说明 -->
+      <div class="form-section">
+        <div class="section-title">考试说明</div>
+        <textarea 
+          class="form-textarea" 
+          name="description"
+          placeholder="请输入考试说明、注意事项等"
+          id="descriptionInput"
+          oninput="onDescriptionInput(this.value)"
+          maxlength="500"
+        ></textarea>
+        <span class="textarea-count" id="textareaCount">0/500</span>
+      </div>
+
+      <!-- 提交按钮 -->
+      <div class="submit-section">
+        <button type="submit" class="submit-btn" id="submitBtn" disabled>发起联考</button>
+        <button type="button" class="cancel-btn" onclick="onCancel()">取消</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 添加科目弹窗 -->
+  <div class="modal" id="subjectModal" style="display: none;">
+    <div class="modal-mask" onclick="hideAddSubject()"></div>
+    <div class="modal-content">
+      <div class="modal-title">添加科目</div>
+      <input 
+        class="modal-input" 
+        placeholder="请输入科目名称"
+        id="newSubjectName"
+      />
+      <input 
+        class="modal-input" 
+        type="number"
+        placeholder="满分分数"
+        id="newSubjectScore"
+      />
+      <div class="modal-btns">
+        <button class="modal-btn cancel" onclick="hideAddSubject()">取消</button>
+        <button class="modal-btn confirm" onclick="confirmAddSubject()">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="create.js"></script>
+</body>
+</html>

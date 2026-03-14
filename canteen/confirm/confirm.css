@@ -1,0 +1,288 @@
+/* 订单确认页样式 */
+
+.container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding-bottom: 70px;
+}
+
+/* 头部 */
+.header {
+  padding: 20px;
+  border-radius: 0 0 15px 15px;
+  margin-bottom: 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.back-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.back-icon {
+  font-size: 24px;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* 卡片通用样式 */
+.section-card {
+  background: #ffffff;
+  border-radius: 8px;
+  margin: 10px 15px;
+  padding: 15px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.title-icon {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.title-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+}
+
+.title-count {
+  font-size: 13px;
+  color: #999;
+}
+
+/* 取餐信息 */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.info-value {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.picker-value {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  padding: 8px 12px;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  background: #fff;
+  min-width: 150px;
+}
+
+.picker-value:invalid,
+.picker-value option[value=""] {
+  color: #999;
+}
+
+/* 订单商品 */
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.item-price {
+  font-size: 13px;
+  color: #FF5722;
+  font-weight: 500;
+}
+
+.item-quantity {
+  font-size: 14px;
+  color: #666;
+  margin-left: 10px;
+}
+
+/* 备注 */
+.remark-input {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  resize: none;
+  font-family: inherit;
+}
+
+/* 金额汇总 */
+.amount-card {
+  margin-bottom: 20px;
+}
+
+.amount-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.amount-row:last-child {
+  border-bottom: none;
+}
+
+.amount-row.total-row {
+  padding-top: 12px;
+  margin-top: 4px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.amount-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.amount-value {
+  font-size: 14px;
+  color: #333;
+}
+
+.amount-value.discount {
+  color: #4caf50;
+}
+
+.amount-value.total {
+  font-size: 18px;
+  color: #FF5722;
+  font-weight: 700;
+}
+
+/* 底部提交栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 10px 15px;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.price-info {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.price-value {
+  font-size: 22px;
+  color: #FF5722;
+  font-weight: 700;
+}
+
+.submit-btn {
+  width: 120px;
+  height: 44px;
+  line-height: 44px;
+  background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 22px;
+  border: none;
+  margin: 0;
+  cursor: pointer;
+}
+
+.submit-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+/* 渐变背景 */
+.gradient-bg {
+  background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
+}

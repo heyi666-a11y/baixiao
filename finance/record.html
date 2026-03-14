@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>记一笔</title>
+  <link rel="stylesheet" href="../../css/common.css">
+  <link rel="stylesheet" href="record.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <span class="page-title">记一笔</span>
+    </div>
+
+    <!-- 类型选择 -->
+    <div class="type-selector card">
+      <div class="type-item active" id="typeIncome" onclick="selectType('income')">
+        <span class="type-icon">📥</span>
+        <span class="type-text">收入</span>
+      </div>
+      <div class="type-item" id="typeExpense" onclick="selectType('expense')">
+        <span class="type-icon">📤</span>
+        <span class="type-text">支出</span>
+      </div>
+    </div>
+
+    <!-- 金额输入 -->
+    <div class="amount-section card">
+      <span class="section-label">金额</span>
+      <div class="amount-input-wrapper">
+        <span class="currency">¥</span>
+        <input 
+          class="amount-input" 
+          type="number" 
+          step="0.01"
+          placeholder="0.00" 
+          id="amountInput"
+          oninput="onAmountInput(this.value)"
+        />
+      </div>
+    </div>
+
+    <!-- 分类选择 -->
+    <div class="category-section card">
+      <span class="section-label">分类</span>
+      <div class="category-list" id="categoryList">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 日期选择 -->
+    <div class="form-item card">
+      <span class="form-label">日期</span>
+      <div class="picker-wrapper">
+        <input type="date" class="date-picker" id="datePicker" onchange="onDateChange(this.value)">
+        <span class="arrow">></span>
+      </div>
+    </div>
+
+    <!-- 备注输入 -->
+    <div class="form-item card">
+      <span class="form-label">备注</span>
+      <textarea 
+        class="remark-input" 
+        placeholder="请输入备注信息（选填）"
+        id="remarkInput"
+        oninput="onRemarkInput(this.value)"
+        maxlength="100"
+      ></textarea>
+      <span class="remark-count" id="remarkCount">0/100</span>
+    </div>
+
+    <!-- 提交按钮 -->
+    <div class="submit-section">
+      <button class="btn-submit" id="submitBtn" onclick="submitRecord()">
+        <span>保存记录</span>
+      </button>
+      <button class="btn-cancel" onclick="goBack()">取消</button>
+    </div>
+  </div>
+
+  <script src="../../js/supabase.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="record.js"></script>
+</body>
+</html>

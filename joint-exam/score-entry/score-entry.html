@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>成绩录入</title>
+  <link rel="stylesheet" href="score-entry.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 选择器区域 -->
+    <div class="selector-section">
+      <div class="selector-item">
+        <span class="selector-label">选择学校</span>
+        <select class="picker-box" id="schoolSelect" onchange="onSchoolChange()">
+          <option value="">请选择学校</option>
+          <!-- 动态生成 -->
+        </select>
+      </div>
+
+      <div class="selector-item">
+        <span class="selector-label">选择科目</span>
+        <select class="picker-box" id="subjectSelect" onchange="onSubjectChange()">
+          <option value="">请选择科目</option>
+          <!-- 动态生成 -->
+        </select>
+      </div>
+    </div>
+
+    <!-- 批量导入按钮 -->
+    <div class="batch-section" id="batchSection" style="display: none;">
+      <div class="batch-btn" onclick="showBatchImport()">
+        <span class="batch-icon">📤</span>
+        <span>批量导入成绩</span>
+      </div>
+    </div>
+
+    <!-- 成绩录入表格 -->
+    <div class="score-section" id="scoreSection" style="display: none;">
+      <div class="section-header">
+        <span class="section-title">成绩录入</span>
+        <span class="student-count" id="studentCount">共 0 名学生</span>
+      </div>
+
+      <div class="score-table">
+        <!-- 表头 -->
+        <div class="table-header">
+          <span class="th th-index">序号</span>
+          <span class="th th-name">姓名</span>
+          <span class="th th-score">成绩</span>
+          <span class="th th-action">操作</span>
+        </div>
+
+        <!-- 表格内容 -->
+        <div class="table-body" id="tableBody">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 统计信息 -->
+    <div class="stats-section" id="statsSection" style="display: none;">
+      <div class="stats-title">录入统计</div>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-value" id="statEntered">0</span>
+          <span class="stat-label">已录入</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="statPending">0</span>
+          <span class="stat-label">待录入</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="statAverage">0</span>
+          <span class="stat-label">平均分</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="statHighest">0</span>
+          <span class="stat-label">最高分</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 空状态 -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">📝</div>
+      <span class="empty-text">请先选择学校和科目</span>
+      <span class="empty-subtext">选择后即可开始录入成绩</span>
+    </div>
+
+    <!-- 底部操作栏 -->
+    <div class="bottom-bar" id="bottomBar" style="display: none;">
+      <div class="save-btn" onclick="saveScores()">保存</div>
+      <div class="submit-btn disabled" id="submitBtn" onclick="submitScores()">提交成绩</div>
+    </div>
+  </div>
+
+  <!-- 批量导入弹窗 -->
+  <div class="modal" id="importModal" style="display: none;">
+    <div class="modal-mask" onclick="hideBatchImport()"></div>
+    <div class="modal-content">
+      <div class="modal-title">批量导入成绩</div>
+      <span class="modal-desc">请按以下格式粘贴成绩数据：</span>
+      <span class="modal-example">姓名1,分数1<br>姓名2,分数2<br>...</span>
+      <textarea 
+        class="import-textarea" 
+        placeholder="张三,85&#10;李四,92&#10;王五,78"
+        id="importTextarea"
+      ></textarea>
+      <div class="modal-btns">
+        <button class="modal-btn cancel" onclick="hideBatchImport()">取消</button>
+        <button class="modal-btn confirm" onclick="confirmBatchImport()">导入</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="score-entry.js"></script>
+</body>
+</html>

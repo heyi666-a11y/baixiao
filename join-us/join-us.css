@@ -1,0 +1,180 @@
+/* 加入我们页面样式 */
+
+.container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding-bottom: 20px;
+}
+
+/* 头部 */
+.header {
+  padding: 30px 20px;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.header-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.header-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 卡片通用样式 */
+.intro-card,
+.service-card,
+.contact-card {
+  background: #ffffff;
+  border-radius: 10px;
+  margin: 0 15px 15px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.title-icon {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.title-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 系统介绍 */
+.intro-text {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.feature-icon {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.feature-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.feature-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.feature-desc {
+  font-size: 12px;
+  color: #999;
+  display: block;
+}
+
+/* 服务对象 */
+.service-text {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.service-tag {
+  font-size: 13px;
+  color: #667eea;
+  background: #f0f5ff;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+/* 联系我们 */
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.contact-value {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* 底部提示 */
+.footer-tips {
+  text-align: center;
+  padding: 20px 15px;
+}
+
+.tips-text {
+  font-size: 14px;
+  color: #999;
+}
+
+/* 渐变背景 */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}

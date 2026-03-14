@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>财务系统登录</title>
+  <link rel="stylesheet" href="../../css/common.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-title">财务系统</div>
+      <div class="login-subtitle">请输入密码进入系统</div>
+      
+      <div class="input-group">
+        <input 
+          class="password-input" 
+          type="password" 
+          placeholder="请输入密码" 
+          id="passwordInput"
+          oninput="onPasswordInput(this.value)"
+          onkeypress="if(event.key==='Enter')onLogin()"
+        />
+      </div>
+      
+      <div class="error-message" id="errorMessage" style="display: none;">
+        <!-- 动态显示 -->
+      </div>
+      
+      <button class="login-btn" onclick="onLogin()">确认</button>
+    </div>
+  </div>
+
+  <script src="../../js/supabase.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
