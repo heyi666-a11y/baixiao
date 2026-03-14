@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "公告详情",
+  "navigationBarBackgroundColor": "#667eea",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#f5f7fa",
+  "enableShareAppMessage": true,
+  "usingComponents": {}
+}

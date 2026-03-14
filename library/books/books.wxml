@@ -1,0 +1,160 @@
+<view class="container">
+  <!-- 顶部标题栏 -->
+  <view class="header">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="header-title">图书馆书库</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 搜索区域 -->
+  <view class="search-section">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input 
+        class="search-input" 
+        type="text" 
+        placeholder="搜索书名、作者、ISBN"
+        placeholder-class="search-placeholder"
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+        bindfocus="onSearchFocus"
+        bindblur="onSearchBlur"
+        bindconfirm="doSearch"
+      />
+      <view class="search-clear" wx:if="{{searchKeyword}}" bindtap="clearSearch">
+        <text class="clear-icon">✕</text>
+      </view>
+      <view class="search-btn" bindtap="doSearch">搜索</view>
+    </view>
+
+    <!-- 搜索历史和热门搜索 -->
+    <view class="search-suggestions" wx:if="{{showSearchHistory}}">
+      <!-- 搜索历史 -->
+      <view class="suggestion-section" wx:if="{{searchHistory.length > 0}}">
+        <view class="suggestion-header">
+          <text class="suggestion-title">搜索历史</text>
+          <text class="clear-history" bindtap="clearSearchHistory">清除</text>
+        </view>
+        <view class="suggestion-tags">
+          <view 
+            class="suggestion-tag" 
+            wx:for="{{searchHistory}}" 
+            wx:key="*this"
+            data-keyword="{{item}}"
+            bindtap="onHistoryTap"
+          >
+            <text class="tag-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 热门搜索 -->
+      <view class="suggestion-section">
+        <view class="suggestion-header">
+          <text class="suggestion-title">热门搜索</text>
+        </view>
+        <view class="suggestion-tags">
+          <view 
+            class="suggestion-tag hot" 
+            wx:for="{{hotSearches}}" 
+            wx:key="*this"
+            data-keyword="{{item}}"
+            bindtap="onHotSearchTap"
+          >
+            <text class="tag-rank {{index < 3 ? 'top' : ''}}">{{index + 1}}</text>
+            <text class="tag-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 筛选区域 -->
+  <view class="filter-section">
+    <!-- 分类筛选 -->
+    <view class="filter-item">
+      <text class="filter-label">分类：</text>
+      <picker bindchange="onCategoryChange" value="{{categories.indexOf(selectedCategory)}}" range="{{categories}}">
+        <view class="picker-value">
+          <text>{{selectedCategory}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+    
+    <!-- 状态筛选 -->
+    <view class="filter-item">
+      <text class="filter-label">状态：</text>
+      <view class="status-tabs">
+        <view 
+          class="status-tab {{statusFilter === 'all' ? 'active' : ''}}" 
+          data-status="all"
+          bindtap="onStatusChange"
+        >
+          全部
+        </view>
+        <view 
+          class="status-tab {{statusFilter === 'available' ? 'active' : ''}}" 
+          data-status="available"
+          bindtap="onStatusChange"
+        >
+          可借阅
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 图书列表 -->
+  <view class="books-section">
+    <view class="section-header">
+      <text class="section-title">{{searchKeyword ? '搜索结果' : '图书列表'}}</text>
+      <text class="section-count">共 {{filteredBooks.length}} 本</text>
+    </view>
+    
+    <view class="books-list">
+      <view 
+        class="book-card" 
+        wx:for="{{filteredBooks}}" 
+        wx:key="id"
+        data-book="{{item}}"
+        bindtap="onBookTap"
+      >
+        <view class="book-cover">
+          <text class="cover-icon">📖</text>
+        </view>
+        <view class="book-info">
+          <view class="book-header">
+            <text class="book-title">{{item.title}}</text>
+            <view class="status-badge {{item.available > 0 ? 'available' : 'borrowed'}}">
+              {{item.available > 0 ? '可借阅' : '已借完'}}
+            </view>
+          </view>
+          <text class="book-author">作者：{{item.author || '未知'}}</text>
+          <text class="book-publisher">出版社：{{item.publisher || '未知'}}</text>
+          <text class="book-isbn">ISBN：{{item.isbn || '未知'}}</text>
+          <view class="book-footer">
+            <text class="book-category">{{item.category || '未分类'}}</text>
+            <text class="book-quantity">{{item.available}}/{{item.copies}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{filteredBooks.length === 0 && !loading}}">
+      <text class="empty-icon">📚</text>
+      <text class="empty-text">暂无图书</text>
+      <text class="empty-subtext">{{searchKeyword ? '换个关键词试试' : '试试其他搜索条件'}}</text>
+    </view>
+    
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{loading}}">
+      <text class="loading-text">加载中...</text>
+    </view>
+    <view class="load-more" wx:if="{{!hasMore && filteredBooks.length > 0 && !searchKeyword}}">
+      <text class="no-more-text">没有更多图书了</text>
+    </view>
+  </view>
+</view>

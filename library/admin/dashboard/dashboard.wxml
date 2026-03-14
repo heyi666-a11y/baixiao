@@ -1,0 +1,126 @@
+<view class="dashboard-container">
+  <!-- 侧边栏 -->
+  <view class="sidebar {{isSidebarOpen ? 'open' : ''}}">
+    <view class="sidebar-header">
+      <image class="admin-avatar" src="/images/school-logo.jpg" mode="aspectFit"/>
+      <text class="admin-name">管理员</text>
+    </view>
+    <view class="sidebar-menu">
+      <view class="menu-item active" bindtap="navigateTo" data-page="dashboard">
+        <text class="menu-icon">📊</text>
+        <text class="menu-text">数据仪表盘</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="books">
+        <text class="menu-icon">📚</text>
+        <text class="menu-text">图书管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="readers">
+        <text class="menu-icon">👥</text>
+        <text class="menu-text">读者管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="records">
+        <text class="menu-icon">📝</text>
+        <text class="menu-text">借阅记录</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="settings">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-text">系统设置</text>
+      </view>
+      <view class="menu-item logout" bindtap="logout">
+        <text class="menu-icon">🚪</text>
+        <text class="menu-text">退出登录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 遮罩层 -->
+  <view class="sidebar-overlay {{isSidebarOpen ? 'show' : ''}}" bindtap="toggleSidebar"></view>
+
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 顶部导航 -->
+    <view class="top-nav">
+      <view class="menu-toggle" bindtap="toggleSidebar">
+        <text class="toggle-icon">☰</text>
+      </view>
+      <text class="page-title">数据仪表盘</text>
+      <view class="nav-right">
+        <text class="current-date">{{currentDate}}</text>
+      </view>
+    </view>
+
+    <!-- 内容区域 -->
+    <scroll-view class="content-area" scroll-y>
+      <!-- 综合文字分析评估报告 -->
+      <view class="report-section">
+        <view class="section-header">
+          <text class="section-title">📋 综合文字分析评估报告</text>
+        </view>
+        <view class="report-content">
+          <text class="report-text">{{analysisReport}}</text>
+        </view>
+      </view>
+
+      <!-- 统计卡片 -->
+      <view class="stats-grid">
+        <view class="stat-card">
+          <view class="stat-icon blue">📚</view>
+          <view class="stat-info">
+            <text class="stat-value">{{stats.totalBooks}}</text>
+            <text class="stat-label">在馆图书数</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <view class="stat-icon green">📖</view>
+          <view class="stat-info">
+            <text class="stat-value">{{stats.todayBorrows}}</text>
+            <text class="stat-label">今日借阅量</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <view class="stat-icon orange">📋</view>
+          <view class="stat-info">
+            <text class="stat-value">{{stats.activeBorrows}}</text>
+            <text class="stat-label">活跃借阅数</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <view class="stat-icon red">⚠️</view>
+          <view class="stat-info">
+            <text class="stat-value">{{stats.overdueCount}}</text>
+            <text class="stat-label">逾期未还数</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 近30天借阅趋势分析 -->
+      <view class="trend-section">
+        <view class="section-header">
+          <text class="section-title">📈 近30天借阅趋势分析</text>
+        </view>
+        <view class="trend-content">
+          <text class="trend-text">{{trendAnalysis}}</text>
+        </view>
+      </view>
+
+      <!-- 热门书籍TOP10 -->
+      <view class="hot-books-section">
+        <view class="section-header">
+          <text class="section-title">🔥 热门书籍 TOP10</text>
+        </view>
+        <view class="hot-books-list">
+          <view class="hot-book-item" wx:for="{{hotBooks}}" wx:key="id">
+            <view class="rank-badge {{index < 3 ? 'top' : ''}}">{{index + 1}}</view>
+            <view class="book-info">
+              <text class="book-title">{{item.title}}</text>
+              <text class="book-author">{{item.author}}</text>
+            </view>
+            <view class="borrow-count">
+              <text class="count">{{item.borrowCount}}次</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

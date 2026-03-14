@@ -1,0 +1,53 @@
+<view class="login-container">
+  <view class="login-header">
+    <navigator url="/pages/index/index" class="back-link">
+      <text class="back-icon">←</text>
+      <text class="back-text">返回首页</text>
+    </navigator>
+  </view>
+
+  <view class="login-content">
+    <view class="logo-section">
+      <image class="logo" src="/images/school-logo.jpg" mode="aspectFit"/>
+      <text class="title">图书馆管理系统</text>
+      <text class="subtitle">管理员登录</text>
+    </view>
+
+    <view class="login-form">
+      <view class="form-item">
+        <text class="label">用户名</text>
+        <input 
+          type="text" 
+          placeholder="请输入用户名" 
+          value="{{username}}"
+          bindinput="onUsernameInput"
+          class="input"
+        />
+      </view>
+
+      <view class="form-item">
+        <text class="label">密码</text>
+        <input 
+          type="password" 
+          placeholder="请输入密码" 
+          value="{{password}}"
+          bindinput="onPasswordInput"
+          class="input"
+        />
+      </view>
+
+      <button 
+        class="login-btn" 
+        bindtap="onLogin"
+        loading="{{isLoading}}"
+        disabled="{{isLoading}}"
+      >
+        {{isLoading ? '登录中...' : '登录'}}
+      </button>
+    </view>
+
+    <view class="login-footer">
+      <text class="copyright">© 2024 正始中学图书馆</text>
+    </view>
+  </view>
+</view>

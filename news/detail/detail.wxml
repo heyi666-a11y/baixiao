@@ -1,0 +1,38 @@
+<view class="container">
+  <!-- 顶部标题栏 -->
+  <view class="header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="header-title">新闻详情</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 新闻内容 -->
+  <view class="news-content" wx:if="{{!loading && news}}">
+    <image 
+      class="news-cover" 
+      src="{{news.cover_image || '/images/default-news.png'}}" 
+      mode="aspectFill"
+    />
+    <view class="news-header">
+      <text class="news-title">{{news.title}}</text>
+      <view class="news-meta">
+        <text class="news-author">{{news.author || '学校宣传部'}}</text>
+        <text class="news-date">{{news.published_at || news.created_at}}</text>
+        <view class="news-views">
+          <text class="view-icon">👁</text>
+          <text class="view-count">{{news.view_count || 0}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="news-body">
+      <rich-text nodes="{{news.content}}"></rich-text>
+    </view>
+  </view>
+</view>

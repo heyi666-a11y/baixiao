@@ -1,0 +1,336 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* 侧边栏 */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 240rpx;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 2rpx 0 10rpx rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  padding: 40rpx 30rpx;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-bottom: 16rpx;
+}
+
+.admin-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.sidebar-menu {
+  padding: 20rpx 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 30rpx;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.menu-item.active {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.menu-item.active .menu-icon,
+.menu-item.active .menu-text {
+  color: #fff;
+}
+
+.menu-item.logout {
+  margin-top: 40rpx;
+  border-top: 1rpx solid #eee;
+}
+
+.menu-icon {
+  font-size: 32rpx;
+  margin-right: 16rpx;
+}
+
+.menu-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 遮罩层 */
+.sidebar-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.sidebar-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 主内容区 */
+.main-content {
+  flex: 1;
+  margin-left: 0;
+  transition: margin-left 0.3s;
+  width: 100%;
+}
+
+/* 顶部导航 */
+.top-nav {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.menu-toggle {
+  padding: 10rpx;
+  margin-right: 20rpx;
+}
+
+.toggle-icon {
+  font-size: 40rpx;
+  color: #667eea;
+}
+
+.page-title {
+  flex: 1;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.current-date {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 内容区域 */
+.content-area {
+  padding: 30rpx;
+  height: calc(100vh - 100rpx);
+}
+
+/* 报告区域 */
+.report-section {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.report-content {
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border-radius: 12rpx;
+  padding: 24rpx;
+  border-left: 6rpx solid #667eea;
+}
+
+.report-text {
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* 统计卡片 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.stat-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.stat-icon.blue {
+  background: #e3f2fd;
+}
+
+.stat-icon.green {
+  background: #e8f5e9;
+}
+
+.stat-icon.orange {
+  background: #fff3e0;
+}
+
+.stat-icon.red {
+  background: #ffebee;
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-value {
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 趋势分析 */
+.trend-section {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.trend-content {
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  padding: 24rpx;
+}
+
+.trend-text {
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* 热门书籍 */
+.hot-books-section {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.hot-books-list {
+  margin-top: 20rpx;
+}
+
+.hot-book-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.hot-book-item:last-child {
+  border-bottom: none;
+}
+
+.rank-badge {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #666;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+
+.rank-badge.top {
+  background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
+  color: #fff;
+}
+
+.book-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-title {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+}
+
+.book-author {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.borrow-count {
+  text-align: right;
+}
+
+.borrow-count .count {
+  font-size: 26rpx;
+  color: #667eea;
+  font-weight: 500;
+}

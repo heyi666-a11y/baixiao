@@ -1,0 +1,140 @@
+<view class="records-container">
+  <!-- 侧边栏 -->
+  <view class="sidebar {{isSidebarOpen ? 'open' : ''}}">
+    <view class="sidebar-header">
+      <image class="admin-avatar" src="/images/school-logo.jpg" mode="aspectFit"/>
+      <text class="admin-name">管理员</text>
+    </view>
+    <view class="sidebar-menu">
+      <view class="menu-item" bindtap="navigateTo" data-page="dashboard">
+        <text class="menu-icon">📊</text>
+        <text class="menu-text">数据仪表盘</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="books">
+        <text class="menu-icon">📚</text>
+        <text class="menu-text">图书管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="readers">
+        <text class="menu-icon">👥</text>
+        <text class="menu-text">读者管理</text>
+      </view>
+      <view class="menu-item active" bindtap="navigateTo" data-page="records">
+        <text class="menu-icon">📝</text>
+        <text class="menu-text">借阅记录</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="settings">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-text">系统设置</text>
+      </view>
+      <view class="menu-item logout" bindtap="logout">
+        <text class="menu-icon">🚪</text>
+        <text class="menu-text">退出登录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 遮罩层 -->
+  <view class="sidebar-overlay {{isSidebarOpen ? 'show' : ''}}" bindtap="toggleSidebar"></view>
+
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 顶部导航 -->
+    <view class="top-nav">
+      <view class="menu-toggle" bindtap="toggleSidebar">
+        <text class="toggle-icon">☰</text>
+      </view>
+      <text class="page-title">借阅记录</text>
+      <view class="nav-right">
+        <button class="export-btn" bindtap="exportRecords">导出报表</button>
+      </view>
+    </view>
+
+    <!-- 筛选区 -->
+    <view class="filter-section">
+      <view class="date-range">
+        <view class="date-input-group">
+          <text class="date-label">开始日期</text>
+          <picker mode="date" value="{{startDate}}" bindchange="onStartDateChange">
+            <view class="date-picker">{{startDate || '选择日期'}}</view>
+          </picker>
+        </view>
+        <text class="date-separator">至</text>
+        <view class="date-input-group">
+          <text class="date-label">结束日期</text>
+          <picker mode="date" value="{{endDate}}" bindchange="onEndDateChange">
+            <view class="date-picker">{{endDate || '选择日期'}}</view>
+          </picker>
+        </view>
+      </view>
+      
+      <view class="filter-row">
+        <picker class="type-picker" mode="selector" range="{{typeOptions}}" range-key="label" value="{{typeIndex}}" bindchange="onTypeChange">
+          <view class="picker-view">
+            <text class="picker-label">{{typeOptions[typeIndex].label}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+        
+        <view class="search-input-group">
+          <input 
+            type="text" 
+            placeholder="搜索学号" 
+            value="{{studentId}}"
+            bindinput="onStudentIdInput"
+            class="student-input"
+          />
+          <button class="filter-btn" bindtap="applyFilters">筛选</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 记录列表 -->
+    <scroll-view class="records-list" scroll-y bindscrolltolower="loadMore">
+      <view class="record-item" wx:for="{{records}}" wx:key="id">
+        <view class="record-header">
+          <view class="record-type-badge {{item.record_type}}">
+            <text class="type-icon">{{item.typeIcon}}</text>
+            <text class="type-text">{{item.typeText}}</text>
+          </view>
+          <text class="record-date">{{item.created_at}}</text>
+        </view>
+        
+        <view class="record-content">
+          <view class="book-section">
+            <text class="section-label">图书信息</text>
+            <text class="book-title">{{item.books.title}}</text>
+            <text class="book-author">{{item.books.author}}</text>
+          </view>
+          
+          <view class="reader-section">
+            <text class="section-label">读者信息</text>
+            <text class="reader-name">{{item.readers.name}}</text>
+            <text class="reader-id">学号：{{item.readers.student_id}}</text>
+          </view>
+        </view>
+        
+        <view class="record-footer">
+          <view class="date-info">
+            <text class="info-item">借阅：{{item.borrow_date}}</text>
+            <text class="info-item">到期：{{item.due_date}}</text>
+            <text class="info-item return" wx:if="{{item.return_date}}">归还：{{item.return_date}}</text>
+          </view>
+          <view class="status-badge {{item.status}}">
+            {{item.statusText}}
+          </view>
+        </view>
+      </view>
+      
+      <view class="loading-more" wx:if="{{isLoadingMore}}">
+        <text>加载中...</text>
+      </view>
+      <view class="no-more" wx:if="{{!hasMore && records.length > 0}}">
+        <text>没有更多数据了</text>
+      </view>
+      <view class="empty-state" wx:if="{{records.length === 0 && !isLoading}}">
+        <text class="empty-icon">📝</text>
+        <text class="empty-text">暂无借阅记录</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

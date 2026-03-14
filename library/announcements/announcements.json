@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "图书馆公告",
+  "navigationBarBackgroundColor": "#667eea",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f5f7fa",
+  "usingComponents": {}
+}

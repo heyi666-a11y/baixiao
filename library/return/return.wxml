@@ -1,0 +1,170 @@
+<view class="container">
+  <!-- 顶部标题栏 -->
+  <view class="header">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="header-title">还书</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 还书表单 -->
+  <view class="form-section" wx:if="{{!showResult}}">
+    <view class="form-card card">
+      <view class="form-header">
+        <text class="form-icon">📚</text>
+        <text class="form-title">填写还书信息</text>
+      </view>
+      
+      <view class="form-body">
+        <!-- 学号 -->
+        <view class="form-item">
+          <text class="form-label">
+            <text class="required">*</text>
+            学号
+          </text>
+          <input 
+            class="form-input" 
+            type="text" 
+            placeholder="请输入学号"
+            value="{{form.studentId}}"
+            data-field="studentId"
+            bindinput="onInputChange"
+          />
+        </view>
+
+        <!-- 书名 -->
+        <view class="form-item">
+          <text class="form-label">
+            <text class="required">*</text>
+            书名
+          </text>
+          <input 
+            class="form-input" 
+            type="text" 
+            placeholder="请输入书名"
+            value="{{form.bookName}}"
+            data-field="bookName"
+            bindinput="onInputChange"
+          />
+        </view>
+
+        <!-- ISBN -->
+        <view class="form-item">
+          <text class="form-label">ISBN（可选）</text>
+          <input 
+            class="form-input" 
+            type="text" 
+            placeholder="请输入ISBN（可选）"
+            value="{{form.isbn}}"
+            data-field="isbn"
+            bindinput="onInputChange"
+          />
+        </view>
+      </view>
+
+      <view class="form-footer">
+        <button class="submit-btn" bindtap="onSubmit" disabled="{{loading}}">
+          <text wx:if="{{!loading}}">确认还书</text>
+          <text wx:if="{{loading}}">处理中...</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 还书须知 -->
+    <view class="notice-card card">
+      <view class="notice-header">
+        <text class="notice-icon">📋</text>
+        <text class="notice-title">还书须知</text>
+      </view>
+      <view class="notice-list">
+        <view class="notice-item">
+          <text class="notice-dot"></text>
+          <text class="notice-text">请确保图书完好无损</text>
+        </view>
+        <view class="notice-item">
+          <text class="notice-dot"></text>
+          <text class="notice-text">逾期归还将产生滞纳金（0.5元/天）</text>
+        </view>
+        <view class="notice-item">
+          <text class="notice-dot"></text>
+          <text class="notice-text">如有图书损坏或丢失，需按规定赔偿</text>
+        </view>
+        <view class="notice-item">
+          <text class="notice-dot"></text>
+          <text class="notice-text">还书后请及时确认归还状态</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 还书结果 -->
+  <view class="result-section" wx:if="{{showResult}}">
+    <view class="result-card card">
+      <!-- 成功状态 -->
+      <view class="result-content" wx:if="{{returnResult.success}}">
+        <view class="result-icon success">✓</view>
+        <text class="result-title">还书成功！</text>
+        <text class="result-message">{{returnResult.message}}</text>
+        
+        <!-- 逾期提醒 -->
+        <view class="overdue-warning" wx:if="{{returnResult.overdueDays > 0}}">
+          <text class="warning-icon">⚠️</text>
+          <view class="warning-content">
+            <text class="warning-title">逾期提醒</text>
+            <text class="warning-text">逾期天数：{{returnResult.overdueDays}}天</text>
+            <text class="warning-text">滞纳金：{{returnResult.overdueFee}}元</text>
+          </view>
+        </view>
+        
+        <!-- 图书信息 -->
+        <view class="book-info" wx:if="{{returnResult.bookInfo}}">
+          <view class="info-item">
+            <text class="info-label">书名：</text>
+            <text class="info-value">{{returnResult.bookInfo.title}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">作者：</text>
+            <text class="info-value">{{returnResult.bookInfo.author}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">借阅日期：</text>
+            <text class="info-value">{{returnResult.bookInfo.borrowDate}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">应还日期：</text>
+            <text class="info-value {{returnResult.overdueDays > 0 ? 'overdue' : ''}}">{{returnResult.bookInfo.dueDate}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">归还日期：</text>
+            <text class="info-value highlight">{{returnResult.bookInfo.returnDate}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 失败状态 -->
+      <view class="result-content" wx:if="{{!returnResult.success}}">
+        <view class="result-icon error">✕</view>
+        <text class="result-title">还书失败</text>
+        <text class="result-message">{{returnResult.message}}</text>
+        
+        <!-- 图书信息（如果有） -->
+        <view class="book-info" wx:if="{{returnResult.bookInfo}}">
+          <view class="info-item">
+            <text class="info-label">书名：</text>
+            <text class="info-value">{{returnResult.bookInfo.title}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">作者：</text>
+            <text class="info-value">{{returnResult.bookInfo.author}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="result-actions">
+        <button class="action-btn primary" bindtap="onContinue">继续还书</button>
+        <button class="action-btn secondary" bindtap="onBack">返回</button>
+      </view>
+    </view>
+  </view>
+</view>

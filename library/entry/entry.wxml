@@ -1,0 +1,71 @@
+<view class="container">
+  <!-- 图书馆信息卡片 -->
+  <view class="library-header">
+    <view class="library-bg">
+      <text class="library-name">{{libraryInfo.name}}</text>
+      <view class="library-meta">
+        <text class="open-time">开放时间: {{libraryInfo.openTime}}</text>
+        <text class="status {{libraryInfo.status === '开放中' ? 'open' : 'closed'}}">{{libraryInfo.status}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计数据 -->
+  <view class="stats-card card">
+    <view class="stat-item">
+      <text class="stat-value">{{libraryInfo.totalBooks}}</text>
+      <text class="stat-label">馆藏图书</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{libraryInfo.todayBorrow}}</text>
+      <text class="stat-label">今日借阅</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{libraryInfo.todayReturn}}</text>
+      <text class="stat-label">今日归还</text>
+    </view>
+  </view>
+
+  <!-- 入口选择 -->
+  <view class="entry-section">
+    <text class="section-title">请选择入口</text>
+    <view class="entry-grid">
+      <view class="entry-card student" bindtap="onStudentEntry">
+        <view class="entry-icon">
+          <text class="icon-text">📚</text>
+        </view>
+        <text class="entry-title">学生入口</text>
+        <text class="entry-desc">借阅、归还、查询图书</text>
+      </view>
+      <view class="entry-card admin" bindtap="onAdminEntry">
+        <view class="entry-icon">
+          <text class="icon-text">⚙️</text>
+        </view>
+        <text class="entry-title">管理员入口</text>
+        <text class="entry-desc">图书管理、数据统计</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷功能 -->
+  <view class="quick-actions card">
+    <text class="section-title">快捷功能</text>
+    <view class="action-list">
+      <view class="action-item" bindtap="onViewBooks">
+        <text class="action-icon">🔍</text>
+        <text class="action-name">书库查询</text>
+        <text class="action-arrow">></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 返回主系统 -->
+  <view class="back-section">
+    <view class="back-link" bindtap="onBackToMain">
+      <text class="back-icon">←</text>
+      <text class="back-text">返回主系统</text>
+    </view>
+  </view>
+</view>

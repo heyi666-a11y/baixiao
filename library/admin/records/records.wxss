@@ -1,0 +1,424 @@
+.records-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* 侧边栏 */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 240rpx;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 2rpx 0 10rpx rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  padding: 40rpx 30rpx;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-bottom: 16rpx;
+}
+
+.admin-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.sidebar-menu {
+  padding: 20rpx 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 30rpx;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.menu-item.active {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.menu-item.active .menu-icon,
+.menu-item.active .menu-text {
+  color: #fff;
+}
+
+.menu-item.logout {
+  margin-top: 40rpx;
+  border-top: 1rpx solid #eee;
+}
+
+.menu-icon {
+  font-size: 32rpx;
+  margin-right: 16rpx;
+}
+
+.menu-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 遮罩层 */
+.sidebar-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.sidebar-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 主内容区 */
+.main-content {
+  flex: 1;
+  width: 100%;
+}
+
+/* 顶部导航 */
+.top-nav {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.menu-toggle {
+  padding: 10rpx;
+  margin-right: 20rpx;
+}
+
+.toggle-icon {
+  font-size: 40rpx;
+  color: #667eea;
+}
+
+.page-title {
+  flex: 1;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.export-btn {
+  height: 64rpx;
+  line-height: 64rpx;
+  padding: 0 30rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: 32rpx;
+  border: none;
+}
+
+.export-btn::after {
+  border: none;
+}
+
+/* 筛选区 */
+.filter-section {
+  background: #fff;
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.date-range {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+  gap: 20rpx;
+}
+
+.date-input-group {
+  flex: 1;
+}
+
+.date-label {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.date-picker {
+  height: 64rpx;
+  line-height: 64rpx;
+  background: #f5f7fa;
+  border-radius: 32rpx;
+  padding: 0 24rpx;
+  font-size: 26rpx;
+  color: #333;
+  text-align: center;
+}
+
+.date-separator {
+  font-size: 28rpx;
+  color: #999;
+  padding-top: 32rpx;
+}
+
+.filter-row {
+  display: flex;
+  gap: 16rpx;
+}
+
+.type-picker {
+  width: 200rpx;
+}
+
+.picker-view {
+  height: 72rpx;
+  background: #f5f7fa;
+  border-radius: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20rpx;
+}
+
+.picker-label {
+  font-size: 26rpx;
+  color: #333;
+  margin-right: 8rpx;
+}
+
+.picker-arrow {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.search-input-group {
+  flex: 1;
+  display: flex;
+  gap: 12rpx;
+}
+
+.student-input {
+  flex: 1;
+  height: 72rpx;
+  background: #f5f7fa;
+  border-radius: 36rpx;
+  padding: 0 24rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.filter-btn {
+  width: 100rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: 36rpx;
+  padding: 0;
+}
+
+.filter-btn::after {
+  border: none;
+}
+
+/* 记录列表 */
+.records-list {
+  height: calc(100vh - 320rpx);
+  padding: 20rpx;
+}
+
+.record-item {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.record-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.record-type-badge {
+  display: flex;
+  align-items: center;
+  padding: 8rpx 16rpx;
+  border-radius: 24rpx;
+  background: #f5f7fa;
+}
+
+.record-type-badge.borrow {
+  background: #e3f2fd;
+}
+
+.record-type-badge.return {
+  background: #e8f5e9;
+}
+
+.record-type-badge.renew {
+  background: #fff3e0;
+}
+
+.record-type-badge.manual {
+  background: #f3e5f5;
+}
+
+.type-icon {
+  font-size: 28rpx;
+  margin-right: 8rpx;
+}
+
+.type-text {
+  font-size: 24rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.record-date {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.record-content {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.book-section, .reader-section {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  padding: 16rpx;
+}
+
+.section-label {
+  display: block;
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.book-title, .reader-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.book-author, .reader-id {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.record-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.date-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.info-item {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.info-item.return {
+  color: #4caf50;
+}
+
+.status-badge {
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.status-badge.borrowed {
+  background: #fff3e0;
+  color: #ff9800;
+}
+
+.status-badge.returned {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.status-badge.overdue {
+  background: #ffebee;
+  color: #f44336;
+}
+
+/* 加载状态 */
+.loading-more, .no-more {
+  text-align: center;
+  padding: 30rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 40rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: #999;
+}

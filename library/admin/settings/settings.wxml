@@ -1,0 +1,187 @@
+<view class="settings-container">
+  <!-- 侧边栏 -->
+  <view class="sidebar {{isSidebarOpen ? 'open' : ''}}">
+    <view class="sidebar-header">
+      <image class="admin-avatar" src="/images/school-logo.jpg" mode="aspectFit"/>
+      <text class="admin-name">管理员</text>
+    </view>
+    <view class="sidebar-menu">
+      <view class="menu-item" bindtap="navigateTo" data-page="dashboard">
+        <text class="menu-icon">📊</text>
+        <text class="menu-text">数据仪表盘</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="books">
+        <text class="menu-icon">📚</text>
+        <text class="menu-text">图书管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="readers">
+        <text class="menu-icon">👥</text>
+        <text class="menu-text">读者管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="records">
+        <text class="menu-icon">📝</text>
+        <text class="menu-text">借阅记录</text>
+      </view>
+      <view class="menu-item active" bindtap="navigateTo" data-page="settings">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-text">系统设置</text>
+      </view>
+      <view class="menu-item logout" bindtap="logout">
+        <text class="menu-icon">🚪</text>
+        <text class="menu-text">退出登录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 遮罩层 -->
+  <view class="sidebar-overlay {{isSidebarOpen ? 'show' : ''}}" bindtap="toggleSidebar"></view>
+
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 顶部导航 -->
+    <view class="top-nav">
+      <view class="menu-toggle" bindtap="toggleSidebar">
+        <text class="toggle-icon">☰</text>
+      </view>
+      <text class="page-title">系统设置</text>
+      <view class="nav-right"></view>
+    </view>
+
+    <!-- 设置内容 -->
+    <scroll-view class="settings-content" scroll-y>
+      <!-- 借阅参数设置 -->
+      <view class="settings-section">
+        <view class="section-header">
+          <text class="section-icon">📚</text>
+          <text class="section-title">借阅参数设置</text>
+        </view>
+        <view class="section-body">
+          <view class="setting-item">
+            <view class="setting-info">
+              <text class="setting-label">借阅周期</text>
+              <text class="setting-desc">每本图书的最长借阅天数</text>
+            </view>
+            <view class="setting-input-group">
+              <input 
+                type="number" 
+                class="setting-input"
+                value="{{settings.borrowDays}}"
+                bindinput="onSettingInput"
+                data-field="borrowDays"
+              />
+              <text class="input-unit">天</text>
+            </view>
+          </view>
+
+          <view class="setting-item">
+            <view class="setting-info">
+              <text class="setting-label">最大借阅数量</text>
+              <text class="setting-desc">每位读者最多可同时借阅的图书数量</text>
+            </view>
+            <view class="setting-input-group">
+              <input 
+                type="number" 
+                class="setting-input"
+                value="{{settings.maxBooks}}"
+                bindinput="onSettingInput"
+                data-field="maxBooks"
+              />
+              <text class="input-unit">本</text>
+            </view>
+          </view>
+
+          <view class="setting-item">
+            <view class="setting-info">
+              <text class="setting-label">逾期罚款</text>
+              <text class="setting-desc">每本图书每天的逾期罚款金额</text>
+            </view>
+            <view class="setting-input-group">
+              <input 
+                type="digit" 
+                class="setting-input"
+                value="{{settings.overdueFee}}"
+                bindinput="onSettingInput"
+                data-field="overdueFee"
+              />
+              <text class="input-unit">元/天</text>
+            </view>
+          </view>
+
+          <button class="save-btn" bindtap="saveSettings" loading="{{isSaving}}">保存设置</button>
+        </view>
+      </view>
+
+      <!-- 公告管理 -->
+      <view class="settings-section">
+        <view class="section-header">
+          <text class="section-icon">📢</text>
+          <text class="section-title">公告管理</text>
+        </view>
+        <view class="section-body">
+          <view class="form-item">
+            <text class="form-label">公告标题</text>
+            <input 
+              type="text" 
+              class="form-input"
+              placeholder="请输入公告标题"
+              value="{{announcement.title}}"
+              bindinput="onAnnouncementInput"
+              data-field="title"
+            />
+          </view>
+
+          <view class="form-item">
+            <text class="form-label">公告内容</text>
+            <textarea 
+              class="form-textarea"
+              placeholder="请输入公告内容"
+              value="{{announcement.content}}"
+              bindinput="onAnnouncementInput"
+              data-field="content"
+              maxlength="500"
+            />
+            <text class="char-count">{{announcement.content.length || 0}}/500</text>
+          </view>
+
+          <view class="form-item switch-item">
+            <view class="switch-info">
+              <text class="form-label">立即发布</text>
+              <text class="switch-desc">开启后将立即显示在图书馆首页</text>
+            </view>
+            <switch 
+              checked="{{announcement.isPublished}}"
+              bindchange="onPublishChange"
+              color="#667eea"
+            />
+          </view>
+
+          <button class="publish-btn" bindtap="publishAnnouncement" loading="{{isPublishing}}">
+            {{announcement.isPublished ? '更新公告' : '发布公告'}}
+          </button>
+        </view>
+      </view>
+
+      <!-- 系统信息 -->
+      <view class="settings-section">
+        <view class="section-header">
+          <text class="section-icon">ℹ️</text>
+          <text class="section-title">系统信息</text>
+        </view>
+        <view class="section-body">
+          <view class="info-item">
+            <text class="info-label">系统版本</text>
+            <text class="info-value">v1.0.0</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">最后更新</text>
+            <text class="info-value">2024-01-15</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">数据库状态</text>
+            <text class="info-value status-online">正常</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

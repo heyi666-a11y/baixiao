@@ -1,0 +1,184 @@
+<view class="container">
+  <!-- 顶部标题栏 -->
+  <view class="header">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="header-title">借书</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 借书表单 -->
+  <view class="form-section" wx:if="{{!showResult}}">
+    <view class="form-card card">
+      <view class="form-header">
+        <text class="form-icon">📖</text>
+        <text class="form-title">填写借书信息</text>
+      </view>
+      
+      <view class="form-body">
+        <!-- 学号 -->
+        <view class="form-item">
+          <text class="form-label">
+            <text class="required">*</text>
+            学号
+          </text>
+          <input 
+            class="form-input" 
+            type="text" 
+            placeholder="请输入学号"
+            value="{{form.studentId}}"
+            data-field="studentId"
+            bindinput="onInputChange"
+          />
+        </view>
+
+        <!-- 姓名 -->
+        <view class="form-item">
+          <text class="form-label">
+            <text class="required">*</text>
+            姓名
+          </text>
+          <input 
+            class="form-input" 
+            type="text" 
+            placeholder="请输入姓名"
+            value="{{form.studentName}}"
+            data-field="studentName"
+            bindinput="onInputChange"
+          />
+        </view>
+
+        <!-- 书名 -->
+        <view class="form-item">
+          <text class="form-label">
+            <text class="required">*</text>
+            书名
+          </text>
+          <input 
+            class="form-input" 
+            type="text" 
+            placeholder="请输入书名"
+            value="{{form.bookName}}"
+            data-field="bookName"
+            bindinput="onInputChange"
+          />
+        </view>
+
+        <!-- ISBN -->
+        <view class="form-item">
+          <text class="form-label">ISBN（可选）</text>
+          <input 
+            class="form-input" 
+            type="text" 
+            placeholder="请输入ISBN（可选）"
+            value="{{form.isbn}}"
+            data-field="isbn"
+            bindinput="onInputChange"
+          />
+        </view>
+      </view>
+
+      <view class="form-footer">
+        <button class="submit-btn" bindtap="onSubmit" disabled="{{loading}}">
+          <text wx:if="{{!loading}}">确认借书</text>
+          <text wx:if="{{loading}}">处理中...</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 借书须知 -->
+    <view class="notice-card card">
+      <view class="notice-header">
+        <text class="notice-icon">📋</text>
+        <text class="notice-title">借书须知</text>
+      </view>
+      <view class="notice-list">
+        <view class="notice-item">
+          <text class="notice-dot"></text>
+          <text class="notice-text">每人最多可借阅5本图书</text>
+        </view>
+        <view class="notice-item">
+          <text class="notice-dot"></text>
+          <text class="notice-text">图书借阅期限为30天</text>
+        </view>
+        <view class="notice-item">
+          <text class="notice-dot"></text>
+          <text class="notice-text">请爱护图书，如有损坏需赔偿</text>
+        </view>
+        <view class="notice-item">
+          <text class="notice-dot"></text>
+          <text class="notice-text">逾期归还将产生滞纳金</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 借书结果 -->
+  <view class="result-section" wx:if="{{showResult}}">
+    <view class="result-card card">
+      <!-- 成功状态 -->
+      <view class="result-content" wx:if="{{borrowResult.success}}">
+        <view class="result-icon success">✓</view>
+        <text class="result-title">借书成功！</text>
+        <text class="result-message">{{borrowResult.message}}</text>
+        
+        <!-- 图书信息 -->
+        <view class="book-info" wx:if="{{borrowResult.bookInfo}}">
+          <view class="info-item">
+            <text class="info-label">书名：</text>
+            <text class="info-value">{{borrowResult.bookInfo.title}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">作者：</text>
+            <text class="info-value">{{borrowResult.bookInfo.author}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">出版社：</text>
+            <text class="info-value">{{borrowResult.bookInfo.publisher}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">ISBN：</text>
+            <text class="info-value">{{borrowResult.bookInfo.isbn}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">借阅日期：</text>
+            <text class="info-value">{{borrowResult.bookInfo.borrowDate}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">应还日期：</text>
+            <text class="info-value highlight">{{borrowResult.bookInfo.dueDate}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 失败状态 -->
+      <view class="result-content" wx:if="{{!borrowResult.success}}">
+        <view class="result-icon error">✕</view>
+        <text class="result-title">借书失败</text>
+        <text class="result-message">{{borrowResult.message}}</text>
+        
+        <!-- 图书信息（如果有） -->
+        <view class="book-info" wx:if="{{borrowResult.bookInfo}}">
+          <view class="info-item">
+            <text class="info-label">书名：</text>
+            <text class="info-value">{{borrowResult.bookInfo.title}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">作者：</text>
+            <text class="info-value">{{borrowResult.bookInfo.author}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-label">在馆数量：</text>
+            <text class="info-value">{{borrowResult.bookInfo.available_quantity}}/{{borrowResult.bookInfo.total_quantity}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="result-actions">
+        <button class="action-btn primary" bindtap="onContinue">继续借书</button>
+        <button class="action-btn secondary" bindtap="onBack">返回</button>
+      </view>
+    </view>
+  </view>
+</view>

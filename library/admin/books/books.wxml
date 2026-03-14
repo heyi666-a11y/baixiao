@@ -1,0 +1,236 @@
+<view class="books-container">
+  <!-- 侧边栏 -->
+  <view class="sidebar {{isSidebarOpen ? 'open' : ''}}">
+    <view class="sidebar-header">
+      <image class="admin-avatar" src="/images/school-logo.jpg" mode="aspectFit"/>
+      <text class="admin-name">管理员</text>
+    </view>
+    <view class="sidebar-menu">
+      <view class="menu-item" bindtap="navigateTo" data-page="dashboard">
+        <text class="menu-icon">📊</text>
+        <text class="menu-text">数据仪表盘</text>
+      </view>
+      <view class="menu-item active" bindtap="navigateTo" data-page="books">
+        <text class="menu-icon">📚</text>
+        <text class="menu-text">图书管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="readers">
+        <text class="menu-icon">👥</text>
+        <text class="menu-text">读者管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="records">
+        <text class="menu-icon">📝</text>
+        <text class="menu-text">借阅记录</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="settings">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-text">系统设置</text>
+      </view>
+      <view class="menu-item logout" bindtap="logout">
+        <text class="menu-icon">🚪</text>
+        <text class="menu-text">退出登录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 遮罩层 -->
+  <view class="sidebar-overlay {{isSidebarOpen ? 'show' : ''}}" bindtap="toggleSidebar"></view>
+
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 顶部导航 -->
+    <view class="top-nav">
+      <view class="menu-toggle" bindtap="toggleSidebar">
+        <text class="toggle-icon">☰</text>
+      </view>
+      <text class="page-title">图书管理</text>
+      <view class="nav-right"></view>
+    </view>
+
+    <!-- 搜索和筛选区 -->
+    <view class="search-section">
+      <view class="search-box">
+        <input 
+          type="text" 
+          placeholder="搜索书名、ISBN、作者" 
+          value="{{searchKeyword}}"
+          bindinput="onSearchInput"
+          class="search-input"
+        />
+        <text class="search-icon" bindtap="searchBooks">🔍</text>
+      </view>
+      <picker mode="selector" range="{{statusOptions}}" range-key="label" value="{{statusIndex}}" bindchange="onStatusChange">
+        <view class="status-filter">
+          <text class="filter-text">{{statusOptions[statusIndex].label}}</text>
+          <text class="filter-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 操作按钮区 -->
+    <view class="action-section">
+      <button class="action-btn primary" bindtap="showAddModal">+ 添加图书</button>
+      <button class="action-btn secondary" bindtap="showBatchModal">批量导入</button>
+      <button class="action-btn secondary" bindtap="exportBooks">导出报表</button>
+    </view>
+
+    <!-- 图书列表 -->
+    <scroll-view class="books-list" scroll-y bindscrolltolower="loadMore">
+      <view class="book-item" wx:for="{{books}}" wx:key="id">
+        <view class="book-main">
+          <view class="book-header">
+            <text class="book-title">{{item.title}}</text>
+            <view class="status-badge {{item.status}}">{{item.statusText}}</view>
+          </view>
+          <view class="book-info">
+            <text class="info-item">作者：{{item.author || '未知'}}</text>
+            <text class="info-item">ISBN：{{item.isbn || '暂无'}}</text>
+            <text class="info-item">分类：{{item.category || '未分类'}}</text>
+            <text class="info-item">出版社：{{item.publisher || '未知'}}</text>
+          </view>
+          <view class="book-stock">
+            <text class="stock-text">可用数量：{{item.available_quantity}}/{{item.total_quantity}}</text>
+          </view>
+        </view>
+        <view class="book-actions">
+          <text class="action-icon edit" bindtap="editBook" data-id="{{item.id}}">✏️</text>
+          <text class="action-icon delete" bindtap="deleteBook" data-id="{{item.id}}">🗑️</text>
+        </view>
+      </view>
+      
+      <view class="loading-more" wx:if="{{isLoadingMore}}">
+        <text>加载中...</text>
+      </view>
+      <view class="no-more" wx:if="{{!hasMore && books.length > 0}}">
+        <text>没有更多数据了</text>
+      </view>
+      <view class="empty-state" wx:if="{{books.length === 0 && !isLoading}}">
+        <text class="empty-icon">📚</text>
+        <text class="empty-text">暂无图书数据</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 添加/编辑图书弹窗 -->
+  <view class="modal {{showBookModal ? 'show' : ''}}">
+    <view class="modal-mask" bindtap="closeBookModal"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">{{isEditing ? '编辑图书' : '添加图书'}}</text>
+        <text class="modal-close" bindtap="closeBookModal">×</text>
+      </view>
+      <scroll-view class="modal-body" scroll-y>
+        <view class="form-item">
+          <text class="form-label">ISBN</text>
+          <view class="isbn-input-group">
+            <input 
+              type="text" 
+              placeholder="请输入ISBN" 
+              value="{{bookForm.isbn}}"
+              bindinput="onBookFormInput"
+              data-field="isbn"
+              class="form-input"
+            />
+            <button class="search-isbn-btn" bindtap="searchByISBN" loading="{{isSearchingISBN}}">AI智能搜索填充</button>
+          </view>
+        </view>
+        <view class="form-item">
+          <text class="form-label">书名 <text class="required">*</text></text>
+          <input 
+            type="text" 
+            placeholder="请输入书名" 
+            value="{{bookForm.title}}"
+            bindinput="onBookFormInput"
+            data-field="title"
+            class="form-input"
+          />
+        </view>
+        <view class="form-item">
+          <text class="form-label">作者</text>
+          <input 
+            type="text" 
+            placeholder="请输入作者" 
+            value="{{bookForm.author}}"
+            bindinput="onBookFormInput"
+            data-field="author"
+            class="form-input"
+          />
+        </view>
+        <view class="form-item">
+          <text class="form-label">分类</text>
+          <picker mode="selector" range="{{categories}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+            <view class="picker-input">{{bookForm.category || '请选择分类'}}</view>
+          </picker>
+        </view>
+        <view class="form-item">
+          <text class="form-label">出版社</text>
+          <input 
+            type="text" 
+            placeholder="请输入出版社" 
+            value="{{bookForm.publisher}}"
+            bindinput="onBookFormInput"
+            data-field="publisher"
+            class="form-input"
+          />
+        </view>
+        <view class="form-item">
+          <text class="form-label">总数量</text>
+          <input 
+            type="number" 
+            placeholder="请输入总数量" 
+            value="{{bookForm.total_quantity}}"
+            bindinput="onBookFormInput"
+            data-field="total_quantity"
+            class="form-input"
+          />
+        </view>
+        <view class="form-item" wx:if="{{isEditing}}">
+          <text class="form-label">状态</text>
+          <picker mode="selector" range="{{bookStatusOptions}}" range-key="label" value="{{bookStatusIndex}}" bindchange="onBookStatusChange">
+            <view class="picker-input">{{bookStatusOptions[bookStatusIndex].label}}</view>
+          </picker>
+        </view>
+      </scroll-view>
+      <view class="modal-footer">
+        <button class="btn-cancel" bindtap="closeBookModal">取消</button>
+        <button class="btn-confirm" bindtap="saveBook" loading="{{isSaving}}">保存</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 批量导入弹窗 -->
+  <view class="modal {{showBatchModal ? 'show' : ''}}">
+    <view class="modal-mask" bindtap="closeBatchModal"></view>
+    <view class="modal-content batch-modal">
+      <view class="modal-header">
+        <text class="modal-title">批量导入图书</text>
+        <text class="modal-close" bindtap="closeBatchModal">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="batch-instruction">
+          <text class="instruction-text">请输入ISBN列表，每行一个ISBN</text>
+        </view>
+        <textarea 
+          class="batch-textarea" 
+          placeholder="例如：&#10;9787115428028&#10;9787111544937&#10;9787115428028"
+          value="{{batchISBNs}}"
+          bindinput="onBatchInput"
+        />
+        <view class="batch-preview" wx:if="{{batchBooks.length > 0}}">
+          <text class="preview-title">待导入图书（{{batchBooks.length}}本）：</text>
+          <view class="preview-list">
+            <view class="preview-item" wx:for="{{batchBooks}}" wx:key="isbn">
+              <text class="preview-title-text">{{item.title || '未找到'}}</text>
+              <text class="preview-isbn">{{item.isbn}}</text>
+              <text class="preview-status {{item.found ? 'success' : 'error'}}">{{item.found ? '✓' : '✗'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="btn-secondary" bindtap="searchBatchISBNs" loading="{{isSearchingBatch}}">搜索图书</button>
+        <button class="btn-confirm" bindtap="batchAddBooks" loading="{{isBatchAdding}}" disabled="{{batchBooks.length === 0}}">批量添加</button>
+      </view>
+    </view>
+  </view>
+</view>

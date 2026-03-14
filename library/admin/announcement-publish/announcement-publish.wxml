@@ -1,0 +1,148 @@
+<view class="dashboard-container">
+  <!-- 侧边栏 -->
+  <view class="sidebar {{isSidebarOpen ? 'open' : ''}}">
+    <view class="sidebar-header">
+      <image class="admin-avatar" src="/images/school-logo.jpg" mode="aspectFit"/>
+      <text class="admin-name">管理员</text>
+    </view>
+    <view class="sidebar-menu">
+      <view class="menu-item" bindtap="navigateTo" data-page="dashboard">
+        <text class="menu-icon">📊</text>
+        <text class="menu-text">数据仪表盘</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="books">
+        <text class="menu-icon">📚</text>
+        <text class="menu-text">图书管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="readers">
+        <text class="menu-icon">👥</text>
+        <text class="menu-text">读者管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="records">
+        <text class="menu-icon">📝</text>
+        <text class="menu-text">借阅记录</text>
+      </view>
+      <view class="menu-item active" bindtap="navigateTo" data-page="announcement-publish">
+        <text class="menu-icon">📢</text>
+        <text class="menu-text">发布公告</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="settings">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-text">系统设置</text>
+      </view>
+      <view class="menu-item logout" bindtap="logout">
+        <text class="menu-icon">🚪</text>
+        <text class="menu-text">退出登录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 遮罩层 -->
+  <view class="sidebar-overlay {{isSidebarOpen ? 'show' : ''}}" bindtap="toggleSidebar"></view>
+
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 顶部导航 -->
+    <view class="top-nav">
+      <view class="menu-toggle" bindtap="toggleSidebar">
+        <text class="toggle-icon">☰</text>
+      </view>
+      <text class="page-title">发布公告</text>
+      <view class="nav-right">
+        <text class="nav-hint">图书馆管理系统</text>
+      </view>
+    </view>
+
+    <!-- 内容区域 -->
+    <scroll-view class="content-area" scroll-y>
+      <view class="form-card">
+        <view class="form-header">
+          <text class="form-icon">📢</text>
+          <text class="form-title">发布新公告</text>
+        </view>
+
+        <!-- 标题输入 -->
+        <view class="form-item">
+          <view class="item-label">
+            <text class="required">*</text>
+            <text>公告标题</text>
+          </view>
+          <input 
+            class="item-input" 
+            placeholder="请输入公告标题（最多100字）"
+            maxlength="100"
+            value="{{form.title}}"
+            bindinput="onTitleInput"
+          />
+          <text class="input-count">{{form.title.length}}/100</text>
+        </view>
+
+        <!-- 内容输入 -->
+        <view class="form-item">
+          <view class="item-label">
+            <text class="required">*</text>
+            <text>公告内容</text>
+          </view>
+          <textarea 
+            class="item-textarea" 
+            placeholder="请输入公告内容..."
+            maxlength="2000"
+            value="{{form.content}}"
+            bindinput="onContentInput"
+          />
+          <text class="input-count">{{form.content.length}}/2000</text>
+        </view>
+
+        <!-- 日期选择 -->
+        <view class="form-row">
+          <view class="form-item half">
+            <view class="item-label">
+              <text class="required">*</text>
+              <text>生效日期</text>
+            </view>
+            <picker mode="date" value="{{form.valid_from}}" start="{{today}}" bindchange="onValidFromChange">
+              <view class="picker-value {{form.valid_from ? '' : 'placeholder'}}">
+                {{form.valid_from || '请选择日期'}}
+              </view>
+            </picker>
+          </view>
+
+          <view class="form-item half">
+            <view class="item-label">
+              <text class="required">*</text>
+              <text>有效期至</text>
+            </view>
+            <picker mode="date" value="{{form.valid_until}}" start="{{form.valid_from || today}}" bindchange="onValidUntilChange">
+              <view class="picker-value {{form.valid_until ? '' : 'placeholder'}}">
+                {{form.valid_until || '请选择日期'}}
+              </view>
+            </picker>
+          </view>
+        </view>
+
+        <!-- 提示信息 -->
+        <view class="tips-section">
+          <view class="tips-title">💡 发布须知</view>
+          <view class="tips-list">
+            <text class="tips-item">• 公告标题应简洁明了，突出核心内容</text>
+            <text class="tips-item">• 公告内容支持纯文本格式</text>
+            <text class="tips-item">• 设置合理的有效期，过期后公告将自动下架</text>
+            <text class="tips-item">• 发布后可在公告列表中查看</text>
+          </view>
+        </view>
+
+        <!-- 按钮区域 -->
+        <view class="button-group">
+          <button class="btn btn-secondary" bindtap="resetForm" disabled="{{submitting}}">
+            <text class="btn-icon">🔄</text>
+            <text>重置</text>
+          </button>
+          <button class="btn btn-primary" bindtap="submitForm" disabled="{{submitting}}">
+            <text class="btn-icon">{{submitting ? '⏳' : '📤'}}</text>
+            <text>{{submitting ? '发布中...' : '发布公告'}}</text>
+          </button>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

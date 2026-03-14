@@ -1,0 +1,81 @@
+<view class="container">
+  <!-- 顶部标题栏 -->
+  <view class="header">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="header-title">学生服务</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 欢迎区域 -->
+  <view class="welcome-section">
+    <view class="welcome-bg">
+      <text class="welcome-title">{{welcomeTitle}}</text>
+      <text class="welcome-subtitle">广东北江中学图书馆</text>
+    </view>
+  </view>
+
+  <!-- 功能卡片网格 -->
+  <view class="function-section">
+    <text class="section-title">请选择服务</text>
+    <view class="function-grid">
+      <view 
+        class="function-card" 
+        wx:for="{{functionCards}}" 
+        wx:key="id"
+        data-id="{{item.id}}"
+        data-url="{{item.url}}"
+        bindtap="onCardTap"
+        style="border-color: {{item.color}}"
+      >
+        <view class="card-icon" style="background: {{item.color}}20">
+          <text class="icon-text">{{item.icon}}</text>
+        </view>
+        <text class="card-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 使用提示 -->
+  <view class="tips-section card">
+    <view class="tips-header">
+      <text class="tips-icon">💡</text>
+      <text class="tips-title">使用提示</text>
+    </view>
+    <view class="tips-list">
+      <view class="tip-item">
+        <text class="tip-dot" style="background: #667eea;"></text>
+        <text class="tip-text">借书时请准确填写学号和姓名</text>
+      </view>
+      <view class="tip-item">
+        <text class="tip-dot" style="background: #764ba2;"></text>
+        <text class="tip-text">图书借阅期限为30天，请及时归还</text>
+      </view>
+      <view class="tip-item">
+        <text class="tip-dot" style="background: #f093fb;"></text>
+        <text class="tip-text">可通过书库查询查看图书在馆状态</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 公告弹窗 -->
+  <view class="notice-modal" wx:if="{{showNotice}}">
+    <view class="modal-mask" bindtap="closeNotice"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">📢 {{notice.title}}</text>
+        <view class="close-btn" bindtap="closeNotice">
+          <text class="close-icon">✕</text>
+        </view>
+      </view>
+      <view class="modal-body">
+        <text class="notice-content">{{notice.content}}</text>
+        <text class="notice-time">发布时间：{{notice.publishTime}}</text>
+      </view>
+      <view class="modal-footer">
+        <button class="confirm-btn" bindtap="closeNotice">我知道了</button>
+      </view>
+    </view>
+  </view>
+</view>

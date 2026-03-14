@@ -1,0 +1,67 @@
+<view class="container">
+  <!-- 顶部导航 -->
+  <view class="header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="page-title">公告详情</text>
+    <view class="placeholder"></view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 公告内容 -->
+  <scroll-view class="content-scroll" scroll-y wx:if="{{!loading && announcement}}">
+    <view class="announcement-card">
+      <!-- 标题 -->
+      <view class="title-section">
+        <text class="announcement-title">{{announcement.title}}</text>
+      </view>
+
+      <!-- 元信息 -->
+      <view class="meta-section">
+        <view class="meta-item">
+          <text class="meta-label">发布人</text>
+          <text class="meta-value">{{announcement.author || '图书馆管理员'}}</text>
+        </view>
+        <view class="meta-item">
+          <text class="meta-label">发布日期</text>
+          <text class="meta-value">{{announcement.formattedPublishDate}}</text>
+        </view>
+        <view class="meta-item" wx:if="{{announcement.valid_from}}">
+          <text class="meta-label">生效日期</text>
+          <text class="meta-value">{{announcement.formattedValidFrom}}</text>
+        </view>
+        <view class="meta-item" wx:if="{{announcement.valid_until}}">
+          <text class="meta-label">有效期至</text>
+          <text class="meta-value">{{announcement.formattedValidUntil}}</text>
+        </view>
+      </view>
+
+      <!-- 分隔线 -->
+      <view class="divider"></view>
+
+      <!-- 正文内容 -->
+      <view class="content-section">
+        <rich-text class="content-text" nodes="{{announcement.content}}"></rich-text>
+      </view>
+
+      <!-- 底部提示 -->
+      <view class="footer-section">
+        <text class="footer-text">— 图书馆公告 —</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 错误状态 -->
+  <view class="error-container" wx:if="{{!loading && !announcement}}">
+    <view class="error-icon">⚠️</view>
+    <text class="error-title">加载失败</text>
+    <text class="error-desc">无法加载公告内容，请稍后重试</text>
+    <view class="retry-btn" bindtap="goBack">返回列表</view>
+  </view>
+</view>

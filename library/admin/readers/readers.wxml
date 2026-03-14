@@ -1,0 +1,162 @@
+<view class="readers-container">
+  <!-- 侧边栏 -->
+  <view class="sidebar {{isSidebarOpen ? 'open' : ''}}">
+    <view class="sidebar-header">
+      <image class="admin-avatar" src="/images/school-logo.jpg" mode="aspectFit"/>
+      <text class="admin-name">管理员</text>
+    </view>
+    <view class="sidebar-menu">
+      <view class="menu-item" bindtap="navigateTo" data-page="dashboard">
+        <text class="menu-icon">📊</text>
+        <text class="menu-text">数据仪表盘</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="books">
+        <text class="menu-icon">📚</text>
+        <text class="menu-text">图书管理</text>
+      </view>
+      <view class="menu-item active" bindtap="navigateTo" data-page="readers">
+        <text class="menu-icon">👥</text>
+        <text class="menu-text">读者管理</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="records">
+        <text class="menu-icon">📝</text>
+        <text class="menu-text">借阅记录</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-page="settings">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-text">系统设置</text>
+      </view>
+      <view class="menu-item logout" bindtap="logout">
+        <text class="menu-icon">🚪</text>
+        <text class="menu-text">退出登录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 遮罩层 -->
+  <view class="sidebar-overlay {{isSidebarOpen ? 'show' : ''}}" bindtap="toggleSidebar"></view>
+
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 顶部导航 -->
+    <view class="top-nav">
+      <view class="menu-toggle" bindtap="toggleSidebar">
+        <text class="toggle-icon">☰</text>
+      </view>
+      <text class="page-title">读者管理</text>
+      <view class="nav-right">
+        <button class="export-btn" bindtap="exportReaders">导出报表</button>
+      </view>
+    </view>
+
+    <!-- 读者列表 -->
+    <scroll-view class="readers-list" scroll-y bindscrolltolower="loadMore">
+      <view class="reader-item" wx:for="{{readers}}" wx:key="id" bindtap="showReaderDetail" data-id="{{item.id}}">
+        <view class="reader-avatar">
+          <text class="avatar-text">{{item.name ? item.name[0] : '读'}}</text>
+        </view>
+        <view class="reader-info">
+          <view class="reader-header">
+            <text class="reader-name">{{item.name}}</text>
+            <text class="reader-id">学号：{{item.student_id}}</text>
+          </view>
+          <view class="reader-stats">
+            <text class="stat-item">当前借阅：{{item.currentBorrows || 0}}本</text>
+            <text class="stat-item">历史借阅：{{item.totalBorrows || 0}}本</text>
+            <text class="stat-item {{item.overdueCount > 0 ? 'overdue' : ''}}">逾期次数：{{item.overdueCount || 0}}次</text>
+          </view>
+        </view>
+        <view class="reader-arrow">
+          <text class="arrow-icon">›</text>
+        </view>
+      </view>
+      
+      <view class="loading-more" wx:if="{{isLoadingMore}}">
+        <text>加载中...</text>
+      </view>
+      <view class="no-more" wx:if="{{!hasMore && readers.length > 0}}">
+        <text>没有更多数据了</text>
+      </view>
+      <view class="empty-state" wx:if="{{readers.length === 0 && !isLoading}}">
+        <text class="empty-icon">👥</text>
+        <text class="empty-text">暂无读者数据</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 读者详情弹窗 -->
+  <view class="modal {{showDetailModal ? 'show' : ''}}">
+    <view class="modal-mask" bindtap="closeDetailModal"></view>
+    <view class="modal-content detail-modal">
+      <view class="modal-header">
+        <text class="modal-title">读者详情</text>
+        <text class="modal-close" bindtap="closeDetailModal">×</text>
+      </view>
+      <scroll-view class="modal-body" scroll-y>
+        <view class="detail-header" wx:if="{{currentReader}}">
+          <view class="detail-avatar">
+            <text class="avatar-text">{{currentReader.name ? currentReader.name[0] : '读'}}</text>
+          </view>
+          <view class="detail-basic">
+            <text class="detail-name">{{currentReader.name}}</text>
+            <text class="detail-id">学号：{{currentReader.student_id}}</text>
+            <text class="detail-class" wx:if="{{currentReader.class_name}}">班级：{{currentReader.class_name}}</text>
+          </view>
+        </view>
+
+        <view class="detail-stats" wx:if="{{currentReader}}">
+          <view class="stat-box">
+            <text class="stat-num">{{currentReader.currentBorrows || 0}}</text>
+            <text class="stat-label">当前借阅</text>
+          </view>
+          <view class="stat-box">
+            <text class="stat-num">{{currentReader.totalBorrows || 0}}</text>
+            <text class="stat-label">历史借阅</text>
+          </view>
+          <view class="stat-box">
+            <text class="stat-num {{currentReader.overdueCount > 0 ? 'overdue' : ''}}">{{currentReader.overdueCount || 0}}</text>
+            <text class="stat-label">逾期次数</text>
+          </view>
+        </view>
+
+        <!-- 当前借阅列表 -->
+        <view class="section" wx:if="{{currentBorrows.length > 0}}">
+          <view class="section-title">📖 当前借阅 ({{currentBorrows.length}})</view>
+          <view class="borrow-list">
+            <view class="borrow-item" wx:for="{{currentBorrows}}" wx:key="id">
+              <view class="borrow-book">
+                <text class="book-title">{{item.books.title}}</text>
+                <text class="book-author">{{item.books.author}}</text>
+              </view>
+              <view class="borrow-info">
+                <text class="borrow-date">借阅：{{item.borrow_date}}</text>
+                <text class="due-date {{item.isOverdue ? 'overdue' : ''}}">到期：{{item.due_date}} {{item.isOverdue ? '(已逾期)' : ''}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 历史借阅记录 -->
+        <view class="section" wx:if="{{historyBorrows.length > 0}}">
+          <view class="section-title">📚 历史借阅 ({{historyBorrows.length}})</view>
+          <view class="borrow-list">
+            <view class="borrow-item returned" wx:for="{{historyBorrows}}" wx:key="id">
+              <view class="borrow-book">
+                <text class="book-title">{{item.books.title}}</text>
+                <text class="book-author">{{item.books.author}}</text>
+              </view>
+              <view class="borrow-info">
+                <text class="borrow-date">借阅：{{item.borrow_date}}</text>
+                <text class="return-date">归还：{{item.return_date}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="empty-borrow" wx:if="{{currentBorrows.length === 0 && historyBorrows.length === 0}}">
+          <text class="empty-text">暂无借阅记录</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
