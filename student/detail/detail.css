@@ -1,0 +1,297 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #e8f8f5 0%, #f5f7fa 100%);
+  padding-bottom: 20px;
+}
+
+/* 加载状态 */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px;
+}
+
+.loading-text {
+  font-size: 14px;
+  color: #95a5a6;
+}
+
+/* 信息卡片 */
+.info-card {
+  background: #fff;
+  margin: 10px 15px;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.header-section {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.avatar-section {
+  position: relative;
+  margin-right: 15px;
+}
+
+.student-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-text {
+  font-size: 28px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.gender-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+.gender-badge.male {
+  background: #3498db;
+  color: #fff;
+}
+
+.gender-badge.female {
+  background: #e91e63;
+  color: #fff;
+}
+
+.basic-info {
+  flex: 1;
+}
+
+.student-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 6px;
+}
+
+.student-class {
+  font-size: 14px;
+  color: #1abc9c;
+  background: rgba(26, 188, 156, 0.1);
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.student-id {
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+.edit-btn {
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.edit-text {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* 联系方式 */
+.contact-section {
+  border-top: 0.5px solid #f0f0f0;
+  padding-top: 15px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.contact-icon {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.icon {
+  font-size: 14px;
+}
+
+.contact-info {
+  flex: 1;
+}
+
+.contact-label {
+  display: block;
+  font-size: 11px;
+  color: #95a5a6;
+  margin-bottom: 2px;
+}
+
+.contact-value {
+  display: block;
+  font-size: 14px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.call-btn {
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  border-radius: 12px;
+}
+
+.call-text {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* 功能区域 */
+.function-section {
+  background: #fff;
+  margin: 10px 15px;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  padding-left: 8px;
+  border-left: 3px solid #1abc9c;
+}
+
+.function-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.function-item {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.function-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.function-icon.grades {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.function-icon.schedule {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.function-icon.attendance {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.function-icon.rewards {
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+.function-icon.portfolio {
+  background: linear-gradient(135deg, #fa709a, #fee140);
+}
+
+.function-icon.leave {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.function-icon.ai-report {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.icon-text {
+  font-size: 22px;
+}
+
+.function-name {
+  font-size: 13px;
+  color: #2c3e50;
+}
+
+/* 更多信息 */
+.more-info-section {
+  background: #fff;
+  margin: 10px 15px;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 0.5px solid #f0f0f0;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.info-value {
+  font-size: 14px;
+  color: #2c3e50;
+  font-weight: 500;
+}

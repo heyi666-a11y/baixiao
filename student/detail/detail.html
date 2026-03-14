@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>学生详情</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="./detail.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 加载中 -->
+    <div class="loading-state" id="loadingState">
+      <span class="loading-text">加载中...</span>
+    </div>
+
+    <!-- 学生信息 -->
+    <div id="studentContent" style="display: none;">
+      <!-- 基本信息卡片 -->
+      <div class="info-card">
+        <div class="header-section">
+          <div class="avatar-section">
+            <img class="student-avatar" id="studentAvatar" src="" alt="头像" style="display: none;"/>
+            <div class="avatar-placeholder" id="avatarPlaceholder">
+              <span class="avatar-text" id="avatarText">学</span>
+            </div>
+            <div class="gender-badge" id="genderBadge">
+              <span class="gender-text" id="genderText">未知</span>
+            </div>
+          </div>
+          <div class="basic-info">
+            <div class="student-name" id="studentName">未知姓名</div>
+            <div class="student-class" id="studentClass">-</div>
+            <div class="student-id" id="studentId">学号: -</div>
+          </div>
+          <div class="edit-btn" id="editBtn" style="display: none;">
+            <span class="edit-text">编辑</span>
+          </div>
+        </div>
+
+        <!-- 联系方式 -->
+        <div class="contact-section" id="contactSection" style="display: none;">
+          <div class="contact-item" id="phoneCall">
+            <div class="contact-icon">
+              <span class="icon">📞</span>
+            </div>
+            <div class="contact-info">
+              <span class="contact-label">家长电话</span>
+              <span class="contact-value" id="parentPhone">-</span>
+            </div>
+            <div class="call-btn">
+              <span class="call-text">拨打</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 功能入口 -->
+      <div class="function-section">
+        <div class="section-title">功能服务</div>
+        <div class="function-grid">
+          <div class="function-item" onclick="navigateTo('grades')">
+            <div class="function-icon grades">
+              <span class="icon-text">📊</span>
+            </div>
+            <span class="function-name">成绩查询</span>
+          </div>
+          <div class="function-item" onclick="navigateTo('schedule')">
+            <div class="function-icon schedule">
+              <span class="icon-text">📅</span>
+            </div>
+            <span class="function-name">课程表</span>
+          </div>
+          <div class="function-item" onclick="navigateTo('attendance')">
+            <div class="function-icon attendance">
+              <span class="icon-text">✅</span>
+            </div>
+            <span class="function-name">考勤记录</span>
+          </div>
+          <div class="function-item" onclick="navigateTo('rewards')">
+            <div class="function-icon rewards">
+              <span class="icon-text">🏆</span>
+            </div>
+            <span class="function-name">奖惩记录</span>
+          </div>
+          <div class="function-item" onclick="navigateTo('portfolio')">
+            <div class="function-icon portfolio">
+              <span class="icon-text">📁</span>
+            </div>
+            <span class="function-name">成长档案</span>
+          </div>
+          <div class="function-item" onclick="navigateTo('leave')">
+            <div class="function-icon leave">
+              <span class="icon-text">📝</span>
+            </div>
+            <span class="function-name">请假申请</span>
+          </div>
+          <div class="function-item" onclick="navigateTo('ai-report')">
+            <div class="function-icon ai-report">
+              <span class="icon-text">🤖</span>
+            </div>
+            <span class="function-name">AI分析报告</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 更多信息 -->
+      <div class="more-info-section">
+        <div class="section-title">更多信息</div>
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-label">入学日期</span>
+            <span class="info-value" id="enrollmentDate">-</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">出生日期</span>
+            <span class="info-value" id="birthDate">-</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">家庭住址</span>
+            <span class="info-value" id="address">-</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">备注</span>
+            <span class="info-value" id="remark">-</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="./detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>考勤记录</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="./attendance.css">
+</head>
+<body>
+  <div class="container">
+    <div class="loading-state" id="loadingState">
+      <span class="loading-text">加载中...</span>
+    </div>
+
+    <div id="content" style="display: none;">
+      <!-- 学生信息 -->
+      <div class="student-header" id="studentHeader">
+        <img class="header-avatar" id="headerAvatar" src="" alt="头像" style="display: none;"/>
+        <div class="header-avatar-placeholder" id="headerAvatarPlaceholder">
+          <span id="headerAvatarText">学</span>
+        </div>
+        <div class="header-info">
+          <span class="header-name" id="headerName">-</span>
+          <span class="header-class" id="headerClass">-</span>
+        </div>
+      </div>
+
+      <!-- 统计卡片 -->
+      <div class="stats-section">
+        <div class="stats-card">
+          <div class="stats-item">
+            <span class="stats-value present" id="presentCount">0</span>
+            <span class="stats-label">出勤</span>
+          </div>
+          <div class="stats-divider"></div>
+          <div class="stats-item">
+            <span class="stats-value absent" id="absentCount">0</span>
+            <span class="stats-label">缺勤</span>
+          </div>
+          <div class="stats-divider"></div>
+          <div class="stats-item">
+            <span class="stats-value late" id="lateCount">0</span>
+            <span class="stats-label">迟到</span>
+          </div>
+          <div class="stats-divider"></div>
+          <div class="stats-item">
+            <span class="stats-value leave" id="leaveCount">0</span>
+            <span class="stats-label">请假</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 月份筛选 -->
+      <div class="month-filter">
+        <div class="filter-scroll" id="monthFilter">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 考勤列表 -->
+      <div class="attendance-section">
+        <div class="section-title">考勤记录</div>
+        <div class="attendance-list" id="attendanceList">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 空状态 -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <span class="empty-icon">✅</span>
+        <span class="empty-text">本月暂无考勤记录</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="./attendance.js"></script>
+</body>
+</html>

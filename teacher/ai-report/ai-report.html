@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 教师报告</title>
+  <link rel="stylesheet" href="ai-report.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <div class="back-btn" onclick="goBack()">
+        <span>← 返回</span>
+      </div>
+      <span class="page-title">AI 教师分析报告</span>
+    </div>
+
+    <!-- 教师选择 -->
+    <div class="teacher-selector">
+      <span class="selector-label">选择教师</span>
+      <select class="picker-value" id="teacherSelect" onchange="onTeacherChange()">
+        <option value="">请选择教师</option>
+      </select>
+    </div>
+
+    <!-- 报告内容 -->
+    <div class="report-container" id="reportContainer">
+      <!-- 统计概览 -->
+      <div class="stats-section">
+        <div class="section-title">📊 教学数据概览</div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-number" id="courseCount">0</span>
+            <span class="stat-label">本周课时</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" id="attendanceRate">0%</span>
+            <span class="stat-label">出勤率</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" id="studentCount">0</span>
+            <span class="stat-label">授课学生</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" id="evaluationScore">0</span>
+            <span class="stat-label">评教分数</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI 分析 -->
+      <div class="analysis-section">
+        <div class="section-title">🤖 AI 智能分析</div>
+        <div class="analysis-content" id="analysisContent">
+          <div class="loading">正在生成分析报告...</div>
+        </div>
+      </div>
+
+      <!-- 改进建议 -->
+      <div class="suggestions-section">
+        <div class="section-title">💡 教学改进建议</div>
+        <div class="suggestions-list" id="suggestionsList">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 生成按钮 -->
+      <div class="action-section">
+        <button class="generate-btn" onclick="generateReport()">
+          <span>🔄 重新生成报告</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 空状态 -->
+    <div class="empty-state" id="emptyState">
+      <span class="empty-icon">📝</span>
+      <span class="empty-text">请选择教师查看AI分析报告</span>
+    </div>
+  </div>
+
+  <script src="ai-report.js"></script>
+</body>
+</html>

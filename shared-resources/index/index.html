@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资源共享</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="../../../css/tabbar.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="container page-container">
+    <!-- 头部搜索区 -->
+    <div class="header gradient-bg">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input 
+          class="search-input" 
+          placeholder="搜索资源标题、学校..." 
+          id="searchInput"
+        />
+        <span class="clear-icon" id="clearSearch" style="display: none;">✕</span>
+      </div>
+      
+      <!-- 分类筛选 -->
+      <div class="category-scroll" id="categoryScroll">
+        <!-- 分类项将通过JS动态生成 -->
+      </div>
+    </div>
+
+    <!-- 资源列表 -->
+    <div class="resource-list" id="resourceList">
+      <!-- 资源卡片将通过JS动态生成 -->
+    </div>
+
+    <!-- 空状态 -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <span class="empty-icon">📂</span>
+      <span class="empty-text">暂无相关资源</span>
+      <span class="empty-subtext">试试其他关键词或分类</span>
+    </div>
+
+    <!-- 加载状态 -->
+    <div class="loading" id="loading" style="display: none;">
+      <span>加载中...</span>
+    </div>
+
+    <!-- 加载更多 -->
+    <div class="load-more" id="loadMore" style="display: none;">
+      <span>上拉加载更多</span>
+    </div>
+    <div class="no-more" id="noMore" style="display: none;">
+      <span>没有更多了</span>
+    </div>
+
+    <!-- 底部操作栏 -->
+    <div class="bottom-bar safe-area-bottom">
+      <div class="bottom-btn primary full-width" id="goToUpload">
+        <span class="btn-icon">➕</span>
+        <span class="btn-text">上传资源</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/components/tabbar.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

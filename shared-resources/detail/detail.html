@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资源详情</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="detail.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 加载状态 -->
+    <div class="loading-state" id="loadingState">
+      <span>加载中...</span>
+    </div>
+
+    <!-- 资源详情内容 -->
+    <div id="resourceContent" style="display: none;">
+      <!-- 头部信息区 -->
+      <div class="header gradient-bg">
+        <div class="header-content">
+          <!-- 资源类型图标 -->
+          <div class="resource-type-icon" id="resourceTypeIcon">
+            <span id="typeIcon">📄</span>
+          </div>
+          
+          <!-- 标题和类型 -->
+          <div class="title-section">
+            <span class="resource-title" id="resourceTitle"></span>
+            <div class="type-tag" id="typeTag"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 上传者信息 -->
+      <div class="card uploader-info">
+        <div class="section-title">上传者信息</div>
+        <div class="info-row">
+          <span class="info-label">🏫 上传学校</span>
+          <span class="info-value" id="schoolName">未知学校</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">👤 上传者</span>
+          <span class="info-value" id="uploaderName">匿名用户</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">📅 上传时间</span>
+          <span class="info-value" id="createdAt"></span>
+        </div>
+      </div>
+
+      <!-- 资源描述 -->
+      <div class="card description-section" id="descriptionSection" style="display: none;">
+        <div class="section-title">资源描述</div>
+        <span class="description-text" id="descriptionText"></span>
+      </div>
+
+      <!-- 文件信息 -->
+      <div class="card file-info">
+        <div class="section-title">文件信息</div>
+        <div class="info-row">
+          <span class="info-label">📄 文件格式</span>
+          <span class="info-value" id="fileFormat">未知</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">📦 文件大小</span>
+          <span class="info-value" id="fileSize">未知</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">⬇️ 下载次数</span>
+          <span class="info-value highlight" id="downloadCount">0 次</span>
+        </div>
+      </div>
+
+      <!-- 下载按钮 -->
+      <div class="download-section">
+        <button class="download-btn" id="downloadBtn">
+          <span id="downloadBtnText">⬇️ 立即下载</span>
+        </button>
+      </div>
+
+      <!-- 相关资源推荐 -->
+      <div class="card related-resources" id="relatedResources" style="display: none;">
+        <div class="section-title">
+          <span>📚 相关资源推荐</span>
+          <span class="more-link" id="goToList">更多 ></span>
+        </div>
+        
+        <div id="relatedList">
+          <!-- 相关资源列表将通过JS动态生成 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 错误状态 -->
+    <div class="error-state" id="errorState" style="display: none;">
+      <span class="error-icon">⚠️</span>
+      <span class="error-text">资源加载失败</span>
+      <button class="retry-btn" id="retryBtn">重新加载</button>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="detail.js"></script>
+</body>
+</html>

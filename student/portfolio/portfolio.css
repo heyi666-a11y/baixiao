@@ -1,0 +1,264 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #e8f8f5 0%, #f5f7fa 100%);
+  padding-bottom: 20px;
+}
+
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px;
+}
+
+.loading-text {
+  font-size: 14px;
+  color: #95a5a6;
+}
+
+.student-header {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  padding: 15px;
+}
+
+.header-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  margin-right: 12px;
+  object-fit: cover;
+}
+
+.header-avatar-placeholder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.header-info {
+  flex: 1;
+}
+
+.header-name {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.header-class {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.type-filter {
+  background: #fff;
+  padding: 10px 15px;
+  border-bottom: 0.5px solid #f0f0f0;
+}
+
+.filter-scroll {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filter-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-item {
+  padding: 8px 16px;
+  margin-right: 8px;
+  background: #f5f7fa;
+  border-radius: 15px;
+  font-size: 13px;
+  color: #666;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filter-item.active {
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  color: #fff;
+}
+
+.portfolio-section {
+  padding: 15px;
+}
+
+.portfolio-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-item {
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.portfolio-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 0.5px solid #f0f0f0;
+}
+
+.type-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 16px;
+}
+
+.type-icon.activity {
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.type-icon.honor {
+  background: rgba(243, 156, 18, 0.1);
+}
+
+.type-icon.work {
+  background: rgba(155, 89, 182, 0.1);
+}
+
+.type-icon.evaluation {
+  background: rgba(26, 188, 156, 0.1);
+}
+
+.portfolio-title-info {
+  flex: 1;
+}
+
+.portfolio-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 2px;
+}
+
+.portfolio-date {
+  font-size: 12px;
+  color: #95a5a6;
+}
+
+.portfolio-type-tag {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.portfolio-type-tag.activity {
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+}
+
+.portfolio-type-tag.honor {
+  background: rgba(243, 156, 18, 0.1);
+  color: #f39c12;
+}
+
+.portfolio-type-tag.work {
+  background: rgba(155, 89, 182, 0.1);
+  color: #9b59b6;
+}
+
+.portfolio-type-tag.evaluation {
+  background: rgba(26, 188, 156, 0.1);
+  color: #1abc9c;
+}
+
+.portfolio-content {
+  padding: 15px;
+}
+
+.portfolio-description {
+  font-size: 14px;
+  color: #2c3e50;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.portfolio-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.portfolio-image {
+  width: calc(33.33% - 6px);
+  aspect-ratio: 1;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.portfolio-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: #f8fafc;
+  border-top: 0.5px solid #f0f0f0;
+}
+
+.portfolio-teacher {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+.portfolio-status {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.portfolio-status.approved {
+  background: rgba(39, 174, 96, 0.1);
+  color: #27ae60;
+}
+
+.portfolio-status.pending {
+  background: rgba(243, 156, 18, 0.1);
+  color: #f39c12;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+.empty-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.empty-text {
+  font-size: 14px;
+  color: #95a5a6;
+}

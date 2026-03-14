@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>请假审批</title>
+  <link rel="stylesheet" href="leave-approval.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <div class="back-btn" onclick="goBack()">
+        <span>← 返回</span>
+      </div>
+      <span class="page-title">请假审批管理</span>
+    </div>
+
+    <!-- Tab切换 -->
+    <div class="tab-section">
+      <div class="tab-bar">
+        <div class="tab-item active" onclick="onTabChange('pending')">待审批</div>
+        <div class="tab-item" onclick="onTabChange('approved')">已通过</div>
+        <div class="tab-item" onclick="onTabChange('rejected')">已拒绝</div>
+        <div class="tab-item" onclick="onTabChange('all')">全部</div>
+      </div>
+    </div>
+
+    <!-- 请假列表 -->
+    <div class="leave-list">
+      <div class="list-header">
+        <span class="header-title">请假申请</span>
+        <span class="header-count">共 <span id="leaveCount">0</span> 条</span>
+      </div>
+
+      <div id="leaveList">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 详情弹窗 -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeDetail()"></div>
+    <div class="modal-content" id="detailModal">
+      <div class="modal-header">
+        <span class="modal-title">请假详情</span>
+        <div class="close-btn" onclick="closeDetail()">×</div>
+      </div>
+      
+      <div class="modal-body" id="modalBody">
+        <!-- 动态生成 -->
+      </div>
+      
+      <div class="modal-footer" id="modalFooter">
+        <div class="btn btn-secondary" onclick="closeDetail()">取消</div>
+        <div class="btn btn-danger" onclick="rejectLeave()">拒绝</div>
+        <div class="btn btn-success" onclick="approveLeave()">通过</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="leave-approval.js"></script>
+</body>
+</html>

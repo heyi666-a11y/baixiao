@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教师课表</title>
+  <link rel="stylesheet" href="schedule.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <div class="back-btn" onclick="goBack()">
+        <span>← 返回</span>
+      </div>
+      <span class="page-title">教师课表管理</span>
+    </div>
+
+    <!-- 教师选择 -->
+    <div class="teacher-selector">
+      <span class="selector-label">选择教师</span>
+      <select class="picker-value" id="teacherSelect" onchange="onTeacherChange()">
+        <option value="">请选择教师</option>
+      </select>
+    </div>
+
+    <!-- 课表 -->
+    <div class="schedule-container" id="scheduleContainer">
+      <div class="schedule-header">
+        <div class="header-cell time-cell">时间</div>
+        <div class="header-cell">周一</div>
+        <div class="header-cell">周二</div>
+        <div class="header-cell">周三</div>
+        <div class="header-cell">周四</div>
+        <div class="header-cell">周五</div>
+      </div>
+      
+      <div class="schedule-body" id="scheduleBody">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+      <span class="empty-text">请先选择教师</span>
+    </div>
+
+    <!-- 编辑弹窗 -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+    <div class="modal-content" id="editModal">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">添加课程</span>
+        <div class="close-btn" onclick="closeModal()">×</div>
+      </div>
+      
+      <div class="modal-body">
+        <div class="form-item">
+          <span class="form-label">星期</span>
+          <span class="form-value" id="dayValue">周一</span>
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">节次</span>
+          <span class="form-value" id="periodValue">第1节</span>
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">课程名称</span>
+          <input class="form-input" placeholder="请输入课程名称" id="subjectInput" />
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">授课班级</span>
+          <input class="form-input" placeholder="请输入班级名称" id="classNameInput" />
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">教室</span>
+          <input class="form-input" placeholder="请输入教室" id="classroomInput" />
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="btn btn-secondary" onclick="closeModal()">取消</div>
+        <div class="btn btn-danger" id="deleteBtn" onclick="deleteSchedule()">删除</div>
+        <div class="btn btn-primary" onclick="saveSchedule()">保存</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="schedule.js"></script>
+</body>
+</html>

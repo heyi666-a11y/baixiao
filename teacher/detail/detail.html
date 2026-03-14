@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教师详情</title>
+  <link rel="stylesheet" href="detail.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 顶部标题栏 -->
+    <div class="header">
+      <div class="back-btn" onclick="goBack()">
+        <span>← 返回</span>
+      </div>
+      <span class="title">教师详情</span>
+      <div class="edit-btn" onclick="goToEdit()">
+        <span>编辑</span>
+      </div>
+    </div>
+
+    <!-- 教师信息卡片 -->
+    <div class="teacher-card" id="teacherCard">
+      <div class="card-header">
+        <div class="avatar">
+          <span id="avatarText">张</span>
+        </div>
+        <div class="basic-info">
+          <h2 class="name" id="teacherName">--</h2>
+          <span class="title-badge" id="teacherTitle">--</span>
+        </div>
+      </div>
+      
+      <div class="info-section">
+        <div class="section-title">基本信息</div>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">工号</span>
+            <span class="value" id="teacherId">--</span>
+          </div>
+          <div class="info-item">
+            <span class="label">性别</span>
+            <span class="value" id="teacherGender">--</span>
+          </div>
+          <div class="info-item">
+            <span class="label">科目</span>
+            <span class="value" id="teacherSubject">--</span>
+          </div>
+          <div class="info-item">
+            <span class="label">部门</span>
+            <span class="value" id="teacherDept">--</span>
+          </div>
+          <div class="info-item">
+            <span class="label">电话</span>
+            <span class="value" id="teacherPhone">--</span>
+          </div>
+          <div class="info-item">
+            <span class="label">邮箱</span>
+            <span class="value" id="teacherEmail">--</span>
+          </div>
+          <div class="info-item">
+            <span class="label">入职日期</span>
+            <span class="value" id="hireDate">--</span>
+          </div>
+          <div class="info-item">
+            <span class="label">状态</span>
+            <span class="value status-badge" id="teacherStatus">在职</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 快捷操作 -->
+      <div class="action-section">
+        <div class="section-title">快捷操作</div>
+        <div class="action-grid">
+          <div class="action-item" onclick="viewSchedule()">
+            <div class="action-icon">📅</div>
+            <span class="action-text">查看课表</span>
+          </div>
+          <div class="action-item" onclick="viewAttendance()">
+            <div class="action-icon">📊</div>
+            <span class="action-text">考勤记录</span>
+          </div>
+          <div class="action-item" onclick="makeCall()">
+            <div class="action-icon">📞</div>
+            <span class="action-text">拨打电话</span>
+          </div>
+          <div class="action-item" onclick="sendEmail()">
+            <div class="action-icon">✉️</div>
+            <span class="action-text">发送邮件</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 加载状态 -->
+    <div class="loading-state" id="loadingState">
+      <span>加载中...</span>
+    </div>
+
+    <!-- 错误状态 -->
+    <div class="error-state" id="errorState" style="display: none;">
+      <span>教师信息不存在</span>
+      <button onclick="goBack()">返回列表</button>
+    </div>
+  </div>
+
+  <script src="detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>奖惩记录</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="./rewards.css">
+</head>
+<body>
+  <div class="container">
+    <div class="loading-state" id="loadingState">
+      <span class="loading-text">加载中...</span>
+    </div>
+
+    <div id="content" style="display: none;">
+      <!-- 学生信息 -->
+      <div class="student-header" id="studentHeader">
+        <img class="header-avatar" id="headerAvatar" src="" alt="头像" style="display: none;"/>
+        <div class="header-avatar-placeholder" id="headerAvatarPlaceholder">
+          <span id="headerAvatarText">学</span>
+        </div>
+        <div class="header-info">
+          <span class="header-name" id="headerName">-</span>
+          <span class="header-class" id="headerClass">-</span>
+        </div>
+      </div>
+
+      <!-- 统计卡片 -->
+      <div class="stats-section">
+        <div class="stats-card">
+          <div class="stats-item reward">
+            <span class="stats-value" id="rewardCount">0</span>
+            <span class="stats-label">奖励</span>
+          </div>
+          <div class="stats-divider"></div>
+          <div class="stats-item punishment">
+            <span class="stats-value" id="punishmentCount">0</span>
+            <span class="stats-label">惩罚</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 类型筛选 -->
+      <div class="type-filter">
+        <div class="filter-tabs" id="typeFilter">
+          <div class="filter-tab active" data-type="all">全部</div>
+          <div class="filter-tab" data-type="reward">奖励</div>
+          <div class="filter-tab" data-type="punishment">惩罚</div>
+        </div>
+      </div>
+
+      <!-- 记录列表 -->
+      <div class="records-section">
+        <div class="records-list" id="recordsList">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 空状态 -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <span class="empty-icon">🏆</span>
+        <span class="empty-text">暂无奖惩记录</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="./rewards.js"></script>
+</body>
+</html>

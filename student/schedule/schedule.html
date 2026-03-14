@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>课程表</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="./schedule.css">
+</head>
+<body>
+  <div class="container">
+    <div class="loading-state" id="loadingState">
+      <span class="loading-text">加载中...</span>
+    </div>
+
+    <div id="content" style="display: none;">
+      <!-- 学生信息 -->
+      <div class="student-header" id="studentHeader">
+        <img class="header-avatar" id="headerAvatar" src="" alt="头像" style="display: none;"/>
+        <div class="header-avatar-placeholder" id="headerAvatarPlaceholder">
+          <span id="headerAvatarText">学</span>
+        </div>
+        <div class="header-info">
+          <span class="header-name" id="headerName">-</span>
+          <span class="header-class" id="headerClass">-</span>
+        </div>
+      </div>
+
+      <!-- 周视图导航 -->
+      <div class="week-nav">
+        <div class="nav-arrow" id="prevDay">‹</div>
+        <div class="week-tabs" id="weekTabs">
+          <!-- 动态生成 -->
+        </div>
+        <div class="nav-arrow" id="nextDay">›</div>
+      </div>
+
+      <!-- 当前日期显示 -->
+      <div class="current-day-info">
+        <span class="current-day-text" id="currentDayText">周一</span>
+        <span class="course-count" id="courseCount">0 节课</span>
+      </div>
+
+      <!-- 课程列表 -->
+      <div class="schedule-list" id="scheduleList">
+        <!-- 动态生成 -->
+      </div>
+
+      <!-- 空状态 -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <span class="empty-icon">📅</span>
+        <span class="empty-text">今天没有课程安排</span>
+        <span class="empty-subtext">好好休息一下！</span>
+      </div>
+
+      <!-- 周视图概览 -->
+      <div class="week-overview" id="weekOverview">
+        <div class="overview-title">本周概览</div>
+        <div class="overview-grid" id="overviewGrid">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="./schedule.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!-- 资源上传 -->
+<div class="shared-resources-upload-page">
+  <div class="page-header">
+    <a href="#/shared-resources" class="back-link" data-router>← 返回资源首页</a>
+    <h1>资源上传</h1>
+  </div>
+
+  <form class="upload-form" onsubmit="uploadResource(event)">
+    <div class="form-group"><label>资源名称</label><input type="text" class="form-input" placeholder="请输入资源名称" required></div>
+    <div class="form-group"><label>资源分类</label><select class="form-select"><option>教学课件</option><option>试题试卷</option><option>教案</option><option>其他</option></select></div>
+    <div class="form-group"><label>资源描述</label><textarea class="form-textarea" rows="4" placeholder="请输入资源描述..."></textarea></div>
+    <div class="form-group">
+      <label>上传文件</label>
+      <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+        <span class="upload-icon">📁</span>
+        <p>点击或拖拽文件到此处上传</p>
+        <input type="file" id="fileInput" hidden>
+      </div>
+    </div>
+    <div class="form-actions"><button type="button" class="btn btn-secondary" onclick="history.back()">取消</button><button type="submit" class="btn btn-primary">上传</button></div>
+  </form>
+</div>
+
+<style>
+.shared-resources-upload-page { max-width: 800px; margin: 0 auto; padding: 24px; }
+.page-header { margin-bottom: 24px; }
+.back-link { display: inline-block; color: var(--text-secondary); margin-bottom: 16px; }
+.upload-form { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+.form-textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; resize: vertical; }
+.upload-area { border: 2px dashed var(--border-color); border-radius: 12px; padding: 48px; text-align: center; cursor: pointer; transition: all 0.2s; }
+.upload-area:hover { border-color: var(--primary-color); background: rgba(102, 126, 234, 0.05); }
+.upload-icon { font-size: 48px; display: block; margin-bottom: 12px; }
+.form-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; }
+</style>
+
+<script>
+function uploadResource(e) { e.preventDefault(); utils.message.success('资源上传成功'); router.navigate('#/shared-resources'); }
+</script>

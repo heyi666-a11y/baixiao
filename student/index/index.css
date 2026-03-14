@@ -1,0 +1,236 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #e8f8f5 0%, #f5f7fa 100%);
+  padding-bottom: 20px;
+}
+
+/* 搜索栏 */
+.search-section {
+  padding: 10px 15px;
+  background: #fff;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f0f4f8;
+  border-radius: 20px;
+  padding: 8px 12px;
+}
+
+.search-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  opacity: 0.6;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.clear-btn {
+  width: 20px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.clear-icon {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* 班级筛选 */
+.filter-section {
+  background: #fff;
+  padding: 0 10px 10px;
+  border-bottom: 0.5px solid #f0f0f0;
+}
+
+.class-filter {
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.class-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.class-item {
+  display: inline-block;
+  padding: 6px 14px;
+  margin-right: 8px;
+  font-size: 13px;
+  color: #666;
+  background: #f5f7fa;
+  border-radius: 15px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.class-item.active {
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(26, 188, 156, 0.3);
+}
+
+/* 学生列表 */
+.student-list {
+  padding: 10px 15px;
+}
+
+.student-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.student-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.04);
+}
+
+.student-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  overflow: hidden;
+}
+
+.student-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-text {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.student-info {
+  flex: 1;
+}
+
+.student-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 6px;
+}
+
+.student-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.student-id {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+.student-class {
+  font-size: 12px;
+  color: #1abc9c;
+  background: rgba(26, 188, 156, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.arrow-icon {
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  font-size: 20px;
+  color: #bdc3c7;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 14px;
+  color: #95a5a6;
+}
+
+/* 加载更多 */
+.load-more {
+  text-align: center;
+  padding: 20px;
+}
+
+.loading-text, .no-more {
+  font-size: 13px;
+  color: #95a5a6;
+}
+
+/* 添加按钮 */
+.add-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(26, 188, 156, 0.4);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.add-btn:active {
+  transform: scale(0.95);
+}
+
+.add-icon {
+  font-size: 24px;
+  color: #fff;
+  font-weight: 300;
+}

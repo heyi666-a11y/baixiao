@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>学生列表</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 搜索栏 -->
+    <div class="search-section">
+      <div class="search-box">
+        <img class="search-icon" src="../../../images/search.png" alt="搜索"/>
+        <input 
+          class="search-input" 
+          type="text" 
+          placeholder="搜索姓名或学号"
+          id="searchInput"
+        />
+        <div class="clear-btn" id="clearBtn" style="display: none;">
+          <span class="clear-icon">×</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 班级筛选 -->
+    <div class="filter-section">
+      <div class="class-filter" id="classFilter">
+        <!-- 班级选项将通过JS动态生成 -->
+      </div>
+    </div>
+
+    <!-- 学生列表 -->
+    <div class="student-list" id="studentList">
+      <!-- 学生列表将通过JS动态生成 -->
+    </div>
+
+    <!-- 空状态 -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <img class="empty-icon" src="../../../images/empty.png" alt="空"/>
+      <span class="empty-text">暂无学生数据</span>
+    </div>
+
+    <!-- 加载更多 -->
+    <div class="load-more" id="loadingMore" style="display: none;">
+      <span class="loading-text">加载中...</span>
+    </div>
+    <div class="load-more" id="noMore" style="display: none;">
+      <span class="no-more">没有更多数据了</span>
+    </div>
+
+    <!-- 添加按钮 -->
+    <div class="add-btn" id="addBtn" style="display: none;">
+      <span class="add-icon">+</span>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联盟学校</title>
+  <link rel="stylesheet" href="../../css/common.css">
+  <link rel="stylesheet" href="list.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 头部标题区 -->
+    <div class="header gradient-bg">
+      <span class="header-title">🏫 联盟学校</span>
+      <span class="header-subtitle">共 <span id="schoolCount">0</span> 所学校</span>
+    </div>
+
+    <!-- 学校列表 -->
+    <div class="schools-list" id="schoolsList">
+      <!-- 学校卡片将通过JS动态生成 -->
+    </div>
+
+    <!-- 底部提示 -->
+    <div class="footer-tips">
+      <span class="tips-text">更多学校正在接入中...</span>
+    </div>
+  </div>
+
+  <script src="../../js/supabase.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="list.js"></script>
+</body>
+</html>

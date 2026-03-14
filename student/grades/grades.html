@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>成绩查询</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="./grades.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 加载中 -->
+    <div class="loading-state" id="loadingState">
+      <span class="loading-text">加载中...</span>
+    </div>
+
+    <div id="content" style="display: none;">
+      <!-- 学生信息 -->
+      <div class="student-header" id="studentHeader">
+        <img class="header-avatar" id="headerAvatar" src="" alt="头像" style="display: none;"/>
+        <div class="header-avatar-placeholder" id="headerAvatarPlaceholder">
+          <span id="headerAvatarText">学</span>
+        </div>
+        <div class="header-info">
+          <span class="header-name" id="headerName">-</span>
+          <span class="header-class" id="headerClass">-</span>
+        </div>
+      </div>
+
+      <!-- 考试选择 -->
+      <div class="exam-selector">
+        <select class="selector-content" id="examSelect">
+          <option value="">全部</option>
+          <option value="期中考试">期中考试</option>
+          <option value="期末考试">期末考试</option>
+          <option value="月考">月考</option>
+          <option value="周测">周测</option>
+          <option value="模拟考试">模拟考试</option>
+        </select>
+      </div>
+
+      <!-- 成绩总览 -->
+      <div class="overview-card" id="overviewCard" style="display: none;">
+        <div class="overview-header">
+          <span class="exam-name" id="examName">最新考试</span>
+          <span class="exam-date" id="examDate">-</span>
+        </div>
+        <div class="overview-stats">
+          <div class="stat-item">
+            <span class="stat-value" id="totalScore">0</span>
+            <span class="stat-label">总分</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value" id="classRank">-</span>
+            <span class="stat-label">班级排名</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value" id="gradeRank">-</span>
+            <span class="stat-label">年级排名</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 各科成绩 -->
+      <div class="subjects-section" id="subjectsSection" style="display: none;">
+        <div class="section-title">各科成绩</div>
+        <div class="subjects-list" id="subjectsList">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 成绩趋势 -->
+      <div class="trend-section" id="trendSection" style="display: none;">
+        <div class="section-title">成绩趋势（近5次考试）</div>
+        <div class="trend-chart">
+          <div class="chart-container">
+            <div class="trend-bars" id="trendBars">
+              <!-- 动态生成 -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 历史考试列表 -->
+      <div class="history-section" id="historySection" style="display: none;">
+        <div class="section-title">历史考试</div>
+        <div class="history-list" id="historyList">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 空状态 -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <span class="empty-icon">📊</span>
+        <span class="empty-text">暂无成绩数据</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="./grades.js"></script>
+</body>
+</html>

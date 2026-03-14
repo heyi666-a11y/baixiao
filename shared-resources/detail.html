@@ -1,0 +1,76 @@
+<!-- 资源详情 -->
+<div class="shared-resources-detail-page">
+  <div class="page-header">
+    <a href="javascript:history.back()" class="back-link">← 返回</a>
+    <h1>资源详情</h1>
+  </div>
+
+  <div class="resource-detail">
+    <div class="resource-icon">📄</div>
+    <h2>高中数学必修一课件</h2>
+    <div class="resource-meta">
+      <span>上传者: 张老师</span>
+      <span>上传时间: 2024-03-10</span>
+      <span>下载次数: 256</span>
+    </div>
+    <p class="resource-desc">高中数学必修一完整课件，包含所有章节PPT和练习题。</p>
+    <div class="resource-actions">
+      <button class="btn btn-primary btn-lg" onclick="downloadResource()">⬇️ 下载资源</button>
+      <button class="btn btn-secondary" onclick="shareResource()">分享</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.shared-resources-detail-page { max-width: 800px; margin: 0 auto; padding: 24px; }
+.page-header { margin-bottom: 24px; }
+.back-link { display: inline-block; color: var(--text-secondary); margin-bottom: 16px; }
+.resource-detail { background: white; border-radius: 16px; padding: 48px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.resource-icon { font-size: 80px; margin-bottom: 24px; }
+.resource-detail h2 { margin-bottom: 16px; }
+.resource-meta { display: flex; justify-content: center; gap: 24px; margin-bottom: 24px; color: var(--text-secondary); font-size: 14px; }
+.resource-desc { color: var(--text-secondary); margin-bottom: 32px; line-height: 1.6; }
+.resource-actions { display: flex; gap: 16px; justify-content: center; }
+</style>
+
+<script>
+async function loadResourceDetail() {
+  try {
+    // 获取URL参数中的资源ID
+    const urlParams = new URLSearchParams(window.location.search)
+    const resourceId = urlParams.get('id') || 1
+    
+    const result = await sharedResourcesAPI.getResource(resourceId)
+    
+    if (result.data && result.data.length > 0) {
+      const resource = result.data[0]
+      document.querySelector('.resource-detail h2').textContent = resource.title
+      document.querySelector('.resource-desc').textContent = resource.description || '暂无描述'
+      document.querySelector('.resource-meta').innerHTML = `
+        <span>上传者: ${resource.uploader || '未知'}</span>
+        <span>上传时间: ${utils.formatDate(resource.created_at)}</span>
+        <span>下载次数: ${resource.download_count || 0}</span>
+      `
+    }
+  } catch (error) {
+    console.error('加载资源详情失败:', error)
+  }
+}
+
+function downloadResource() {
+  // 获取URL参数中的资源ID
+  const urlParams = new URLSearchParams(window.location.search)
+  const resourceId = urlParams.get('id') || 1
+  
+  // 增加下载次数
+  sharedResourcesAPI.incrementDownload(resourceId)
+  utils.message.success('开始下载...')
+}
+
+function shareResource() {
+  utils.message.info('分享功能开发中...')
+}
+
+// 页面加载时获取资源详情
+loadResourceDetail()
+</script>

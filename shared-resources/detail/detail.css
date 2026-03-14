@@ -1,0 +1,341 @@
+/* 资源共享 - 详情页样式 */
+
+.container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding-bottom: 20px;
+}
+
+/* 加载状态 */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px;
+  font-size: 14px;
+  color: #999;
+}
+
+/* 头部信息区 */
+.header {
+  padding: 20px 15px 30px;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: -15px;
+}
+
+.header-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.resource-type-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-right: 15px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.resource-type-icon.shijuan {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+}
+
+.resource-type-icon.jiaoan {
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+}
+
+.resource-type-icon.kejian {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.resource-type-icon.shiti {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.resource-type-icon.qita {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.title-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.resource-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.type-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.type-tag.shijuan {
+  background: #fff1f0;
+  color: #cf1322;
+}
+
+.type-tag.jiaoan {
+  background: #e6fffb;
+  color: #006d75;
+}
+
+.type-tag.kejian {
+  background: #e6f7ff;
+  color: #096dd9;
+}
+
+.type-tag.shiti {
+  background: #f9f0ff;
+  color: #531dab;
+}
+
+.type-tag.qita {
+  background: #fff7e6;
+  color: #ad6800;
+}
+
+/* 卡片样式 */
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 15px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.more-link {
+  font-size: 13px;
+  color: #667eea;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* 信息行 */
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.info-value {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.info-value.highlight {
+  color: #667eea;
+}
+
+/* 资源描述 */
+.description-text {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+  display: block;
+}
+
+/* 下载区域 */
+.download-section {
+  padding: 15px;
+}
+
+.download-btn {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 24px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.download-btn:hover {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.download-btn:disabled {
+  background: linear-gradient(135deg, #999 0%, #666 100%);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* 相关资源 */
+.related-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f5f5f5;
+  cursor: pointer;
+}
+
+.related-item:last-child {
+  border-bottom: none;
+}
+
+.related-item:hover {
+  background: #fafafa;
+}
+
+.related-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.related-icon.shijuan {
+  background: #fff1f0;
+}
+
+.related-icon.jiaoan {
+  background: #e6fffb;
+}
+
+.related-icon.kejian {
+  background: #e6f7ff;
+}
+
+.related-icon.shiti {
+  background: #f9f0ff;
+}
+
+.related-icon.qita {
+  background: #fff7e6;
+}
+
+.related-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.related-title {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.related-meta {
+  display: flex;
+  align-items: center;
+}
+
+.related-type {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-right: 8px;
+}
+
+.related-type.shijuan {
+  background: #fff1f0;
+  color: #cf1322;
+}
+
+.related-type.jiaoan {
+  background: #e6fffb;
+  color: #006d75;
+}
+
+.related-type.kejian {
+  background: #e6f7ff;
+  color: #096dd9;
+}
+
+.related-type.shiti {
+  background: #f9f0ff;
+  color: #531dab;
+}
+
+.related-type.qita {
+  background: #fff7e6;
+  color: #ad6800;
+}
+
+.related-downloads {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 错误状态 */
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px;
+}
+
+.error-icon {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.error-text {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.retry-btn {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-size: 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}

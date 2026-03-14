@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>编辑教师</title>
+  <link rel="stylesheet" href="edit.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 顶部标题栏 -->
+    <div class="header">
+      <div class="back-btn" onclick="goBack()">
+        <span>← 返回</span>
+      </div>
+      <span class="title" id="pageTitle">编辑教师</span>
+      <div class="save-btn" onclick="saveTeacher()">
+        <span>保存</span>
+      </div>
+    </div>
+
+    <!-- 编辑表单 -->
+    <div class="form-container">
+      <div class="form-section">
+        <div class="section-title">基本信息</div>
+        
+        <div class="form-item">
+          <span class="form-label">姓名 <span class="required">*</span></span>
+          <input class="form-input" type="text" placeholder="请输入教师姓名" id="nameInput" />
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">性别</span>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="gender" value="男" checked id="genderMale" />
+              <span>男</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="gender" value="女" id="genderFemale" />
+              <span>女</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">工号</span>
+          <input class="form-input" type="text" placeholder="请输入工号" id="teacherIdInput" readonly />
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="section-title">工作信息</div>
+        
+        <div class="form-item">
+          <span class="form-label">科目 <span class="required">*</span></span>
+          <input class="form-input" type="text" placeholder="请输入教学科目" id="subjectInput" />
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">职称 <span class="required">*</span></span>
+          <select class="form-picker" id="titleSelect">
+            <option value="">请选择职称</option>
+            <option value="高级教师">高级教师</option>
+            <option value="一级教师">一级教师</option>
+            <option value="二级教师">二级教师</option>
+            <option value="三级教师">三级教师</option>
+            <option value="特级教师">特级教师</option>
+          </select>
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">部门 <span class="required">*</span></span>
+          <input class="form-input" type="text" placeholder="请输入所属部门" id="departmentInput" />
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">入职日期</span>
+          <input class="form-input" type="date" id="hireDateInput" />
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">状态</span>
+          <select class="form-picker" id="statusSelect">
+            <option value="在职">在职</option>
+            <option value="离职">离职</option>
+            <option value="休假">休假</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="section-title">联系方式</div>
+        
+        <div class="form-item">
+          <span class="form-label">电话 <span class="required">*</span></span>
+          <input class="form-input" type="tel" placeholder="请输入联系电话" id="phoneInput" />
+        </div>
+        
+        <div class="form-item">
+          <span class="form-label">邮箱</span>
+          <input class="form-input" type="email" placeholder="请输入邮箱地址" id="emailInput" />
+        </div>
+      </div>
+
+      <div class="form-section" id="createSection" style="display: none;">
+        <div class="section-title">账号信息</div>
+        <div class="form-item">
+          <span class="form-label">登录密码</span>
+          <input class="form-input" type="password" placeholder="设置登录密码（选填）" id="passwordInput" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部按钮 -->
+    <div class="footer-actions">
+      <button class="btn-cancel" onclick="goBack()">取消</button>
+      <button class="btn-save" onclick="saveTeacher()">保存</button>
+    </div>
+  </div>
+
+  <script src="edit.js"></script>
+</body>
+</html>

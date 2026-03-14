@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>编辑学生</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="./edit.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 头像上传 -->
+    <div class="avatar-section">
+      <div class="avatar-upload" id="avatarUpload">
+        <img class="avatar-image" id="avatarImage" src="" alt="头像" style="display: none;"/>
+        <div class="avatar-placeholder" id="avatarPlaceholder">
+          <span class="upload-icon">📷</span>
+          <span class="upload-text">点击上传头像</span>
+        </div>
+        <div class="avatar-edit" id="avatarEdit" style="display: none;">
+          <span class="edit-icon">✎</span>
+        </div>
+      </div>
+      <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+    </div>
+
+    <!-- 表单区域 -->
+    <div class="form-section">
+      <div class="section-title">基本信息</div>
+      
+      <!-- 姓名 -->
+      <div class="form-item">
+        <span class="form-label required">姓名</span>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入学生姓名"
+          id="nameInput"
+        />
+      </div>
+
+      <!-- 学号 -->
+      <div class="form-item">
+        <span class="form-label required">学号</span>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入学号"
+          id="studentIdInput"
+        />
+      </div>
+
+      <!-- 班级 -->
+      <div class="form-item">
+        <span class="form-label required">班级</span>
+        <select class="form-select" id="classSelect">
+          <option value="">请选择班级</option>
+        </select>
+      </div>
+
+      <!-- 性别 -->
+      <div class="form-item">
+        <span class="form-label">性别</span>
+        <select class="form-select" id="genderSelect">
+          <option value="男">男</option>
+          <option value="女">女</option>
+        </select>
+      </div>
+
+      <!-- 出生日期 -->
+      <div class="form-item">
+        <span class="form-label">出生日期</span>
+        <input class="form-input" type="date" id="birthDateInput"/>
+      </div>
+    </div>
+
+    <!-- 联系方式 -->
+    <div class="form-section">
+      <div class="section-title">联系方式</div>
+      
+      <!-- 家长电话 -->
+      <div class="form-item">
+        <span class="form-label">家长电话</span>
+        <input 
+          class="form-input" 
+          type="tel" 
+          placeholder="请输入家长联系电话"
+          id="parentPhoneInput"
+        />
+      </div>
+
+      <!-- 家庭住址 -->
+      <div class="form-item">
+        <span class="form-label">家庭住址</span>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入家庭住址"
+          id="addressInput"
+        />
+      </div>
+    </div>
+
+    <!-- 其他信息 -->
+    <div class="form-section">
+      <div class="section-title">其他信息</div>
+      
+      <!-- 备注 -->
+      <div class="form-item textarea-item">
+        <span class="form-label">备注</span>
+        <textarea 
+          class="form-textarea" 
+          placeholder="请输入备注信息"
+          id="remarkInput"
+          maxlength="200"
+        ></textarea>
+        <span class="textarea-count" id="textareaCount">0/200</span>
+      </div>
+    </div>
+
+    <!-- 操作按钮 -->
+    <div class="action-section">
+      <button class="save-btn" id="saveBtn">保存</button>
+      <button class="delete-btn" id="deleteBtn" style="display: none;">删除学生</button>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="./edit.js"></script>
+</body>
+</html>

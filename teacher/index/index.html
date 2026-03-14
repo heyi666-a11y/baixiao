@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教师管理</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 顶部标题栏 -->
+    <div class="header">
+      <div class="back-btn" onclick="goBack()">
+        <span class="back-icon">←</span>
+        <span class="back-text">返回</span>
+      </div>
+      <span class="title">教师管理</span>
+      <div class="add-btn" onclick="onAddTeacher()" id="addBtn">
+        <span class="add-icon">+</span>
+        <span>添加教师</span>
+      </div>
+    </div>
+
+    <!-- 搜索栏 -->
+    <div class="search-section">
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="搜索教师姓名或科目" id="searchInput" oninput="onSearchInput(event)">
+        <div class="search-clear" onclick="clearSearch()" id="searchClear">
+          <span>×</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 科目筛选 -->
+    <div class="subject-filter">
+      <div class="filter-scroll">
+        <div class="filter-item" data-subject="全部" onclick="onSubjectChange(event)" class="active">全部</div>
+        <div class="filter-item" data-subject="语文" onclick="onSubjectChange(event)">语文</div>
+        <div class="filter-item" data-subject="数学" onclick="onSubjectChange(event)">数学</div>
+        <div class="filter-item" data-subject="英语" onclick="onSubjectChange(event)">英语</div>
+        <div class="filter-item" data-subject="物理" onclick="onSubjectChange(event)">物理</div>
+        <div class="filter-item" data-subject="化学" onclick="onSubjectChange(event)">化学</div>
+        <div class="filter-item" data-subject="生物" onclick="onSubjectChange(event)">生物</div>
+        <div class="filter-item" data-subject="历史" onclick="onSubjectChange(event)">历史</div>
+        <div class="filter-item" data-subject="地理" onclick="onSubjectChange(event)">地理</div>
+        <div class="filter-item" data-subject="政治" onclick="onSubjectChange(event)">政治</div>
+        <div class="filter-item" data-subject="其他" onclick="onSubjectChange(event)">其他</div>
+      </div>
+    </div>
+
+    <!-- 教师列表 -->
+    <div class="teacher-list" id="teacherList">
+      <!-- 动态生成 -->
+    </div>
+
+    <!-- 加载更多 -->
+    <div class="load-more" id="loadMore">
+      <span class="load-text">上拉加载更多</span>
+    </div>
+
+    <!-- 加载中 -->
+    <div class="loading" id="loading">
+      <span class="loading-text">加载中...</span>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

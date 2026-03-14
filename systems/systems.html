@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>各项系统</title>
+  <link rel="stylesheet" href="systems.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 页面头部 -->
+    <div class="page-header">
+      <div class="page-title">各项系统</div>
+      <div class="page-subtitle">校园服务一站式入口</div>
+    </div>
+
+    <!-- 系统卡片列表 -->
+    <div class="systems-list">
+      <!-- 饭堂预点餐系统 -->
+      <div class="system-card" onclick="onSystemTap('canteen')">
+        <div class="system-icon-wrapper" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);">
+          <span class="system-icon">🍽️</span>
+        </div>
+        <div class="system-info">
+          <div class="system-name">饭堂预点餐系统</div>
+          <div class="system-desc">在线预订食堂餐食，方便快捷</div>
+        </div>
+        <div class="system-arrow">&gt;</div>
+      </div>
+
+      <!-- 财务系统 -->
+      <div class="system-card" onclick="onSystemTap('finance')">
+        <div class="system-icon-wrapper" style="background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);">
+          <span class="system-icon">💰</span>
+        </div>
+        <div class="system-info">
+          <div class="system-name">财务系统</div>
+          <div class="system-desc">学校财务信息管理系统</div>
+        </div>
+        <div class="system-arrow">&gt;</div>
+      </div>
+
+      <!-- 教师系统 -->
+      <div class="system-card" onclick="onSystemTap('teacher')">
+        <div class="system-icon-wrapper" style="background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%);">
+          <span class="system-icon">👨‍🏫</span>
+        </div>
+        <div class="system-info">
+          <div class="system-name">教师系统</div>
+          <div class="system-desc">教师工作管理平台</div>
+        </div>
+        <div class="system-arrow">&gt;</div>
+      </div>
+
+      <!-- 学生系统 -->
+      <div class="system-card" onclick="onSystemTap('student')">
+        <div class="system-icon-wrapper" style="background: linear-gradient(135deg, #722ed1 0%, #9254de 100%);">
+          <span class="system-icon">👨‍🎓</span>
+        </div>
+        <div class="system-info">
+          <div class="system-name">学生系统</div>
+          <div class="system-desc">学生信息与学习管理系统</div>
+        </div>
+        <div class="system-arrow">&gt;</div>
+      </div>
+
+      <!-- 图书馆系统 -->
+      <div class="system-card library-card" onclick="onSystemTap('library')">
+        <div class="system-icon-wrapper" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <span class="system-icon">📚</span>
+        </div>
+        <div class="system-info">
+          <div class="system-name">图书馆系统</div>
+          <div class="system-desc">图书借阅与管理系统（点击进入图书馆入口）</div>
+        </div>
+        <div class="system-badge">可用</div>
+        <div class="system-arrow">&gt;</div>
+      </div>
+    </div>
+
+    <!-- 提示信息 -->
+    <div class="tips-section">
+      <div class="tips-title">💡 温馨提示</div>
+      <div class="tips-list">
+        <div class="tips-item">• 部分系统需要登录后才能使用</div>
+        <div class="tips-item">• 如遇系统问题请联系信息技术中心</div>
+        <div class="tips-item">• 建议使用校园网访问各系统</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="systems.js"></script>
+</body>
+</html>

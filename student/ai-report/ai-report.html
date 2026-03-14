@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AI分析报告</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="./ai-report.css">
+</head>
+<body>
+  <div class="container">
+    <div class="loading-state" id="loadingState">
+      <span class="loading-text">加载中...</span>
+    </div>
+
+    <div id="content" style="display: none;">
+      <!-- 学生信息 -->
+      <div class="student-header" id="studentHeader">
+        <img class="header-avatar" id="headerAvatar" src="" alt="头像" style="display: none;"/>
+        <div class="header-avatar-placeholder" id="headerAvatarPlaceholder">
+          <span id="headerAvatarText">学</span>
+        </div>
+        <div class="header-info">
+          <span class="header-name" id="headerName">-</span>
+          <span class="header-class" id="headerClass">-</span>
+        </div>
+      </div>
+
+      <!-- AI 报告头部 -->
+      <div class="ai-header">
+        <div class="ai-icon">🤖</div>
+        <div class="ai-title">AI 智能分析报告</div>
+        <div class="ai-subtitle">基于学习数据的深度分析</div>
+        <div class="ai-date" id="reportDate">生成时间: 2024-11-15</div>
+      </div>
+
+      <!-- 综合评分 -->
+      <div class="score-section">
+        <div class="score-card">
+          <div class="score-circle">
+            <span class="score-value" id="overallScore">85</span>
+            <span class="score-label">综合评分</span>
+          </div>
+          <div class="score-rank">
+            <span class="rank-text">班级排名</span>
+            <span class="rank-value" id="classRank">第5名</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 能力雷达图 -->
+      <div class="radar-section">
+        <div class="section-title">能力分析</div>
+        <div class="radar-chart" id="radarChart">
+          <!-- 简化的雷达图展示 -->
+          <div class="radar-simplified">
+            <div class="ability-item">
+              <span class="ability-name">学习能力</span>
+              <div class="ability-bar">
+                <div class="ability-progress" style="width: 85%;"></div>
+              </div>
+              <span class="ability-score">85</span>
+            </div>
+            <div class="ability-item">
+              <span class="ability-name">课堂表现</span>
+              <div class="ability-bar">
+                <div class="ability-progress" style="width: 78%;"></div>
+              </div>
+              <span class="ability-score">78</span>
+            </div>
+            <div class="ability-item">
+              <span class="ability-name">作业完成</span>
+              <div class="ability-bar">
+                <div class="ability-progress" style="width: 92%;"></div>
+              </div>
+              <span class="ability-score">92</span>
+            </div>
+            <div class="ability-item">
+              <span class="ability-name">考试成绩</span>
+              <div class="ability-bar">
+                <div class="ability-progress" style="width: 80%;"></div>
+              </div>
+              <span class="ability-score">80</span>
+            </div>
+            <div class="ability-item">
+              <span class="ability-name">综合素质</span>
+              <div class="ability-bar">
+                <div class="ability-progress" style="width: 88%;"></div>
+              </div>
+              <span class="ability-score">88</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 学科分析 -->
+      <div class="subject-section">
+        <div class="section-title">学科分析</div>
+        <div class="subject-list" id="subjectList">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- AI 建议 -->
+      <div class="suggestion-section">
+        <div class="section-title">AI 学习建议</div>
+        <div class="suggestion-list" id="suggestionList">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 学习趋势 -->
+      <div class="trend-section">
+        <div class="section-title">学习趋势</div>
+        <div class="trend-chart">
+          <div class="trend-bars" id="trendBars">
+            <!-- 动态生成 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 生成报告按钮 -->
+      <div class="action-section">
+        <button class="generate-btn" id="generateBtn">重新生成报告</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="./ai-report.js"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #e8f8f5 0%, #f5f7fa 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.login-header {
+  position: relative;
+}
+
+.header-bg {
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  padding: 60px 30px 80px;
+  border-radius: 0 0 30px 30px;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.app-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.app-slogan {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.login-form {
+  flex: 1;
+  background: #fff;
+  margin: -40px 20px 20px;
+  border-radius: 20px;
+  padding: 30px 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+.input-group:focus-within {
+  border-color: #1abc9c;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1);
+}
+
+.input-icon {
+  font-size: 18px;
+  margin-right: 12px;
+  color: #95a5a6;
+}
+
+.form-input {
+  flex: 1;
+  font-size: 15px;
+  color: #2c3e50;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.eye-icon {
+  font-size: 16px;
+  color: #95a5a6;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.remember-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  accent-color: #1abc9c;
+}
+
+.checkbox-text {
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+.forgot-link {
+  font-size: 13px;
+  color: #1abc9c;
+  text-decoration: none;
+}
+
+.login-btn {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  border: none;
+  border-radius: 25px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(26, 188, 156, 0.4);
+}
+
+.login-btn:active {
+  transform: scale(0.98);
+}
+
+.login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.other-login {
+  margin-top: 30px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #f0f0f0;
+}
+
+.divider-text {
+  padding: 0 15px;
+  font-size: 12px;
+  color: #95a5a6;
+}
+
+.login-methods {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.method-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.method-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 8px;
+  transition: all 0.3s;
+}
+
+.method-icon.wechat {
+  background: rgba(7, 193, 96, 0.1);
+}
+
+.method-icon.phone {
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.method-name {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+.footer-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.copyright {
+  font-size: 12px;
+  color: #95a5a6;
+}

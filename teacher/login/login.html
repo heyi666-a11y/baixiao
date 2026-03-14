@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教师登录</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="logo-section">
+        <img class="logo" src="../../../images/school-logo.jpg" alt="学校Logo" />
+        <h1 class="title">教师管理系统</h1>
+        <p class="subtitle">Teacher Management System</p>
+      </div>
+      
+      <div class="form-section">
+        <div class="input-group">
+          <div class="input-icon">
+            <span class="icon">👤</span>
+          </div>
+          <input 
+            class="input" 
+            type="text" 
+            placeholder="请输入教师工号" 
+            id="username"
+          />
+        </div>
+        
+        <div class="input-group">
+          <div class="input-icon">
+            <span class="icon">🔒</span>
+          </div>
+          <input 
+            class="input" 
+            type="password" 
+            placeholder="请输入密码" 
+            id="password"
+          />
+        </div>
+        
+        <button class="login-btn" id="loginBtn" onclick="onLogin()">
+          <span>登 录</span>
+        </button>
+        
+        <div class="tips">
+          <p class="tip-text">默认账号: T2024001</p>
+          <p class="tip-text">默认密码: 123456</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

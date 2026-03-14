@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 300px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 30px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: #999;
+}
+
+.form-section {
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+.input-group:focus-within {
+  border-color: #667eea;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+}
+
+.input-icon {
+  margin-right: 10px;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.input {
+  flex: 1;
+  font-size: 15px;
+  color: #333;
+  height: 30px;
+  border: none;
+  background: transparent;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: #aaa;
+}
+
+.login-btn {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 25px;
+  margin-top: 20px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+}
+
+.login-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+}
+
+.login-btn.loading {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.tips {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.tip-text {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 4px;
+}

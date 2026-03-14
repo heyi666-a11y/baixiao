@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>成长档案</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="./portfolio.css">
+</head>
+<body>
+  <div class="container">
+    <div class="loading-state" id="loadingState">
+      <span class="loading-text">加载中...</span>
+    </div>
+
+    <div id="content" style="display: none;">
+      <!-- 学生信息 -->
+      <div class="student-header" id="studentHeader">
+        <img class="header-avatar" id="headerAvatar" src="" alt="头像" style="display: none;"/>
+        <div class="header-avatar-placeholder" id="headerAvatarPlaceholder">
+          <span id="headerAvatarText">学</span>
+        </div>
+        <div class="header-info">
+          <span class="header-name" id="headerName">-</span>
+          <span class="header-class" id="headerClass">-</span>
+        </div>
+      </div>
+
+      <!-- 档案类型筛选 -->
+      <div class="type-filter">
+        <div class="filter-scroll" id="typeFilter">
+          <div class="filter-item active" data-type="all">全部</div>
+          <div class="filter-item" data-type="activity">活动参与</div>
+          <div class="filter-item" data-type="honor">荣誉奖项</div>
+          <div class="filter-item" data-type="work">作品展示</div>
+          <div class="filter-item" data-type="evaluation">综合评价</div>
+        </div>
+      </div>
+
+      <!-- 档案列表 -->
+      <div class="portfolio-section">
+        <div class="portfolio-list" id="portfolioList">
+          <!-- 动态生成 -->
+        </div>
+      </div>
+
+      <!-- 空状态 -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <span class="empty-icon">📁</span>
+        <span class="empty-text">暂无成长档案记录</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="./portfolio.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>学生登录</title>
+  <link rel="stylesheet" href="../../../css/common.css">
+  <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 登录页面头部 -->
+    <div class="login-header">
+      <div class="header-bg">
+        <div class="logo-section">
+          <div class="logo-icon">📚</div>
+          <h1 class="app-name">智慧校园</h1>
+          <p class="app-slogan">学生管理系统</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 登录表单 -->
+    <div class="login-form">
+      <div class="form-title">欢迎登录</div>
+      
+      <!-- 学号输入 -->
+      <div class="input-group">
+        <div class="input-icon">👤</div>
+        <input 
+          type="text" 
+          class="form-input" 
+          placeholder="请输入学号"
+          id="studentIdInput"
+        />
+      </div>
+
+      <!-- 密码输入 -->
+      <div class="input-group">
+        <div class="input-icon">🔒</div>
+        <input 
+          type="password" 
+          class="form-input" 
+          placeholder="请输入密码"
+          id="passwordInput"
+        />
+        <div class="eye-icon" id="togglePassword">👁️</div>
+      </div>
+
+      <!-- 记住密码 -->
+      <div class="remember-section">
+        <label class="checkbox-label">
+          <input type="checkbox" id="rememberMe"/>
+          <span class="checkbox-text">记住密码</span>
+        </label>
+        <a href="#" class="forgot-link" id="forgotPassword">忘记密码?</a>
+      </div>
+
+      <!-- 登录按钮 -->
+      <button class="login-btn" id="loginBtn">登 录</button>
+
+      <!-- 其他登录方式 -->
+      <div class="other-login">
+        <div class="divider">
+          <span class="divider-text">其他登录方式</span>
+        </div>
+        <div class="login-methods">
+          <div class="method-item" id="wechatLogin">
+            <div class="method-icon wechat">💬</div>
+            <span class="method-name">微信</span>
+          </div>
+          <div class="method-item" id="phoneLogin">
+            <div class="method-icon phone">📱</div>
+            <span class="method-name">手机</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="footer-info">
+      <p class="copyright">© 2024 智慧校园 版权所有</p>
+    </div>
+  </div>
+
+  <script src="../../../js/supabase.js"></script>
+  <script src="../../../js/utils.js"></script>
+  <script src="./login.js"></script>
+</body>
+</html>

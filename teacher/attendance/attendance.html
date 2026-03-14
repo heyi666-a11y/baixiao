@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教师考勤</title>
+  <link rel="stylesheet" href="attendance.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 页面标题 -->
+    <div class="page-header">
+      <div class="back-btn" onclick="goBack()">
+        <span>← 返回</span>
+      </div>
+      <span class="page-title">教师考勤管理</span>
+    </div>
+
+    <!-- 统计卡片 -->
+    <div class="stats-section">
+      <div class="stats-card">
+        <div class="stat-item">
+          <span class="stat-value" id="statTotal">0</span>
+          <span class="stat-label">总人数</span>
+        </div>
+        <div class="stat-item present">
+          <span class="stat-value" id="statPresent">0</span>
+          <span class="stat-label">正常</span>
+        </div>
+        <div class="stat-item absent">
+          <span class="stat-value" id="statAbsent">0</span>
+          <span class="stat-label">缺勤</span>
+        </div>
+        <div class="stat-item late">
+          <span class="stat-value" id="statLate">0</span>
+          <span class="stat-label">迟到</span>
+        </div>
+        <div class="stat-item leave">
+          <span class="stat-value" id="statLeave">0</span>
+          <span class="stat-label">请假</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 筛选区域 -->
+    <div class="filter-section">
+      <div class="filter-row">
+        <div class="filter-item">
+          <span class="filter-label">日期</span>
+          <input type="date" class="picker-value" id="datePicker" onchange="onDateChange()" />
+        </div>
+        <div class="filter-item">
+          <span class="filter-label">状态</span>
+          <div class="filter-options">
+            <div class="filter-option active" onclick="onStatusFilter('')">全部</div>
+            <div class="filter-option" onclick="onStatusFilter('present')">正常</div>
+            <div class="filter-option" onclick="onStatusFilter('absent')">缺勤</div>
+            <div class="filter-option" onclick="onStatusFilter('late')">迟到</div>
+            <div class="filter-option" onclick="onStatusFilter('leave')">请假</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 考勤列表 -->
+    <div class="attendance-list">
+      <div class="list-header">
+        <span class="header-title">考勤记录</span>
+        <span class="header-count">共 <span id="recordCount">0</span> 条</span>
+      </div>
+
+      <div id="attendanceList">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 详情弹窗 -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeDetail()"></div>
+    <div class="modal-content" id="detailModal">
+      <div class="modal-header">
+        <span class="modal-title">考勤详情</span>
+        <div class="close-btn" onclick="closeDetail()">×</div>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+  </div>
+
+  <script src="attendance.js"></script>
+</body>
+</html>
