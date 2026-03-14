@@ -1,0 +1,132 @@
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">学生成绩管理</text>
+    <view class="add-btn" bindtap="showAddModal">+ 添加成绩</view>
+  </view>
+
+  <!-- 学生选择 -->
+  <view class="student-selector">
+    <text class="selector-label">选择学生</text>
+    <picker bindchange="onStudentChange" value="{{0}}" range="{{students}}" range-key="name">
+      <view class="picker-value">
+        <text>{{selectedStudent ? selectedStudent.name : '请选择学生'}}</text>
+        <text class="picker-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 考试类型选择 -->
+  <view class="exam-selector">
+    <text class="selector-label">考试类型</text>
+    <picker bindchange="onExamChange" value="{{0}}" range="{{examTypes}}">
+      <view class="picker-value">
+        <text>{{currentExam}}</text>
+        <text class="picker-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 统计卡片 -->
+  <view class="stats-section" wx:if="{{getFilteredGrades().length > 0}}">
+    <view class="stats-card">
+      <view class="stat-item">
+        <text class="stat-value">{{calculateStats().total}}</text>
+        <text class="stat-label">科目数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{calculateStats().average}}</text>
+        <text class="stat-label">平均分</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{calculateStats().highest}}</text>
+        <text class="stat-label">最高分</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{calculateStats().lowest}}</text>
+        <text class="stat-label">最低分</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 成绩列表 -->
+  <view class="grades-list">
+    <view class="list-header">
+      <text class="header-title">成绩列表</text>
+      <text class="header-exam">{{currentExam}}</text>
+    </view>
+
+    <block wx:if="{{getFilteredGrades().length > 0}}">
+      <view class="grade-card" wx:for="{{getFilteredGrades()}}" wx:key="id">
+        <view class="card-header">
+          <text class="subject-name">{{item.subject}}</text>
+          <text class="score-value {{getScoreClass(item.score)}}">{{item.score}}分</text>
+        </view>
+        <view class="card-body">
+          <text class="exam-date">考试日期：{{item.exam_date}}</text>
+        </view>
+        <view class="card-actions">
+          <view class="delete-btn" bindtap="deleteGrade" data-id="{{item.id}}">删除</view>
+        </view>
+      </view>
+    </block>
+    <view class="empty-state" wx:else>
+      <text class="empty-text">暂无成绩记录</text>
+    </view>
+  </view>
+
+  <!-- 添加成绩弹窗 -->
+  <view class="modal-overlay" wx:if="{{showAddModal}}" bindtap="closeModal">
+    <view class="modal-content" catchtap="preventBubble">
+      <view class="modal-header">
+        <text class="modal-title">添加成绩</text>
+        <view class="close-btn" bindtap="closeModal">×</view>
+      </view>
+      
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="form-label">学生</text>
+          <text class="form-value">{{selectedStudent ? selectedStudent.name : ''}}</text>
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">科目</text>
+          <picker bindchange="onSubjectChange" value="{{0}}" range="{{subjects}}">
+            <view class="picker-input">{{formData.subject || '请选择科目'}}</view>
+          </picker>
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">分数</text>
+          <input 
+            class="form-input" 
+            type="digit"
+            placeholder="请输入分数（0-100）" 
+            value="{{formData.score}}"
+            data-field="score"
+            bindinput="onInputChange"
+          />
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">考试类型</text>
+          <picker bindchange="onExamTypeChange" value="{{0}}" range="{{examTypes}}">
+            <view class="picker-input">{{formData.exam_type}}</view>
+          </picker>
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">考试日期</text>
+          <picker mode="date" value="{{formData.exam_date}}" bindchange="onInputChange" data-field="exam_date">
+            <view class="picker-input">{{formData.exam_date}}</view>
+          </picker>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <view class="btn btn-secondary" bindtap="closeModal">取消</view>
+        <view class="btn btn-primary" bindtap="saveGrade">保存</view>
+      </view>
+    </view>
+  </view>
+</view>

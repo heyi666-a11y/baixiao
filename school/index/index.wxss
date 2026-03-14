@@ -1,0 +1,385 @@
+.container {
+  padding-bottom: 40rpx;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* 返回栏 */
+.back-bar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20rpx 30rpx;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+}
+
+.back-icon {
+  font-size: 32rpx;
+  color: #fff;
+  margin-right: 12rpx;
+}
+
+.back-text {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 学校头部 */
+.school-header {
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40rpx 30rpx 60rpx;
+  overflow: hidden;
+}
+
+.school-header::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 300rpx;
+  height: 300rpx;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.header-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.school-logo {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  margin-right: 30rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.school-title-wrapper {
+  flex: 1;
+}
+
+.school-name {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8rpx;
+}
+
+.school-en {
+  display: block;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 16rpx;
+}
+
+.school-tags {
+  display: flex;
+  gap: 12rpx;
+}
+
+.tag {
+  font-size: 20rpx;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  backdrop-filter: blur(4rpx);
+}
+
+/* 通用卡片样式 */
+.section-card {
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 24rpx 24rpx 0;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.06);
+}
+
+/* 快捷入口 */
+.quick-section {
+  margin-top: -30rpx;
+  position: relative;
+  z-index: 2;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24rpx;
+}
+
+.quick-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.quick-icon-wrapper {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.quick-icon {
+  font-size: 48rpx;
+}
+
+.quick-name {
+  font-size: 24rpx;
+  color: #555;
+  font-weight: 500;
+}
+
+/* 区块头部 */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #333;
+  position: relative;
+  padding-left: 24rpx;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4rpx;
+}
+
+.section-more {
+  font-size: 26rpx;
+  color: #667eea;
+  display: flex;
+  align-items: center;
+}
+
+/* 学校简介 */
+.intro-content {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  border-left: 6rpx solid #667eea;
+}
+
+.intro-text {
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+/* 校园风光 */
+.campus-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}
+
+.campus-item {
+  position: relative;
+  border-radius: 16rpx;
+  overflow: hidden;
+  height: 200rpx;
+}
+
+.campus-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16rpx;
+}
+
+.placeholder-icon {
+  font-size: 48rpx;
+  margin-bottom: 8rpx;
+}
+
+.placeholder-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.campus-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16rpx;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+}
+
+.campus-name {
+  font-size: 26rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* 办学特色 */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}
+
+.feature-card {
+  background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+  border-radius: 16rpx;
+  padding: 28rpx 20rpx;
+  text-align: center;
+  border: 2rpx solid #f0f0f0;
+}
+
+.feature-icon-wrapper {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16rpx;
+}
+
+.feature-icon {
+  font-size: 44rpx;
+}
+
+.feature-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.feature-desc {
+  display: block;
+  font-size: 22rpx;
+  color: #888;
+  line-height: 1.5;
+}
+
+/* 最新动态 */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.news-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background: #f8f9ff;
+  border-radius: 16rpx;
+}
+
+.news-badge {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+  color: #fff;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  margin-right: 16rpx;
+  font-weight: 600;
+}
+
+.news-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.news-date {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.news-arrow {
+  font-size: 28rpx;
+  color: #ccc;
+  margin-left: 16rpx;
+}
+
+/* 底部 */
+.footer-section {
+  margin-top: 40rpx;
+  padding: 40rpx 30rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.footer-content {
+  text-align: center;
+}
+
+.footer-info {
+  margin-bottom: 24rpx;
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12rpx;
+}
+
+.footer-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.footer-text {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-divider {
+  height: 2rpx;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 24rpx 0;
+}
+
+.copyright {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+}

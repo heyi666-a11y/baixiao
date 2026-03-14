@@ -1,0 +1,155 @@
+<view class="container">
+  <!-- 顶部标签栏 -->
+  <view class="tab-bar">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="key"
+      class="tab-item {{activeTab === item.key ? 'active' : ''}}"
+      data-tab="{{item.key}}"
+      bindtap="switchTab"
+    >
+      {{item.label}}
+    </view>
+  </view>
+
+  <!-- 菜单管理标签 -->
+  <view wx:if="{{activeTab === 'menu'}}" class="tab-content">
+    <!-- 日期和餐次选择 -->
+    <view class="filter-bar">
+      <picker mode="date" value="{{currentDate}}" bindchange="onDateChange">
+        <view class="picker-item">
+          <text class="picker-label">日期:</text>
+          <text class="picker-value">{{currentDate}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+      <view class="meal-selector">
+        <view
+          wx:for="{{meals}}"
+          wx:key="key"
+          class="meal-item {{currentMeal === item.key ? 'active' : ''}}"
+          data-meal="{{item.key}}"
+          bindtap="switchMeal"
+        >
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 菜品列表 -->
+    <view class="menu-list">
+      <view
+        wx:for="{{menuList}}"
+        wx:key="id"
+        class="menu-item"
+      >
+        <view class="menu-icon">{{item.categoryIcon}}</view>
+        <view class="menu-info">
+          <view class="menu-name">{{item.name}}</view>
+          <view class="menu-category">{{item.category}}</view>
+          <view class="menu-desc">{{item.description}}</view>
+        </view>
+        <view class="menu-price-stock">
+          <view class="menu-price">¥{{item.price}}</view>
+          <view class="menu-stock">库存: {{item.stock || 99}}</view>
+        </view>
+        <view class="menu-actions">
+          <view class="edit-btn" bindtap="showEditModal" data-item="{{item}}">编辑</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{menuList.length === 0}}" class="empty-state">
+      <text class="empty-icon">🍽️</text>
+      <text class="empty-text">暂无菜品数据</text>
+    </view>
+  </view>
+
+  <!-- 订单查看标签 -->
+  <view wx:if="{{activeTab === 'orders'}}" class="tab-content">
+    <!-- 订单状态筛选 -->
+    <view class="order-filter-bar">
+      <view
+        wx:for="{{orderTabs}}"
+        wx:key="key"
+        class="order-tab {{orderTab === item.key ? 'active' : ''}}"
+        data-tab="{{item.key}}"
+        bindtap="switchOrderTab"
+      >
+        {{item.label}}
+      </view>
+    </view>
+
+    <!-- 订单列表 -->
+    <view class="order-list">
+      <view
+        wx:for="{{filteredOrders}}"
+        wx:key="id"
+        class="order-item"
+      >
+        <view class="order-header">
+          <view class="order-no">订单号: {{item.orderNo}}</view>
+          <view class="order-status {{getStatusClass(item.status)}}">{{getStatusText(item.status)}}</view>
+        </view>
+        <view class="order-info">
+          <view class="order-date">{{formatDateTime(item.createTime)}}</view>
+          <view class="order-amount">¥{{item.totalPrice || item.totalAmount || 0}}</view>
+        </view>
+        <view class="order-items" wx:if="{{item.items && item.items.length > 0}}">
+          <text wx:for="{{item.items}}" wx:for-item="dish" wx:key="id" class="order-dish">{{dish.name}} x{{dish.quantity}}</text>
+        </view>
+        <view class="order-actions" wx:if="{{item.status === 'pending'}}">
+          <view class="action-btn complete" bindtap="completeOrder" data-id="{{item.id}}">确认取餐</view>
+          <view class="action-btn cancel" bindtap="cancelOrder" data-id="{{item.id}}">取消订单</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{filteredOrders.length === 0}}" class="empty-state">
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">暂无订单</text>
+    </view>
+  </view>
+
+  <!-- 编辑弹窗 -->
+  <view wx:if="{{showEditModal}}" class="modal-mask" bindtap="hideEditModal">
+    <view class="modal-content" catchtap="preventBubble">
+      <view class="modal-header">
+        <text class="modal-title">编辑菜品</text>
+        <text class="modal-close" bindtap="hideEditModal">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="form-label">菜品名称</text>
+          <text class="form-value">{{editingItem.name}}</text>
+        </view>
+        <view class="form-item">
+          <text class="form-label">价格 (元)</text>
+          <input
+            type="digit"
+            class="form-input"
+            value="{{editForm.price}}"
+            bindinput="onPriceInput"
+            placeholder="请输入价格"
+          />
+        </view>
+        <view class="form-item">
+          <text class="form-label">库存</text>
+          <input
+            type="number"
+            class="form-input"
+            value="{{editForm.stock}}"
+            bindinput="onStockInput"
+            placeholder="请输入库存"
+          />
+        </view>
+      </view>
+      <view class="modal-footer">
+        <view class="btn btn-cancel" bindtap="hideEditModal">取消</view>
+        <view class="btn btn-confirm" bindtap="saveEdit">保存</view>
+      </view>
+    </view>
+  </view>
+</view>

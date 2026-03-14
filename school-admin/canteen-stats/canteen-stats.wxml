@@ -1,0 +1,67 @@
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">营收统计</text>
+  </view>
+
+  <!-- 日期选择 -->
+  <view class="date-section">
+    <view class="date-picker">
+      <text class="date-label">开始日期</text>
+      <picker mode="date" value="{{startDate}}" bindchange="onStartDateChange">
+        <view class="date-value">{{startDate}}</view>
+      </picker>
+    </view>
+    <text class="date-separator">至</text>
+    <view class="date-picker">
+      <text class="date-label">结束日期</text>
+      <picker mode="date" value="{{endDate}}" bindchange="onEndDateChange">
+        <view class="date-value">{{endDate}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 统计卡片 -->
+  <view class="stats-section">
+    <view class="stats-card main">
+      <text class="stat-label">总营收</text>
+      <text class="stat-value">¥{{stats.totalRevenue}}</text>
+    </view>
+    <view class="stats-row">
+      <view class="stats-card sub">
+        <text class="stat-label">总订单数</text>
+        <text class="stat-value">{{stats.totalOrders}}</text>
+      </view>
+      <view class="stats-card sub">
+        <text class="stat-label">平均客单价</text>
+        <text class="stat-value">¥{{stats.avgOrderValue}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 每日统计 -->
+  <view class="daily-section">
+    <view class="section-header">
+      <text class="section-title">每日营收明细</text>
+    </view>
+    
+    <view class="daily-list">
+      <view class="daily-header">
+        <text class="header-cell">日期</text>
+        <text class="header-cell">订单数</text>
+        <text class="header-cell">营收</text>
+      </view>
+      
+      <block wx:if="{{stats.dailyStats.length > 0}}">
+        <view class="daily-item" wx:for="{{stats.dailyStats}}" wx:key="date">
+          <text class="item-cell date">{{formatDate(item.date)}}</text>
+          <text class="item-cell orders">{{item.orders}}</text>
+          <text class="item-cell revenue">¥{{item.revenue}}</text>
+        </view>
+      </block>
+      <view class="empty-state" wx:else>
+        <text class="empty-text">暂无数据</text>
+      </view>
+    </view>
+  </view>
+</view>

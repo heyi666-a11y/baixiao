@@ -1,0 +1,97 @@
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header-section">
+    <view class="header-bg"></view>
+    <view class="header-content">
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon">←</text>
+      </view>
+      <text class="header-title">资源详情</text>
+      <view class="placeholder"></view>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text>加载中...</text>
+  </view>
+
+  <!-- 资源详情内容 -->
+  <view class="detail-content" wx:if="{{!loading && resource}}">
+    <!-- 资源图标和标题 -->
+    <view class="resource-header">
+      <view class="resource-icon-large">
+        <text>{{resource.typeIcon}}</text>
+      </view>
+      <view class="resource-title-section">
+        <text class="resource-title">{{resource.title}}</text>
+        <view class="resource-tags">
+          <text class="tag type-{{resource.type}}">{{resource.typeName}}</text>
+          <text class="tag size-tag">{{resource.file_size}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 资源信息 -->
+    <view class="info-section">
+      <view class="section-title">资源信息</view>
+      <view class="info-list">
+        <view class="info-item">
+          <text class="info-label">上传者</text>
+          <view class="info-value">
+            <text class="user-icon">👤</text>
+            <text>{{resource.uploader_name || '未知用户'}}</text>
+          </view>
+        </view>
+        <view class="info-item">
+          <text class="info-label">上传时间</text>
+          <text class="info-value">{{resource.created_at}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">下载次数</text>
+          <view class="info-value">
+            <text class="download-icon-small">⬇️</text>
+            <text class="download-count">{{resource.download_count || 0}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 资源描述 -->
+    <view class="description-section" wx:if="{{resource.description}}">
+      <view class="section-title">资源描述</view>
+      <view class="description-content">
+        <text>{{resource.description}}</text>
+      </view>
+    </view>
+
+    <!-- 下载按钮 -->
+    <view class="download-section">
+      <view
+        class="download-btn {{downloading ? 'downloading' : ''}}"
+        bindtap="onDownload"
+      >
+        <view class="btn-content" wx:if="{{!downloading}}">
+          <text class="btn-icon">⬇️</text>
+          <text class="btn-text">立即下载</text>
+        </view>
+        <view class="btn-content" wx:if="{{downloading}}">
+          <view class="progress-ring">
+            <text class="progress-text">{{downloadProgress}}%</text>
+          </view>
+          <text class="btn-text">下载中...</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="error-state" wx:if="{{!loading && !resource}}">
+    <view class="error-icon">⚠️</view>
+    <text class="error-text">资源加载失败</text>
+    <view class="retry-btn" bindtap="loadResourceDetail">
+      <text>重新加载</text>
+    </view>
+  </view>
+</view>

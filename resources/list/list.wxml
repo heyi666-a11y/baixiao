@@ -1,0 +1,90 @@
+<view class="container">
+  <!-- 头部搜索区域 -->
+  <view class="header-section">
+    <view class="header-bg"></view>
+    <view class="header-content">
+      <view class="search-box">
+        <text class="search-icon">🔍</text>
+        <input
+          class="search-input"
+          placeholder="搜索资源名称、描述..."
+          value="{{searchKeyword}}"
+          bindinput="onSearchInput"
+          bindconfirm="onSearchConfirm"
+        />
+        <view class="clear-btn" wx:if="{{searchKeyword}}" bindtap="clearSearch">
+          <text>✕</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 类型筛选 -->
+  <view class="filter-section">
+    <scroll-view class="type-scroll" scroll-x enhanced show-scrollbar="false">
+      <view class="type-list">
+        <view
+          class="type-item {{selectedType === item.value ? 'active' : ''}}"
+          wx:for="{{resourceTypes}}"
+          wx:key="value"
+          data-type="{{item.value}}"
+          bindtap="onTypeChange"
+        >
+          <text class="type-icon">{{item.icon}}</text>
+          <text class="type-name">{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 资源列表 -->
+  <view class="resources-section">
+    <view class="resources-list" wx:if="{{filteredResources.length > 0}}">
+      <view
+        class="resource-card"
+        wx:for="{{filteredResources}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onResourceTap"
+      >
+        <view class="resource-icon">
+          <text>{{item.typeIcon}}</text>
+        </view>
+        <view class="resource-info">
+          <view class="resource-title">{{item.title}}</view>
+          <view class="resource-meta">
+            <text class="meta-item type-{{item.type}}">{{item.type}}</text>
+            <text class="meta-item">{{item.file_size}}</text>
+          </view>
+          <view class="resource-footer">
+            <view class="uploader">
+              <text class="uploader-icon">👤</text>
+              <text class="uploader-name">{{item.uploader_name || '未知用户'}}</text>
+            </view>
+            <view class="download-info">
+              <text class="download-icon">⬇️</text>
+              <text class="download-count">{{item.download_count || 0}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{!loading && filteredResources.length === 0}}">
+      <view class="empty-icon">📂</view>
+      <text class="empty-text">暂无资源</text>
+      <text class="empty-subtext">试试其他搜索条件</text>
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="loading-more" wx:if="{{loading}}">
+      <view class="loading-spinner"></view>
+      <text>加载中...</text>
+    </view>
+
+    <view class="no-more" wx:if="{{!hasMore && filteredResources.length > 0}}">
+      <text>没有更多了</text>
+    </view>
+  </view>
+</view>

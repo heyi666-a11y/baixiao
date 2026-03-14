@@ -1,0 +1,120 @@
+<view class="news-manage-container">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="header-bg"></view>
+    <view class="header-content">
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon">‹</text>
+      </view>
+      <text class="header-title">学校新闻管理</text>
+      <view class="header-right">
+        <view class="publish-btn" bindtap="onPublishNews">
+          <text class="publish-icon">+</text>
+          <text class="publish-text">发布</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分类筛选 -->
+  <view class="category-section">
+    <scroll-view class="category-scroll" scroll-x>
+      <view class="category-list">
+        <view 
+          class="category-item {{currentCategory === item.id ? 'active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="id"
+          data-category="{{item.id}}"
+          bindtap="onCategoryChange"
+        >
+          <text class="category-name">{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 新闻列表 -->
+  <view class="news-list-section">
+    <!-- 加载中 -->
+    <view class="loading-state" wx:if="{{loading && newsList.length === 0}}">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">加载中...</text>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{!loading && newsList.length === 0}}">
+      <text class="empty-icon">📰</text>
+      <text class="empty-text">暂无新闻</text>
+      <text class="empty-subtext">点击右上角发布第一条新闻</text>
+    </view>
+
+    <!-- 新闻列表 -->
+    <view class="news-list" wx:if="{{newsList.length > 0}}">
+      <view 
+        class="news-item {{item.isTop ? 'is-top' : ''}}"
+        wx:for="{{newsList}}"
+        wx:key="id"
+      >
+        <!-- 置顶标记 -->
+        <view class="top-badge" wx:if="{{item.isTop}}">
+          <text>置顶</text>
+        </view>
+
+        <!-- 新闻内容 -->
+        <view class="news-content" bindtap="onEditNews" data-id="{{item.id}}">
+          <view class="news-header">
+            <view class="news-category" style="background: {{item.category === 'notice' ? '#ff4d4f' : item.category === 'activity' ? '#52c41a' : item.category === 'honor' ? '#faad14' : '#667eea'}}">
+              <text>{{item.categoryName}}</text>
+            </view>
+            <text class="news-date">{{item.publishedAt || item.createdAt}}</text>
+          </view>
+          
+          <text class="news-title">{{item.title}}</text>
+          <text class="news-summary">{{item.summary}}</text>
+          
+          <view class="news-meta">
+            <text class="news-author">👤 {{item.author}}</text>
+            <text class="news-views">👁 {{item.viewCount}}</text>
+          </view>
+        </view>
+
+        <!-- 操作按钮 -->
+        <view class="news-actions">
+          <view 
+            class="action-btn top-btn {{item.isTop ? 'active' : ''}}"
+            bindtap="onToggleTop"
+            data-id="{{item.id}}"
+            data-top="{{item.isTop}}"
+          >
+            <text class="action-icon">📌</text>
+            <text class="action-text">{{item.isTop ? '取消置顶' : '置顶'}}</text>
+          </view>
+          <view 
+            class="action-btn edit-btn"
+            bindtap="onEditNews"
+            data-id="{{item.id}}"
+          >
+            <text class="action-icon">✏️</text>
+            <text class="action-text">编辑</text>
+          </view>
+          <view 
+            class="action-btn delete-btn"
+            bindtap="onDeleteNews"
+            data-id="{{item.id}}"
+            data-title="{{item.title}}"
+          >
+            <text class="action-icon">🗑️</text>
+            <text class="action-text">删除</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{newsList.length > 0}}">
+      <text wx:if="{{loading}}">加载中...</text>
+      <text wx:elif="{{hasMore}}">上拉加载更多</text>
+      <text wx:else>没有更多了</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,115 @@
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">学生奖惩管理</text>
+    <view class="add-btn" bindtap="showAddModal">+ 添加记录</view>
+  </view>
+
+  <!-- 学生选择 -->
+  <view class="student-selector">
+    <text class="selector-label">选择学生</text>
+    <picker bindchange="onStudentChange" value="{{0}}" range="{{students}}" range-key="name">
+      <view class="picker-value">
+        <text>{{selectedStudent ? selectedStudent.name : '请选择学生'}}</text>
+        <text class="picker-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 统计信息 -->
+  <view class="stats-section" wx:if="{{selectedStudent}}">
+    <view class="stats-card">
+      <view class="stat-item reward">
+        <text class="stat-value">{{rewardCount}}</text>
+        <text class="stat-label">奖励次数</text>
+      </view>
+      <view class="stat-item punishment">
+        <text class="stat-value">{{punishmentCount}}</text>
+        <text class="stat-label">惩罚次数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 记录列表 -->
+  <view class="rewards-list">
+    <view class="list-header">
+      <text class="header-title">奖惩记录</text>
+      <text class="header-count">共 {{rewards.length}} 条</text>
+    </view>
+
+    <block wx:if="{{rewards.length > 0}}">
+      <view class="reward-card" wx:for="{{rewards}}" wx:key="id">
+        <view class="card-header">
+          <view class="type-badge {{getRewardTypeClass(item.type)}}">
+            {{item.type}}
+          </view>
+          <text class="reward-date">{{item.date}}</text>
+        </view>
+        <view class="card-body">
+          <text class="category">{{item.category}}</text>
+          <text class="content">{{item.content}}</text>
+        </view>
+        <view class="card-actions">
+          <view class="delete-btn" bindtap="deleteReward" data-id="{{item.id}}">删除</view>
+        </view>
+      </view>
+    </block>
+    <view class="empty-state" wx:else>
+      <text class="empty-text">暂无奖惩记录</text>
+    </view>
+  </view>
+
+  <!-- 添加记录弹窗 -->
+  <view class="modal-overlay" wx:if="{{showAddModal}}" bindtap="closeModal">
+    <view class="modal-content" catchtap="preventBubble">
+      <view class="modal-header">
+        <text class="modal-title">添加记录</text>
+        <view class="close-btn" bindtap="closeModal">×</view>
+      </view>
+      
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="form-label">学生</text>
+          <text class="form-value">{{selectedStudent ? selectedStudent.name : ''}}</text>
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">类型</text>
+          <picker bindchange="onTypeChange" value="{{0}}" range="{{rewardTypes}}">
+            <view class="picker-input">{{formData.type}}</view>
+          </picker>
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">类别</text>
+          <picker bindchange="onCategoryChange" value="{{0}}" range="{{rewardCategories}}">
+            <view class="picker-input">{{formData.category || '请选择类别'}}</view>
+          </picker>
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">内容</text>
+          <textarea 
+            class="form-textarea" 
+            placeholder="请输入具体内容..."
+            value="{{formData.content}}"
+            data-field="content"
+            bindinput="onInputChange"
+          />
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">日期</text>
+          <picker mode="date" value="{{formData.date}}" bindchange="onInputChange" data-field="date">
+            <view class="picker-input">{{formData.date}}</view>
+          </picker>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <view class="btn btn-secondary" bindtap="closeModal">取消</view>
+        <view class="btn btn-primary" bindtap="saveReward">保存</view>
+      </view>
+    </view>
+  </view>
+</view>

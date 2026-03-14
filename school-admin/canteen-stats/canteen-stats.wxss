@@ -1,0 +1,194 @@
+.container {
+  padding: 20rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.page-header {
+  text-align: center;
+  padding: 30rpx 0;
+}
+
+.page-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* 日期选择 */
+.date-section {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.date-picker {
+  flex: 1;
+}
+
+.date-label {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.date-value {
+  font-size: 28rpx;
+  color: #667eea;
+  padding: 12rpx 20rpx;
+  background: #f5f5f5;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+.date-separator {
+  font-size: 28rpx;
+  color: #999;
+  padding: 0 20rpx;
+}
+
+/* 统计卡片 */
+.stats-section {
+  margin-bottom: 20rpx;
+}
+
+.stats-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.stats-card.main {
+  margin-bottom: 20rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.stats-card.main .stat-label {
+  color: rgba(255,255,255,0.8);
+  font-size: 28rpx;
+}
+
+.stats-card.main .stat-value {
+  color: #fff;
+  font-size: 64rpx;
+  font-weight: bold;
+  margin-top: 16rpx;
+}
+
+.stats-row {
+  display: flex;
+  gap: 20rpx;
+}
+
+.stats-card.sub {
+  flex: 1;
+}
+
+.stats-card.sub .stat-label {
+  color: #666;
+  font-size: 26rpx;
+}
+
+.stats-card.sub .stat-value {
+  color: #333;
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-top: 12rpx;
+}
+
+.stat-label {
+  display: block;
+}
+
+.stat-value {
+  display: block;
+}
+
+/* 每日统计 */
+.daily-section {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.section-header {
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.daily-list {
+  border: 2rpx solid #f0f0f0;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.daily-header {
+  display: flex;
+  background: #f8f9fa;
+  padding: 20rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.header-cell {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+.daily-item {
+  display: flex;
+  padding: 24rpx 20rpx;
+  border-bottom: 2rpx solid #f8f8f8;
+}
+
+.daily-item:last-child {
+  border-bottom: none;
+}
+
+.item-cell {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.item-cell.date {
+  color: #666;
+}
+
+.item-cell.orders {
+  color: #667eea;
+  font-weight: 500;
+}
+
+.item-cell.revenue {
+  color: #52c41a;
+  font-weight: 500;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 60rpx 0;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}

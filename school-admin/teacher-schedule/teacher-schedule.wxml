@@ -1,0 +1,117 @@
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">教师课表管理</text>
+  </view>
+
+  <!-- 教师选择 -->
+  <view class="teacher-selector">
+    <text class="selector-label">选择教师</text>
+    <picker bindchange="onTeacherChange" value="{{0}}" range="{{teachers}}" range-key="name">
+      <view class="picker-value">
+        <text>{{selectedTeacher ? selectedTeacher.name : '请选择教师'}}</text>
+        <text class="picker-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 课表 -->
+  <view class="schedule-container" wx:if="{{selectedTeacher}}">
+    <view class="schedule-header">
+      <view class="header-cell time-cell">时间</view>
+      <view class="header-cell" wx:for="{{weekDays}}" wx:key="index">{{item}}</view>
+    </view>
+    
+    <view class="schedule-body">
+      <view class="schedule-row" wx:for="{{timeSlots}}" wx:for-index="periodIndex" wx:for-item="slot" wx:key="periodIndex">
+        <view class="time-cell">
+          <text class="period-label">{{slot.label}}</text>
+          <text class="period-time">{{slot.time}}</text>
+        </view>
+        <view 
+          class="schedule-cell {{getScheduleItem(dayIndex, periodIndex) ? 'has-class' : ''}}" 
+          wx:for="{{weekDays}}" 
+          wx:for-index="dayIndex" 
+          wx:key="dayIndex"
+          bindtap="onScheduleTap"
+          data-day="{{dayIndex}}"
+          data-period="{{periodIndex}}"
+        >
+          <block wx:if="{{getScheduleItem(dayIndex, periodIndex)}}">
+            <text class="subject-name">{{getScheduleItem(dayIndex, periodIndex).subject}}</text>
+            <text class="class-info">{{getScheduleItem(dayIndex, periodIndex).className}}</text>
+            <text class="room-info">{{getScheduleItem(dayIndex, periodIndex).classroom}}</text>
+          </block>
+          <block wx:else>
+            <text class="empty-slot">+</text>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-text">请先选择教师</text>
+  </view>
+
+  <!-- 编辑弹窗 -->
+  <view class="modal-overlay" wx:if="{{showEditModal}}" bindtap="closeModal">
+    <view class="modal-content" catchtap="preventBubble">
+      <view class="modal-header">
+        <text class="modal-title">{{editingSchedule ? '编辑课程' : '添加课程'}}</text>
+        <view class="close-btn" bindtap="closeModal">×</view>
+      </view>
+      
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="form-label">星期</text>
+          <text class="form-value">{{weekDays[formData.day]}}</text>
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">节次</text>
+          <text class="form-value">{{timeSlots[formData.period].label}} ({{timeSlots[formData.period].time}})</text>
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">课程名称</text>
+          <input 
+            class="form-input" 
+            placeholder="请输入课程名称" 
+            value="{{formData.subject}}"
+            data-field="subject"
+            bindinput="onInputChange"
+          />
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">授课班级</text>
+          <input 
+            class="form-input" 
+            placeholder="请输入班级名称" 
+            value="{{formData.className}}"
+            data-field="className"
+            bindinput="onInputChange"
+          />
+        </view>
+        
+        <view class="form-item">
+          <text class="form-label">教室</text>
+          <input 
+            class="form-input" 
+            placeholder="请输入教室" 
+            value="{{formData.classroom}}"
+            data-field="classroom"
+            bindinput="onInputChange"
+          />
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <view class="btn btn-secondary" bindtap="closeModal">取消</view>
+        <view class="btn btn-danger" wx:if="{{editingSchedule}}" bindtap="deleteSchedule">删除</view>
+        <view class="btn btn-primary" bindtap="saveSchedule">保存</view>
+      </view>
+    </view>
+  </view>
+</view>

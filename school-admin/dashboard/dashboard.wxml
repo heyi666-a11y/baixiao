@@ -1,0 +1,86 @@
+<view class="dashboard-container">
+  <!-- 头部信息 -->
+  <view class="header-section">
+    <view class="header-bg"></view>
+    <view class="header-content">
+      <view class="admin-info">
+        <image class="admin-avatar" src="/images/school-logo.jpg" mode="aspectFill"></image>
+        <view class="admin-text">
+          <text class="welcome-text">欢迎回来</text>
+          <text class="admin-name">{{adminUser ? adminUser.name : '管理员'}}</text>
+        </view>
+      </view>
+      <view class="logout-btn" bindtap="onLogout">
+        <text>退出</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计卡片 -->
+  <view class="stats-section">
+    <view class="stats-grid">
+      <view class="stat-card">
+        <view class="stat-icon teachers">👨‍🏫</view>
+        <view class="stat-info">
+          <text class="stat-number">{{stats.teacherCount}}</text>
+          <text class="stat-label">教师人数</text>
+        </view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-icon students">👨‍🎓</view>
+        <view class="stat-info">
+          <text class="stat-number">{{stats.studentCount}}</text>
+          <text class="stat-label">学生人数</text>
+        </view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-icon orders">📋</view>
+        <view class="stat-info">
+          <text class="stat-number">{{stats.orderCount}}</text>
+          <text class="stat-label">订单数量</text>
+        </view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-icon menu">🍽️</view>
+        <view class="stat-info">
+          <text class="stat-number">{{stats.menuCount}}</text>
+          <text class="stat-label">菜品数量</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能模块 -->
+  <view class="modules-section">
+    <view class="section-title">
+      <text class="title-text">功能模块</text>
+      <text class="title-line"></text>
+    </view>
+    
+    <view class="modules-grid">
+      <view 
+        class="module-card" 
+        wx:for="{{modules}}" 
+        wx:key="id"
+        data-path="{{item.path}}"
+        bindtap="navigateToModule"
+        style="--module-color: {{item.color}}"
+      >
+        <view class="module-icon" style="background: linear-gradient(135deg, {{item.color}} 0%, {{item.color}}dd 100%)">
+          <text class="icon-text">{{item.icon}}</text>
+        </view>
+        <view class="module-info">
+          <text class="module-name">{{item.name}}</text>
+          <text class="module-desc">{{item.description}}</text>
+        </view>
+        <view class="module-arrow">›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer-section">
+    <text class="footer-text">学校管理系统 v1.0</text>
+    <text class="footer-text">© 2024 百校一体化系统</text>
+  </view>
+</view>

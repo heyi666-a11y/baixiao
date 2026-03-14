@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "管理仪表盘",
+  "navigationBarBackgroundColor": "#667eea",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "usingComponents": {}
+}
