@@ -1,0 +1,71 @@
+/* 底部导航栏样式 */
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tabbar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.tabbar-item:active {
+  opacity: 0.7;
+}
+
+.tabbar-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
+  transition: all 0.2s ease;
+}
+
+.tabbar-text {
+  font-size: 10px;
+  color: #999999;
+  transition: all 0.2s ease;
+}
+
+.tabbar-item.active .tabbar-text {
+  color: #667eea;
+}
+
+.tabbar-item.active .tabbar-icon {
+  transform: scale(1.1);
+}
+
+/* 页面内容需要为底部导航栏留出空间 */
+.page-container {
+  padding-bottom: 56px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 适配 iPhone X 及以上机型的底部安全区域 */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .tabbar {
+    padding-bottom: env(safe-area-inset-bottom);
+    height: calc(56px + env(safe-area-inset-bottom));
+  }
+
+  .page-container {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom));
+  }
+}
